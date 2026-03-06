@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Teller - Crystal Ball Future Predictions | Spaarow Hub</title>
+    <meta name="description" content="Gaze into the crystal ball and reveal what the future holds. Get personalized fortune telling with mystical predictions and future insights. Professional divination readings for just $1.">
+    <meta name="keywords" content="fortune teller online, crystal ball reading, future prediction, mystical fortune, destiny reading, spiritual guidance, divination tools, future insights, psychic reading">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://spaarowhub.great-site.net/fortune-teller/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Fortune Teller - Crystal Ball Future Predictions">
+    <meta property="og:description" content="Gaze into the crystal ball and reveal what the future holds. Get personalized fortune telling with mystical predictions and future insights for just $1.">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/fortune-teller/">
+    <meta property="og:site_name" content="Spaarow Hub">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://spaarowhub.great-site.net/fortune-teller/social-image.jpg">
+    <meta property="og:image:alt" content="Crystal Ball Fortune Telling">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fortune Teller - Crystal Ball Predictions">
+    <meta name="twitter:description" content="Gaze into the crystal ball and reveal your future. Get personalized fortune telling with mystical predictions for just $1.">
+    <meta name="twitter:image" content="https://spaarowhub.great-site.net/fortune-teller/social-image.jpg">
+    <meta name="twitter:site" content="@SpaarowHub">
+    <meta name="twitter:creator" content="@TylerDavis">
+    
+    <meta name="theme-color" content="#F97316">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="fortune-main">
+        <div class="mystical-container">
+            <!-- Header Section -->
+            <section class="fortune-header">
+                <div class="fortune-title">
+                    <h1>
+                        <i class="fas fa-crystal-ball"></i>
+                        Fortune Teller
+                    </h1>
+                    <p>Gaze Into Crystal Ball of Destiny</p>
+                </div>
+                
+                <div class="mystical-particles">
+                    <div class="particle particle-1">✨</div>
+                    <div class="particle particle-2">🔮</div>
+                    <div class="particle particle-3">⭐</div>
+                    <div class="particle particle-4">💫</div>
+                    <div class="particle particle-5">🌟</div>
+                </div>
+            </section>
+
+            <!-- Crystal Ball Section -->
+            <section class="crystal-ball-section">
+                <div class="crystal-ball-container">
+                    <div class="crystal-ball" id="crystal-ball">
+                        <div class="ball-inner">
+                            <div class="mystical-swirl"></div>
+                            <div class="fortune-glow"></div>
+                        </div>
+                        <div class="ball-base"></div>
+                    </div>
+                    
+                    <div class="fortune-prompt">
+                        <h2>Ask the Crystal Ball</h2>
+                        <p>Focus on your question and gaze into the mystical depths...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question Input Section -->
+            <section class="question-section">
+                <div class="question-card">
+                    <div class="card-header">
+                        <i class="fas fa-question-circle"></i>
+                        <h2>What Would You Like to Know?</h2>
+                    </div>
+                    
+                    <div class="question-form">
+                        <div class="form-group">
+                            <label for="fortune-category">Choose Your Focus</label>
+                            <select id="fortune-category">
+                                <option value="">Select a category...</option>
+                                <option value="love">💕 Love & Relationships</option>
+                                <option value="career">💼 Career & Success</option>
+                                <option value="health">🏥 Health & Wellness</option>
+                                <option value="money">💰 Wealth & Prosperity</option>
+                                <option value="general">🔮 General Guidance</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user-question">Your Question (Optional)</label>
+                            <textarea id="user-question" placeholder="Ask a specific question or leave blank for general guidance..." rows="3" maxlength="200"></textarea>
+                            <div class="char-count">
+                                <span id="question-char-count">0</span> / 200 characters
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeframe">Time Frame</label>
+                            <select id="timeframe">
+                                <option value="near">Near Future (Next 30 days)</option>
+                                <option value="mid">Mid-term (Next 3 months)</option>
+                                <option value="far">Distant Future (Next year)</option>
+                            </select>
+                        </div>
+                        
+                        <button class="fortune-btn" onclick="revealFortune()">
+                            <i class="fas fa-eye"></i>
+                            Reveal My Fortune
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fortune Results Section -->
+            <section class="results-section" id="results" style="display: none;">
+                <div class="fortune-result-card">
+                    <div class="fortune-header">
+                        <h3>Your Mystical Fortune</h3>
+                        <div class="fortune-category-badge" id="category-badge">
+                            <!-- Category will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="crystal-vision">
+                        <div class="vision-text" id="fortune-text">
+                            <!-- Fortune will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="fortune-details">
+                        <div class="detail-section">
+                            <h4>🌟 Cosmic Alignment</h4>
+                            <div class="alignment-info" id="alignment-info">
+                                <!-- Alignment info will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>💫 Mystical Guidance</h4>
+                            <div class="guidance-text" id="guidance-text">
+                                <!-- Guidance will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>🔮 Lucky Elements</h4>
+                            <div class="lucky-elements" id="lucky-elements">
+                                <!-- Lucky elements will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-section">
+                        <div class="premium-content">
+                            <h3>🌟 Unlock Complete Fortune Reading</h3>
+                            <p>Get your detailed birth chart analysis, compatibility insights, and personalized predictions for just $1!</p>
+                            
+                            <div class="premium-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Detailed Future Predictions</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-heart"></i>
+                                    <span>Love & Relationship Insights</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-coins"></i>
+                                    <span>Wealth & Career Forecast</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Personal Lucky Numbers</span>
+                                </div>
+                            </div>
+                            
+                            <button class="premium-btn" onclick="unlockPremium()">
+                                <i class="fas fa-lock-open"></i>
+                                Unlock Full Reading - $1
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fortune Methods Reference -->
+            <section class="methods-reference">
+                <h2>Ancient Fortune Methods</h2>
+                <div class="methods-grid" id="methods-grid">
+                    <!-- Methods will be populated here -->
+                </div>
+            </section>
+
+            <!-- Sacred Number Meanings -->
+            <section class="sacred-numbers">
+                <h2>Sacred Number Meanings</h2>
+                <div class="numbers-grid" id="numbers-grid">
+                    <!-- Numbers will be populated here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="premium-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closePremiumModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🌟 Complete Your Fortune Reading</h3>
+                <button class="close-btn" onclick="closePremiumModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-info">
+                    <h4>Get Your Complete Mystical Package</h4>
+                    <ul>
+                        <li>Unlimited fortune readings</li>
+                        <li>Personalized birth chart analysis</li>
+                        <li>Love and career compatibility</li>
+                        <li>Wealth and success predictions</li>
+                        <li>Personalized lucky numbers and dates</li>
+                        <li>Monthly cosmic forecast</li>
+                    </ul>
+                    
+                    <div class="price-display">
+                        <span class="price">$1.00</span>
+                        <span class="price-note">One-time payment</span>
+                    </div>
+                    
+                    <!-- PayPal Button -->
+                    <div class="payment-button">
+                        <div>
+                            <style>.pp-VKAP2E6UWJRV6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+                            <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                                <input class="pp-VKAP2E6UWJRV6" type="submit" value="Buy Now" />
+                                <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+                                <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./fortune-data.js"></script>
+    <script src="./script.js"></script>
+    
+    <!-- Navigation -->
+    <script src="../asset/js/navigation.js"></script>
+</body>
+</html>

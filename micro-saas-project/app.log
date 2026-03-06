@@ -54,3 +54,50 @@
 2026-03-06 15:32:28,828 - INFO - Collected 6 reviews for business business_1a1f2ed3
 2026-03-06 15:32:28,832 - INFO - Added competitor 'Rival Restaurant' for business business_1a1f2ed3
 2026-03-06 15:32:28,834 - INFO - Added competitor 'Competitor Cafe' for business business_1a1f2ed3
+2026-03-06 15:36:30,542 - INFO - Loaded configuration from config.json
+2026-03-06 15:36:30,546 - INFO - Starting MeetingOrganizer
+2026-03-06 15:36:30,549 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:36:30,551 - INFO - Meeting Organizer initialized
+2026-03-06 15:36:30,552 - INFO - Recordings path: recordings
+2026-03-06 15:36:30,552 - INFO - Loaded 0 meetings
+2026-03-06 15:36:30,665 - INFO - Registered new user: manager@example.com
+2026-03-06 15:36:30,670 - INFO - User logged in: manager@example.com
+2026-03-06 15:36:30,784 - INFO - Uploaded meeting 'Q3 Marketing Campaign Review' for user manager@example.com
+2026-03-06 15:36:30,798 - INFO - Transcribed meeting meeting_8fe16530
+2026-03-06 15:36:30,810 - ERROR - Demo failed: Action item not found
+2026-03-06 15:38:02,002 - INFO - Loaded configuration from config.json
+2026-03-06 15:38:02,033 - INFO - Starting MeetingOrganizer
+2026-03-06 15:38:02,033 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:38:02,036 - INFO - Meeting Organizer initialized
+2026-03-06 15:38:02,037 - INFO - Recordings path: recordings
+2026-03-06 15:38:02,041 - INFO - Loaded 0 meetings
+2026-03-06 15:38:02,086 - INFO - Registered new user: manager@example.com
+2026-03-06 15:38:02,088 - INFO - User logged in: manager@example.com
+2026-03-06 15:38:02,198 - INFO - Uploaded meeting 'Q3 Marketing Campaign Review' for user manager@example.com
+2026-03-06 15:38:02,200 - INFO - Transcribed meeting meeting_4f7755c0
+2026-03-06 15:38:02,206 - INFO - Updated action item action_94545134 status to in_progress
+2026-03-06 15:38:02,207 - ERROR - Demo failed: 'ActionItem' object is not subscriptable
+2026-03-06 15:39:13,429 - INFO - Loaded configuration from config.json
+2026-03-06 15:39:13,430 - INFO - Starting MeetingOrganizer
+2026-03-06 15:39:13,430 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:39:13,430 - INFO - Meeting Organizer initialized
+2026-03-06 15:39:13,431 - INFO - Recordings path: recordings
+2026-03-06 15:39:13,431 - INFO - Loaded 0 meetings
+2026-03-06 15:39:13,472 - INFO - Registered new user: manager@example.com
+2026-03-06 15:39:13,473 - INFO - User logged in: manager@example.com
+2026-03-06 15:39:13,582 - INFO - Uploaded meeting 'Q3 Marketing Campaign Review' for user manager@example.com
+2026-03-06 15:39:13,585 - INFO - Transcribed meeting meeting_316e2d33
+2026-03-06 15:39:13,586 - INFO - Updated action item action_16367a8e status to in_progress
+2026-03-06 15:39:13,586 - ERROR - Demo failed: 'ActionItem' object is not subscriptable
+2026-03-06 15:40:04,776 - INFO - Loaded configuration from config.json
+2026-03-06 15:40:04,776 - INFO - Starting MeetingOrganizer
+2026-03-06 15:40:04,777 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:40:04,778 - INFO - Meeting Organizer initialized
+2026-03-06 15:40:04,779 - INFO - Recordings path: recordings
+2026-03-06 15:40:04,780 - INFO - Loaded 0 meetings
+2026-03-06 15:40:04,821 - INFO - Registered new user: manager@example.com
+2026-03-06 15:40:04,822 - INFO - User logged in: manager@example.com
+2026-03-06 15:40:04,926 - INFO - Uploaded meeting 'Q3 Marketing Campaign Review' for user manager@example.com
+2026-03-06 15:40:04,933 - INFO - Transcribed meeting meeting_4d7daa13
+2026-03-06 15:40:04,934 - INFO - Updated action item action_2957dbd5 status to in_progress
+2026-03-06 15:40:04,937 - ERROR - Demo failed: Object of type datetime is not JSON serializable

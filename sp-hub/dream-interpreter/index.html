@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Interpreter - AI Dream Analysis & Meaning | Spaarow Hub</title>
+    <meta name="description" content="Get professional AI-powered dream interpretation and analysis. Discover the hidden meanings behind your dreams tonight with advanced dream analysis. Personalized dream insights for just $1.">
+    <meta name="keywords" content="dream interpreter, dream analysis, dream meaning, sleep interpretation, subconscious mind, dream symbolism, night vision analysis, AI dream reader, professional dream interpretation">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://spaarowhub.great-site.net/dream-interpreter/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dream Interpreter - AI Dream Analysis & Meaning">
+    <meta property="og:description" content="Get professional AI-powered dream interpretation and analysis. Discover the hidden meanings behind your dreams with advanced dream analysis. Personalized insights for just $1.">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/dream-interpreter/">
+    <meta property="og:site_name" content="Spaarow Hub">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://spaarowhub.great-site.net/dream-interpreter/social-image.jpg">
+    <meta property="og:image:alt" content="AI Dream Analysis and Interpretation">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dream Interpreter - AI Dream Analysis">
+    <meta name="twitter:description" content="Get professional AI-powered dream interpretation and discover hidden meanings behind your dreams. Advanced dream analysis for just $1.">
+    <meta name="twitter:image" content="https://spaarowhub.great-site.net/dream-interpreter/social-image.jpg">
+    <meta name="twitter:site" content="@SpaarowHub">
+    <meta name="twitter:creator" content="@TylerDavis">
+    
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="dream-main">
+        <div class="dreamscape-container">
+            <!-- Header Section -->
+            <section class="dream-header">
+                <div class="dream-title">
+                    <h1>
+                        <i class="fas fa-cloud"></i>
+                        Dream Interpreter
+                    </h1>
+                    <p>Unlock the Hidden Messages in Your Dreams</p>
+                </div>
+                
+                <div class="floating-dreams">
+                    <div class="dream-bubble bubble-1">💭</div>
+                    <div class="dream-bubble bubble-2">✨</div>
+                    <div class="dream-bubble bubble-3">🌙</div>
+                    <div class="dream-bubble bubble-4">⭐</div>
+                    <div class="dream-bubble bubble-5">☁️</div>
+                </div>
+            </section>
+
+            <!-- Input Section -->
+            <section class="dream-input-section">
+                <div class="dream-input-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h2>Describe Your Dream</h2>
+                    </div>
+                    
+                    <div class="dream-form">
+                        <div class="form-group">
+                            <label for="dream-title">Dream Title (Optional)</label>
+                            <input type="text" id="dream-title" placeholder="Give your dream a title..." maxlength="100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dream-description">Dream Description</label>
+                            <textarea id="dream-description" placeholder="Describe your dream in detail... What happened? Who was there? How did you feel?" rows="6" required></textarea>
+                            <div class="char-count">
+                                <span id="char-count">0</span> / 500 characters
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dream-mood">How did you feel in the dream?</label>
+                            <select id="dream-mood">
+                                <option value="">Select a mood...</option>
+                                <option value="happy">😊 Happy</option>
+                                <option value="scared">😨 Scared</option>
+                                <option value="anxious">😰 Anxious</option>
+                                <option value="peaceful">😌 Peaceful</option>
+                                <option value="confused">😕 Confused</option>
+                                <option value="excited">🤗 Excited</option>
+                                <option value="sad">😢 Sad</option>
+                                <option value="angry">😠 Angry</option>
+                                <option value="neutral">😐 Neutral</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dream-type">Dream Type</label>
+                            <select id="dream-type">
+                                <option value="">Select type...</option>
+                                <option value="normal">Regular Dream</option>
+                                <option value="nightmare">Nightmare</option>
+                                <option value="lucid">Lucid Dream</option>
+                                <option value="recurring">Recurring Dream</option>
+                                <option value="prophetic">Prophetic Dream</option>
+                            </select>
+                        </div>
+                        
+                        <button class="interpret-btn" onclick="interpretDream()">
+                            <i class="fas fa-magic"></i>
+                            Interpret My Dream
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results" style="display: none;">
+                <div class="interpretation-card">
+                    <div class="dream-summary">
+                        <h3>Your Dream Summary</h3>
+                        <div class="summary-content" id="dream-summary">
+                            <!-- Summary will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="interpretation-content">
+                        <h3>🔍 Dream Interpretation</h3>
+                        <div class="interpretation-text" id="interpretation-text">
+                            <!-- Interpretation will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="symbols-analysis">
+                        <h3>🔮 Key Symbols & Meanings</h3>
+                        <div class="symbols-grid" id="symbols-grid">
+                            <!-- Symbols will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="emotional-insights">
+                        <h3>💭 Emotional Insights</h3>
+                        <div class="insights-content" id="emotional-insights">
+                            <!-- Insights will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="premium-section">
+                        <div class="premium-content">
+                            <h3>🌟 Unlock Complete Dream Analysis</h3>
+                            <p>Get your comprehensive dream journal, recurring pattern analysis, and personalized dream guidance for just $1!</p>
+                            
+                            <div class="premium-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-book"></i>
+                                    <span>Dream Journal & History</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Recurring Pattern Analysis</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Personalized Guidance</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-moon"></i>
+                                    <span>Sleep Quality Tracking</span>
+                                </div>
+                            </div>
+                            
+                            <button class="premium-btn" onclick="unlockPremium()">
+                                <i class="fas fa-lock-open"></i>
+                                Unlock Full Analysis - $1
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Common Dreams Reference -->
+            <section class="common-dreams">
+                <h2>Common Dream Meanings</h2>
+                <div class="dreams-grid" id="dreams-grid">
+                    <!-- Common dreams will be populated here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="premium-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closePremiumModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🌟 Complete Your Dream Analysis</h3>
+                <button class="close-btn" onclick="closePremiumModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-info">
+                    <h4>Get Your Full Dream Interpretation Package</h4>
+                    <ul>
+                        <li>Unlimited dream interpretations</li>
+                        <li>Personal dream journal with history</li>
+                        <li>Recurring dream pattern analysis</li>
+                        <li>Sleep quality and mood tracking</li>
+                        <li>Personalized guidance and recommendations</li>
+                        <li>Dream symbolism dictionary access</li>
+                    </ul>
+                    
+                    <div class="price-display">
+                        <span class="price">$1.00</span>
+                        <span class="price-note">One-time payment</span>
+                    </div>
+                    
+                    <!-- PayPal Button -->
+                    <div class="payment-button">
+                        <div>
+                            <style>.pp-VKAP2E6UWJRV6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+                            <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                                <input class="pp-VKAP2E6UWJRV6" type="submit" value="Buy Now" />
+                                <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+                                <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./dream-data.js"></script>
+    <script src="./script.js"></script>
+    
+    <!-- Navigation -->
+    <script src="../asset/js/navigation.js"></script>
+</body>
+</html>

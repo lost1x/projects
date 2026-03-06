@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Sign Calculator - Discover Your Cosmic Personality | Spaarow Hub</title>
+    <meta name="description" content="Calculate your exact zodiac sign and discover detailed celestial personality traits, cosmic compatibility, and astrological insights. Professional zodiac calculator with birth chart analysis for just $1.">
+    <meta name="keywords" content="zodiac sign calculator, astrology birth chart, cosmic personality traits, zodiac compatibility, horoscope calculator, star signs dates, celestial insights, astrological analysis, zodiac love match">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://spaarowhub.great-site.net/zodiac-calculator/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Zodiac Sign Calculator - Discover Your Cosmic Personality">
+    <meta property="og:description" content="Calculate your exact zodiac sign and discover detailed celestial personality traits, cosmic compatibility, and astrological insights. Professional zodiac analysis for just $1.">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/zodiac-calculator/">
+    <meta property="og:site_name" content="Spaarow Hub">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zodiac Calculator - Discover Your Cosmic Sign">
+    <meta name="twitter:description" content="Calculate your zodiac sign and discover your celestial personality traits. Your cosmic destiny awaits for just $1.">
+    <meta name="twitter:image" content="https://spaarowhub.great-site.net/zodiac-calculator/social-image.jpg">
+    
+    <meta name="theme-color" content="#14B8A6">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="zodiac-main">
+        <div class="cosmic-container">
+            <!-- Header Section -->
+            <section class="zodiac-header">
+                <div class="cosmic-title">
+                    <h1>
+                        <i class="fas fa-star"></i>
+                        Zodiac Calculator
+                    </h1>
+                    <p>Discover Your Cosmic Sign & Celestial Personality</p>
+                </div>
+                
+                <div class="floating-stars">
+                    <div class="star star-1">✦</div>
+                    <div class="star star-2">✧</div>
+                    <div class="star star-3">✦</div>
+                    <div class="star star-4">✧</div>
+                    <div class="star star-5">✦</div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section class="calculator-section">
+                <div class="calculator-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Enter Your Birth Date</h2>
+                    </div>
+                    
+                    <div class="date-input-group">
+                        <label for="birth-date">Birth Date:</label>
+                        <input type="date" id="birth-date" max="" required>
+                        <button class="calculate-btn" onclick="calculateZodiac()">
+                            <i class="fas fa-magic"></i>
+                            Calculate My Sign
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results" style="display: none;">
+                <div class="result-card">
+                    <div class="zodiac-sign-display">
+                        <div class="zodiac-icon" id="zodiac-icon">
+                            <!-- Icon will be inserted here -->
+                        </div>
+                        <h2 class="zodiac-name" id="zodiac-name">
+                            <!-- Sign name will be inserted here -->
+                        </h2>
+                        <p class="zodiac-date-range" id="zodiac-dates">
+                            <!-- Date range will be inserted here -->
+                        </p>
+                    </div>
+                    
+                    <div class="personality-traits">
+                        <h3>Your Cosmic Personality Traits</h3>
+                        <div class="traits-grid" id="traits-grid">
+                            <!-- Traits will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="cosmic-message">
+                        <h3>Your Celestial Message</h3>
+                        <p id="cosmic-message">
+                            <!-- Message will be inserted here -->
+                        </p>
+                    </div>
+                    
+                    <div class="premium-section">
+                        <div class="premium-content">
+                            <h3>🌟 Unlock Your Full Cosmic Reading</h3>
+                            <p>Get your complete birth chart analysis, compatibility insights, and personalized predictions for just $1!</p>
+                            
+                            <div class="premium-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Complete Birth Chart Analysis</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-heart"></i>
+                                    <span>Love & Relationship Compatibility</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-crystal-ball"></i>
+                                    <span>30-Day Personalized Predictions</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Lucky Numbers & Days</span>
+                                </div>
+                            </div>
+                            
+                            <button class="premium-btn" onclick="unlockPremium()">
+                                <i class="fas fa-lock-open"></i>
+                                Unlock Full Reading - $1
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Zodiac Signs Reference -->
+            <section class="zodiac-reference">
+                <h2>All Zodiac Signs</h2>
+                <div class="zodiac-grid" id="zodiac-grid">
+                    <!-- All signs will be populated here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="premium-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closePremiumModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🌟 Complete Your Cosmic Reading</h3>
+                <button class="close-btn" onclick="closePremiumModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-info">
+                    <h4>Get Your Full Astrological Analysis</h4>
+                    <ul>
+                        <li>Detailed birth chart interpretation</li>
+                        <li>Relationship compatibility analysis</li>
+                        <li>Career & financial insights</li>
+                        <li>30-day personalized horoscope</li>
+                        <li>Lucky numbers, colors, and days</li>
+                    </ul>
+                    
+                    <div class="price-display">
+                        <span class="price">$1.00</span>
+                        <span class="price-note">One-time payment</span>
+                    </div>
+                    
+                    <!-- PayPal Button (replace with actual payment integration) -->
+                    <i class="paypal-btn"><div>
+  <style>.pp-VKAP2E6UWJRV6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+  <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+    <input class="pp-VKAP2E6UWJRV6" type="submit" value="Buy Now" />
+    <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+    <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+  </form>
+</div>
+</i>      
+    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./zodiac-data.js"></script>
+    <script src="./script.js"></script>
+    
+    <!-- Navigation -->
+    <script src="../asset/js/navigation.js"></script>
+</body>
+</html>

@@ -814,7 +814,7 @@ class MeetingOrganizer(MicroSaaSApp):
         action_items = [a for a in self.action_items.values() if a.meeting_id == meeting_id]
         action_status = {"pending": 0, "in_progress": 0, "completed": 0}
         for action in action_items:
-            action_status[action["status"]] += 1
+            action_status[action.status] += 1
         
         return {
             "meeting": {
@@ -842,9 +842,9 @@ class MeetingOrganizer(MicroSaaSApp):
                 "total": len(action_items),
                 "by_status": action_status,
                 "by_priority": {
-                    "high": len([a for a in action_items if a["priority"] == "high"]),
-                    "medium": len([a for a in action_items if a["priority"] == "medium"]),
-                    "low": len([a for a in action_items if a["priority"] == "low"])
+                    "high": len([a for a in action_items if a.priority == "high"]),
+                    "medium": len([a for a in action_items if a.priority == "medium"]),
+                    "low": len([a for a in action_items if a.priority == "low"])
                 }
             },
             "decisions": {
@@ -976,8 +976,9 @@ class MeetingOrganizer(MicroSaaSApp):
         total_participants = sum(len(m.participants) for m in user_meetings)
         
         # Action items across all meetings
-        user_action_items = [a for a in self.action_items.values() 
-                           for mid in user_meeting_ids if a.meeting_id == mid]
+        user_action_items = []
+        for mid in user_meeting_ids:
+            user_action_items.extend([a for a in self.action_items.values() if a.meeting_id == mid])
         
         # Recent activity (last 30 days)
         month_ago = datetime.now() - timedelta(days=30)
@@ -999,9 +1000,9 @@ class MeetingOrganizer(MicroSaaSApp):
             "action_items": {
                 "total": len(user_action_items),
                 "by_status": {
-                    "pending": len([a for a in user_action_items if a["status"] == "pending"]),
-                    "in_progress": len([a for a in user_action_items if a["status"] == "in_progress"]),
-                    "completed": len([a for a in user_action_items if a["status"] == "completed"])
+                    "pending": len([a for a in user_action_items if a.status == "pending"]),
+                    "in_progress": len([a for a in user_action_items if a.status == "in_progress"]),
+                    "completed": len([a for a in user_action_items if a.status == "completed"])
                 }
             },
             "recent_activity": self._get_recent_activity(user_email)
@@ -1154,6 +1155,19 @@ def main():
         
         # Update action item status
         if meeting.action_items:
+            # Create action item objects for testing
+            for action_data in meeting.action_items:
+                action_item = ActionItem(
+                    id=action_data["id"],
+                    meeting_id=meeting.id,
+                    description=action_data["description"],
+                    assignee=action_data["assignee"],
+                    due_date=action_data["due_date"],
+                    priority=action_data["priority"],
+                    status=action_data["status"]
+                )
+                organizer.action_items[action_item.id] = action_item
+            
             updated_action = organizer.update_action_item_status(
                 meeting.action_items[0]["id"], 
                 "in_progress"
@@ -1171,9 +1185,9 @@ def main():
         print("\n🎉 Meeting Chaos Organizer demo complete!")
         print(f"📅 Meetings processed: {user_analytics['meetings']['total']}")
         print(f"⏱️ Total duration: {user_analytics['meetings']['total_duration']} minutes")
-        print(f("👥 Total participants: " + str(user_analytics['meetings']['total_participants']))
-        print(f"✅ Action items: " + str(user_analytics['action_items']['total']))
-        print(f"📊 Average meeting duration: " + str(user_analytics['meetings']['average_duration']) + " minutes")
+        print("👥 Total participants: " + str(user_analytics['meetings']['total_participants']))
+        print("✅ Action items: " + str(user_analytics['action_items']['total']))
+        print("📊 Average meeting duration: " + str(user_analytics['meetings']['average_duration']) + " minutes")
         
     except Exception as e:
         logger.error(f"Demo failed: {e}")
