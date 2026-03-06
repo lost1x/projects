@@ -101,3 +101,44 @@
 2026-03-06 15:40:04,933 - INFO - Transcribed meeting meeting_4d7daa13
 2026-03-06 15:40:04,934 - INFO - Updated action item action_2957dbd5 status to in_progress
 2026-03-06 15:40:04,937 - ERROR - Demo failed: Object of type datetime is not JSON serializable
+2026-03-06 15:40:47,042 - INFO - Loaded configuration from config.json
+2026-03-06 15:40:47,042 - INFO - Starting MeetingOrganizer
+2026-03-06 15:40:47,043 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:40:47,043 - INFO - Meeting Organizer initialized
+2026-03-06 15:40:47,043 - INFO - Recordings path: recordings
+2026-03-06 15:40:47,043 - INFO - Loaded 0 meetings
+2026-03-06 15:40:47,076 - INFO - Registered new user: manager@example.com
+2026-03-06 15:40:47,077 - INFO - User logged in: manager@example.com
+2026-03-06 15:40:47,183 - INFO - Uploaded meeting 'Q3 Marketing Campaign Review' for user manager@example.com
+2026-03-06 15:40:47,186 - INFO - Transcribed meeting meeting_cdb8a7a4
+2026-03-06 15:40:47,192 - INFO - Updated action item action_21cec3c2 status to in_progress
+2026-03-06 15:43:46,175 - INFO - Loaded configuration from config.json
+2026-03-06 15:43:46,178 - INFO - Starting FreelancePricingCalculator
+2026-03-06 15:43:46,178 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:43:46,180 - INFO - Freelance Pricing Calculator initialized
+2026-03-06 15:43:46,182 - INFO - Loaded 5 market rate categories
+2026-03-06 15:43:46,205 - INFO - Registered new user: freelancer@example.com
+2026-03-06 15:43:46,205 - INFO - User logged in: freelancer@example.com
+2026-03-06 15:43:46,205 - INFO - Created freelancer profile for Creative Freelancer
+2026-03-06 15:43:46,206 - INFO - Created project 'E-commerce Website Development' for pricing calculation
+2026-03-06 15:43:46,207 - INFO - Calculated pricing for project project_73118cb2
+2026-03-06 15:43:46,209 - INFO - Generated quote Q20260306BF05 for ABC Company
+2026-03-06 15:45:41,179 - INFO - Loaded configuration from config.json
+2026-03-06 15:45:41,184 - INFO - Starting WebsiteUXScanner
+2026-03-06 15:45:41,184 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:45:41,184 - INFO - Website UX Scanner initialized
+2026-03-06 15:45:41,185 - INFO - Loaded 5 UX checks
+2026-03-06 15:45:41,233 - INFO - Registered new user: webmaster@example.com
+2026-03-06 15:45:41,240 - INFO - User logged in: webmaster@example.com
+2026-03-06 15:45:41,240 - INFO - Added website https://example.com for user webmaster@example.com
+2026-03-06 15:45:41,244 - ERROR - Demo failed: 'module' object is not callable. Did you mean: 'random.random(...)'?
+2026-03-06 15:49:59,345 - INFO - Loaded configuration from config.json
+2026-03-06 15:49:59,347 - INFO - Starting WebsiteUXScanner
+2026-03-06 15:49:59,348 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:49:59,350 - INFO - Website UX Scanner initialized
+2026-03-06 15:49:59,350 - INFO - Loaded 5 UX checks
+2026-03-06 15:49:59,380 - INFO - Registered new user: webmaster@example.com
+2026-03-06 15:49:59,382 - INFO - User logged in: webmaster@example.com
+2026-03-06 15:49:59,383 - INFO - Added website https://example.com for user webmaster@example.com
+2026-03-06 15:49:59,385 - INFO - Scanned website website_004a466c - Score: 0.0
+2026-03-06 15:49:59,388 - INFO - Analyzed 2 competitors for website website_004a466c

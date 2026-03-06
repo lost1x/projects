@@ -902,6 +902,16 @@ class MeetingOrganizer(MicroSaaSApp):
         analytics = self.get_meeting_analytics(meeting_id)
         
         if format.lower() == "json":
+            # Convert datetime objects to strings
+            def convert_datetime(obj):
+                if isinstance(obj, datetime):
+                    return obj.isoformat()
+                elif isinstance(obj, dict):
+                    return {k: convert_datetime(v) for k, v in obj.items()}
+                elif isinstance(obj, list):
+                    return [convert_datetime(item) for item in obj]
+                return obj
+            
             export_data = {
                 "meeting": {
                     "title": meeting.title,
@@ -913,8 +923,8 @@ class MeetingOrganizer(MicroSaaSApp):
                 "transcript": meeting.transcript,
                 "summary": meeting.summary,
                 "decisions": meeting.decisions,
-                "action_items": [a.__dict__ for a in self.action_items.values() if a.meeting_id == meeting_id],
-                "analytics": analytics,
+                "action_items": [convert_datetime(a.__dict__) for a in self.action_items.values() if a.meeting_id == meeting_id],
+                "analytics": convert_datetime(analytics),
                 "export_date": datetime.now().isoformat()
             }
             import json
