@@ -1,0 +1,33 @@
+{
+  "name": "On TyM Cleanup & Repair",
+  "short_name": "On TyM",
+  "description": "Professional commercial cleanup and repair services including lot sweeping, window cleaning, and after-hours maintenance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/3b82f6/ffffff?text=TyM",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/3b82f6/ffffff?text=TyM",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "utilities", "productivity"],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/1280x720/1a1a1a/ffffff?text=On+TyM+Services",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

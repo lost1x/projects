@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "Micro-SaaS Tool",
+    "version": "1.0.0",
+    "description": "A micro-SaaS application template",
+    "author": "Your Name",
+    "debug": true
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "reload": true,
+    "workers": 1
+  },
+  "database": {
+    "url": "sqlite:///./app.db",
+    "echo": false,
+    "pool_size": 5,
+    "max_overflow": 10
+  },
+  "security": {
+    "secret_key": "your-secret-key-change-in-production",
+    "algorithm": "HS256",
+    "access_token_expire_minutes": 30,
+    "password_min_length": 8
+  },
+  "pricing": {
+    "free_limit": 10,
+    "basic_price": 9.99,
+    "pro_price": 29.99,
+    "enterprise_price": 99.99,
+    "currency": "USD"
+  },
+  "features": {
+    "api_access": true,
+    "export": true,
+    "collaboration": false,
+    "webhooks": false,
+    "custom_integrations": false
+  },
+  "limits": {
+    "free": {
+      "requests_per_month": 10,
+      "max_file_size_mb": 1,
+      "concurrent_requests": 1
+    },
+    "basic": {
+      "requests_per_month": 1000,
+      "max_file_size_mb": 10,
+      "concurrent_requests": 5
+    },
+    "pro": {
+      "requests_per_month": 10000,
+      "max_file_size_mb": 100,
+      "concurrent_requests": 20
+    },
+    "enterprise": {
+      "requests_per_month": -1,
+      "max_file_size_mb": 1000,
+      "concurrent_requests": -1
+    }
+  },
+  "email": {
+    "provider": "sendgrid",
+    "from_email": "noreply@yourapp.com",
+    "from_name": "Your App"
+  },
+  "storage": {
+    "type": "local",
+    "path": "./uploads",
+    "max_age_days": 30
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "metrics_enabled": true,
+    "health_check_interval": 60
+  },
+  "external_apis": {
+    "openai": {
+      "base_url": "https://api.openai.com/v1",
+      "model": "gpt-3.5-turbo",
+      "max_tokens": 1000,
+      "temperature": 0.7
+    },
+    "anthropic": {
+      "base_url": "https://api.anthropic.com",
+      "model": "claude-3-sonnet-20240229",
+      "max_tokens": 1000
+    }
+  }
+}

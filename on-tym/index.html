@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            On TyM Cleanup & Repair - Professional Commercial Services
+        </title>
+        <meta
+            name="description"
+            content="Professional commercial cleanup and repair services including lot sweeping, window cleaning, after-hours maintenance, and more. Get your free quote today."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <div class="nav-container">
+                    <div class="nav-brand">
+                        <i class="fas fa-bolt nav-icon"></i>
+                        <h1 class="nav-title">On TyM Cleanup & Repair</h1>
+                    </div>
+                    <div class="nav-menu" id="nav-menu">
+                        <a href="#services" class="nav-link">Services</a>
+                        <a href="#pricing" class="nav-link">Pricing</a>
+                        <a href="#faq" class="nav-link">FAQ</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                        <button
+                            class="btn btn-primary"
+                            onclick="openQuoteModal()"
+                        >
+                            Get Quote
+                        </button>
+                    </div>
+                    <div class="nav-toggle" id="nav-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-background">
+                <img
+                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=1080&fit=crop&crop=center"
+                    alt="Professional commercial cleaning"
+                    class="hero-bg-image"
+                />
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">
+                        Professional
+                        <span class="accent-text">Commercial</span> Services
+                    </h2>
+                    <p class="hero-description">
+                        From lot maintenance to window solutions, we deliver
+                        reliable cleanup and repair services that keep your
+                        business looking professional.
+                    </p>
+                    <div class="hero-buttons">
+                        <button
+                            class="btn btn-primary btn-large"
+                            onclick="openQuoteModal()"
+                        >
+                            Get Free Quote
+                        </button>
+                        <button
+                            class="btn btn-outline btn-large"
+                            onclick="scrollToServices()"
+                        >
+                            View Services
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Our Services</h3>
+                    <p class="section-description">
+                        Comprehensive commercial maintenance solutions designed
+                        to keep your business property in perfect condition.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('after-hours')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop&crop=center"
+                                alt="After hours maintenance service"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <h4 class="service-title">After Hours Service</h4>
+                            <p class="service-description">
+                                Convenient maintenance services scheduled
+                                outside business hours to minimize disruption to
+                                your operations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('lot-sweeping')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop&crop=center"
+                                alt="Professional lot sweeping service"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-broom"></i>
+                            </div>
+                            <h4 class="service-title">Lot Sweeping</h4>
+                            <p class="service-description">
+                                Professional parking lot and sidewalk sweeping
+                                to maintain a clean, welcoming appearance for
+                                your customers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('lot-weeding')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=250&fit=crop&crop=center"
+                                alt="Commercial landscaping and weeding service"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4 class="service-title">Lot Weeding</h4>
+                            <p class="service-description">
+                                Thorough weed removal from parking areas,
+                                walkways, and landscape beds to maintain
+                                professional curb appeal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('window-cleaning')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=400&h=250&fit=crop&crop=center"
+                                alt="Professional window cleaning service"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-spray-can"></i>
+                            </div>
+                            <h4 class="service-title">
+                                Outside Window Cleaning
+                            </h4>
+                            <p class="service-description">
+                                Crystal-clear exterior window cleaning that
+                                enhances your building's appearance and natural
+                                light.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('window-tinting')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop&crop=center"
+                                alt="Professional window tinting installation"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h4 class="service-title">Window Tinting</h4>
+                            <p class="service-description">
+                                Professional window tinting installation for
+                                energy efficiency, privacy, and UV protection.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="service-card"
+                        onclick="openServiceModal('window-art')"
+                    >
+                        <div class="service-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=250&fit=crop&crop=center"
+                                alt="Custom window graphics and storefront art"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4 class="service-title">Window Art</h4>
+                            <p class="service-description">
+                                Custom window graphics and decorative films to
+                                enhance your storefront's visual impact and
+                                branding.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Showcase Section -->
+        <section class="showcase">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Our Work in Action</h3>
+                    <p class="section-description">
+                        See the difference professional maintenance makes for
+                        commercial properties across the region.
+                    </p>
+                </div>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=500&h=350&fit=crop&crop=center"
+                            alt="Clean commercial parking lot after sweeping"
+                            loading="lazy"
+                        />
+                        <div class="showcase-overlay">
+                            <h4 class="showcase-title">Lot Sweeping Results</h4>
+                            <p class="showcase-description">
+                                Professional sweep transforms customer
+                                experience
+                            </p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=500&h=350&fit=crop&crop=center"
+                            alt="Spotless commercial windows after cleaning"
+                            loading="lazy"
+                        />
+                        <div class="showcase-overlay">
+                            <h4 class="showcase-title">
+                                Crystal Clear Windows
+                            </h4>
+                            <p class="showcase-description">
+                                Enhanced natural light and building appearance
+                            </p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=350&fit=crop&crop=center"
+                            alt="Well-maintained commercial landscaping"
+                            loading="lazy"
+                        />
+                        <div class="showcase-overlay">
+                            <h4 class="showcase-title">
+                                Landscape Maintenance
+                            </h4>
+                            <p class="showcase-description">
+                                Professional curb appeal that attracts customers
+                            </p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=500&h=350&fit=crop&crop=center"
+                            alt="Professional handyman repair work"
+                            loading="lazy"
+                        />
+                        <div class="showcase-overlay">
+                            <h4 class="showcase-title">Quality Repairs</h4>
+                            <p class="showcase-description">
+                                Reliable maintenance solutions for any challenge
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">What Our Customers Say</h3>
+                    <p class="section-description">
+                        Trusted by businesses across the region for reliable,
+                        professional service.
+                    </p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "On TyM has been maintaining our shopping center for
+                            over two years. Their lot sweeping service keeps our
+                            property looking pristine, and their after-hours
+                            scheduling never disrupts our business operations."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Sarah Mitchell</strong>
+                            <span
+                                >Property Manager, Westfield Shopping
+                                Center</span
+                            >
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Exceptional window cleaning service! Our office
+                            building has never looked better. The team is
+                            professional, reliable, and always goes above and
+                            beyond our expectations."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Michael Chen</strong>
+                            <span
+                                >Facilities Director, Tech Solutions Inc.</span
+                            >
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Great service for our restaurant's exterior
+                            maintenance. The lot weeding and general cleanup
+                            help us maintain the professional appearance our
+                            customers expect."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Jennifer Rodriguez</strong>
+                            <span>Owner, Bella Vista Restaurant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Guide Section -->
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Service Pricing Guide</h3>
+                    <p class="section-description">
+                        Transparent pricing for all our commercial maintenance
+                        services. Contact us for a customized quote.
+                    </p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h4 class="pricing-title">Lot Sweeping</h4>
+                        <div class="pricing-options">
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Weekly</span>
+                                <span class="pricing-price">$75-150</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Bi-weekly</span>
+                                <span class="pricing-price">$100-200</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Monthly</span>
+                                <span class="pricing-price">$150-300</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">
+                            *Pricing varies by lot size and debris level
+                        </p>
+                    </div>
+                    <div class="pricing-card">
+                        <h4 class="pricing-title">Window Cleaning</h4>
+                        <div class="pricing-options">
+                            <div class="pricing-option">
+                                <span class="pricing-frequency"
+                                    >Small Building</span
+                                >
+                                <span class="pricing-price">$200-400</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency"
+                                    >Medium Building</span
+                                >
+                                <span class="pricing-price">$400-800</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency"
+                                    >Large Building</span
+                                >
+                                <span class="pricing-price">$800-1500</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">
+                            *Based on number of windows and building height
+                        </p>
+                    </div>
+                    <div class="pricing-card">
+                        <h4 class="pricing-title">Maintenance Package</h4>
+                        <div class="pricing-options">
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Basic</span>
+                                <span class="pricing-price">$300-500</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Premium</span>
+                                <span class="pricing-price">$500-800</span>
+                            </div>
+                            <div class="pricing-option">
+                                <span class="pricing-frequency">Complete</span>
+                                <span class="pricing-price">$800-1200</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">
+                            *Monthly packages include multiple services
+                        </p>
+                    </div>
+                </div>
+                <div class="pricing-calculator">
+                    <h4 class="calculator-title">Quick Estimate Calculator</h4>
+                    <div class="calculator-grid">
+                        <div class="calculator-group">
+                            <label for="property-size"
+                                >Property Size (sq ft)</label
+                            >
+                            <input
+                                type="number"
+                                id="property-size"
+                                placeholder="Enter square footage"
+                            />
+                        </div>
+                        <div class="calculator-group">
+                            <label for="service-type">Primary Service</label>
+                            <select id="service-type">
+                                <option value="">Select a service</option>
+                                <option value="lot-sweeping">
+                                    Lot Sweeping
+                                </option>
+                                <option value="window-cleaning">
+                                    Window Cleaning
+                                </option>
+                                <option value="lot-weeding">Lot Weeding</option>
+                                <option value="maintenance-package">
+                                    Maintenance Package
+                                </option>
+                            </select>
+                        </div>
+                        <div class="calculator-group">
+                            <label for="frequency">Service Frequency</label>
+                            <select id="frequency">
+                                <option value="">Select frequency</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="bi-weekly">Bi-weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                            </select>
+                        </div>
+                        <button
+                            class="btn btn-primary calculator-btn"
+                            onclick="calculateEstimate()"
+                        >
+                            Get Estimate
+                        </button>
+                    </div>
+                    <div
+                        id="estimate-result"
+                        class="estimate-result"
+                        style="display: none"
+                    >
+                        <h5>Estimated Monthly Cost</h5>
+                        <div class="estimate-price">
+                            $<span id="estimate-amount">0</span>
+                        </div>
+                        <p class="estimate-note">
+                            This is a rough estimate. Contact us for an accurate
+                            quote based on your specific needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Frequently Asked Questions</h3>
+                    <p class="section-description">
+                        Get answers to common questions about our commercial
+                        maintenance services.
+                    </p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>
+                                Do you provide services during business hours?
+                            </h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                We specialize in after-hours service to minimize
+                                disruption to your business operations. However,
+                                we can accommodate daytime scheduling when
+                                requested and coordinate with your business
+                                needs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>Are you licensed and insured?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Yes, we are fully licensed and carry
+                                comprehensive general liability insurance. We
+                                can provide certificates of insurance upon
+                                request for your peace of mind and property
+                                protection.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>How often should I schedule lot sweeping?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                The frequency depends on your property's traffic
+                                and location. High-traffic areas typically
+                                benefit from weekly service, while
+                                moderate-traffic properties may only need
+                                bi-weekly or monthly maintenance. We'll assess
+                                your specific needs during our consultation.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>What areas do you service?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                We serve commercial properties throughout the
+                                metropolitan area and surrounding suburbs.
+                                Contact us to confirm service availability in
+                                your specific location.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>
+                                Do you offer emergency or one-time services?
+                            </h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Absolutely! While we specialize in recurring
+                                maintenance contracts, we're happy to provide
+                                one-time services or emergency cleanup as
+                                needed. Emergency services may include
+                                additional fees based on timing and scope.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>How do I get a quote?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Getting a quote is easy! Use our online quote
+                                form, call us directly, or use our quick
+                                estimate calculator above. We'll schedule a free
+                                consultation to assess your property and provide
+                                a detailed, customized quote.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h3 class="section-title">Why Choose On TyM?</h3>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-clock feature-icon"></i>
+                        <h4 class="feature-title">Reliable Scheduling</h4>
+                        <p class="feature-description">
+                            Consistent service delivery that fits your business
+                            schedule.
+                        </p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt feature-icon"></i>
+                        <h4 class="feature-title">Fully Insured</h4>
+                        <p class="feature-description">
+                            Complete protection for your property and peace of
+                            mind.
+                        </p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-star feature-icon"></i>
+                        <h4 class="feature-title">Quality Guarantee</h4>
+                        <p class="feature-description">
+                            We stand behind our work with a satisfaction
+                            guarantee.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h3 class="section-title">Ready to Get Started?</h3>
+                <p class="section-description">
+                    Contact us today for a free consultation and customized
+                    quote for your commercial property.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>(555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>info@ontymcleanup.com</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Modal -->
+        <div id="service-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-service-title" class="modal-title"></h3>
+                    <button class="modal-close" onclick="closeServiceModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-service-icon">
+                        <i id="modal-service-icon"></i>
+                    </div>
+                    <p
+                        id="modal-service-description"
+                        class="modal-description"
+                    ></p>
+
+                    <div class="modal-content-grid">
+                        <div class="modal-section">
+                            <h4 class="modal-section-title">Service Details</h4>
+                            <ul
+                                id="modal-service-details"
+                                class="modal-list"
+                            ></ul>
+                        </div>
+                        <div class="modal-section">
+                            <h4 class="modal-section-title">Benefits</h4>
+                            <ul
+                                id="modal-service-benefits"
+                                class="modal-list benefits-list"
+                            ></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        class="btn btn-primary"
+                        onclick="closeServiceModal(); openQuoteModal();"
+                    >
+                        Get Quote for This Service
+                    </button>
+                    <button
+                        class="btn btn-outline"
+                        onclick="closeServiceModal()"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Modal -->
+        <div id="quote-modal" class="modal">
+            <div class="modal-content quote-modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Get Your Free Quote</h3>
+                    <button class="modal-close" onclick="closeQuoteModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="quote-form" class="quote-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="business-name"
+                                    >Business Name *</label
+                                >
+                                <input
+                                    type="text"
+                                    id="business-name"
+                                    name="businessName"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-name">Contact Name *</label>
+                                <input
+                                    type="text"
+                                    id="contact-name"
+                                    name="contactName"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone *</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Property Address *</label>
+                            <textarea
+                                id="address"
+                                name="address"
+                                rows="3"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Services Needed</label>
+                            <div class="services-checkboxes">
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-after-hours"
+                                        name="services"
+                                        value="after-hours"
+                                    />
+                                    <label for="service-after-hours"
+                                        >After Hours Service</label
+                                    >
+                                </div>
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-lot-sweeping"
+                                        name="services"
+                                        value="lot-sweeping"
+                                    />
+                                    <label for="service-lot-sweeping"
+                                        >Lot Sweeping</label
+                                    >
+                                </div>
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-lot-weeding"
+                                        name="services"
+                                        value="lot-weeding"
+                                    />
+                                    <label for="service-lot-weeding"
+                                        >Lot Weeding</label
+                                    >
+                                </div>
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-window-cleaning"
+                                        name="services"
+                                        value="window-cleaning"
+                                    />
+                                    <label for="service-window-cleaning"
+                                        >Window Cleaning</label
+                                    >
+                                </div>
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-window-tinting"
+                                        name="services"
+                                        value="window-tinting"
+                                    />
+                                    <label for="service-window-tinting"
+                                        >Window Tinting</label
+                                    >
+                                </div>
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="service-window-art"
+                                        name="services"
+                                        value="window-art"
+                                    />
+                                    <label for="service-window-art"
+                                        >Window Art</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="frequency">Service Frequency</label>
+                            <select id="frequency" name="frequency">
+                                <option value="">Select frequency...</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="bi-weekly">Bi-weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="one-time">
+                                    One-time service
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photos">Property Photos</label>
+                            <div class="file-upload-area">
+                                <i class="fas fa-upload upload-icon"></i>
+                                <p>Upload photos of your property</p>
+                                <p class="upload-hint">
+                                    Drag and drop files here or click to browse
+                                </p>
+                                <input
+                                    type="file"
+                                    id="photos"
+                                    name="photos"
+                                    multiple
+                                    accept="image/*"
+                                />
+                                <div id="file-list" class="file-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details">Additional Details</label>
+                            <textarea
+                                id="details"
+                                name="details"
+                                rows="4"
+                                placeholder="Tell us more about your property and specific needs..."
+                            ></textarea>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-large"
+                            >
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Quote Request
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-outline"
+                                onclick="closeQuoteModal()"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Submitting your quote request...</p>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div class="toast-content">
+                <i id="toast-icon" class="toast-icon"></i>
+                <div class="toast-text">
+                    <div id="toast-title" class="toast-title"></div>
+                    <div id="toast-message" class="toast-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer with Social Media -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-bolt"></i>
+                            <h4>On TyM Cleanup & Repair</h4>
+                        </div>
+                        <p class="footer-description">
+                            Professional commercial maintenance services that
+                            keep your business looking its best.
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Services</h4>
+                        <ul class="footer-links">
+                            <li>
+                                <a
+                                    href="#"
+                                    onclick="openServiceModal('lot-sweeping')"
+                                    >Lot Sweeping</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    onclick="openServiceModal('window-cleaning')"
+                                    >Window Cleaning</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    onclick="openServiceModal('lot-weeding')"
+                                    >Lot Weeding</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    onclick="openServiceModal('after-hours')"
+                                    >After Hours</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Connect With Us</h4>
+                        <div class="social-links">
+                            <a
+                                href="https://facebook.com/ontymcleanup"
+                                target="_blank"
+                                class="social-link"
+                            >
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a
+                                href="https://instagram.com/ontymcleanup"
+                                target="_blank"
+                                class="social-link"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="https://linkedin.com/company/ontymcleanup"
+                                target="_blank"
+                                class="social-link"
+                            >
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a
+                                href="https://google.com/maps/place/ontymcleanup"
+                                target="_blank"
+                                class="social-link"
+                            >
+                                <i class="fab fa-google"></i>
+                            </a>
+                        </div>
+                        <div class="footer-contact">
+                            <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                            <p>
+                                <i class="fas fa-envelope"></i>
+                                info@ontymcleanup.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2025 On TyM Cleanup & Repair. All rights
+                        reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>

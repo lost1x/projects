@@ -1,0 +1,56 @@
+2026-03-06 15:10:00,020 - INFO - Loaded configuration from config.json
+2026-03-06 15:10:00,022 - INFO - Starting PDFDataExtractor
+2026-03-06 15:10:00,024 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:10:00,029 - INFO - Initialized default templates
+2026-03-06 15:10:00,032 - INFO - PDF Data Extractor initialized
+2026-03-06 15:10:00,032 - INFO - Uploads path: uploads
+2026-03-06 15:10:00,032 - INFO - Loaded 2 templates
+2026-03-06 15:10:00,071 - INFO - Registered new user: extract@example.com
+2026-03-06 15:10:00,076 - INFO - User logged in: extract@example.com
+2026-03-06 15:10:00,190 - INFO - Uploaded PDF: sample_invoice.pdf -> uploads/pdf_c1e2610d.pdf
+2026-03-06 15:10:00,192 - INFO - Created extraction job job_ae3654df for user extract@example.com
+2026-03-06 15:10:00,241 - INFO - Completed job job_ae3654df in 0.05s
+2026-03-06 15:10:00,250 - INFO - Created custom template 'Custom Receipt Extractor' for user extract@example.com
+2026-03-06 15:16:53,655 - INFO - Loaded configuration from config.json
+2026-03-06 15:16:53,657 - INFO - Starting EtsyListingAnalyzer
+2026-03-06 15:16:53,658 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:16:53,658 - INFO - Etsy Listing Analyzer initialized
+2026-03-06 15:16:53,660 - INFO - Loaded 0 listings
+2026-03-06 15:16:53,701 - INFO - Registered new user: seller@example.com
+2026-03-06 15:16:53,702 - INFO - User logged in: seller@example.com
+2026-03-06 15:16:53,708 - INFO - Analyzed Etsy listing 123456789 for user seller@example.com
+2026-03-06 15:16:53,714 - ERROR - Demo failed: Object of type datetime is not JSON serializable
+2026-03-06 15:21:51,333 - INFO - Loaded configuration from config.json
+2026-03-06 15:21:51,352 - INFO - Starting EtsyListingAnalyzer
+2026-03-06 15:21:51,352 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:21:51,353 - INFO - Etsy Listing Analyzer initialized
+2026-03-06 15:21:51,353 - INFO - Loaded 0 listings
+2026-03-06 15:21:51,402 - INFO - Registered new user: seller@example.com
+2026-03-06 15:21:51,404 - INFO - User logged in: seller@example.com
+2026-03-06 15:21:51,408 - INFO - Analyzed Etsy listing 123456789 for user seller@example.com
+2026-03-06 15:28:52,638 - INFO - Loaded configuration from config.json
+2026-03-06 15:28:52,643 - INFO - Starting PodcastRepurposer
+2026-03-06 15:28:52,643 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:28:52,644 - INFO - Initialized default templates
+2026-03-06 15:28:52,644 - INFO - Podcast Repurposer initialized
+2026-03-06 15:28:52,650 - INFO - Audio path: audio_files
+2026-03-06 15:28:52,651 - INFO - Loaded 4 templates
+2026-03-06 15:28:52,712 - INFO - Registered new user: podcaster@example.com
+2026-03-06 15:28:52,715 - INFO - User logged in: podcaster@example.com
+2026-03-06 15:28:52,838 - INFO - Uploaded episode 'Content Creation Strategies That Actually Work' for user podcaster@example.com
+2026-03-06 15:28:52,842 - INFO - Transcribed episode episode_6de2da99
+2026-03-06 15:28:52,849 - INFO - Generated blog_post content for episode episode_6de2da99
+2026-03-06 15:28:52,859 - INFO - Generated social_media content for episode episode_6de2da99
+2026-03-06 15:28:52,860 - INFO - Generated social_media content for episode episode_6de2da99
+2026-03-06 15:28:52,872 - INFO - Generated email content for episode episode_6de2da99
+2026-03-06 15:32:28,761 - INFO - Loaded configuration from config.json
+2026-03-06 15:32:28,761 - INFO - Starting LocalReviewIntelligence
+2026-03-06 15:32:28,761 - INFO - Configuration loaded: 11 settings
+2026-03-06 15:32:28,764 - INFO - Local Review Intelligence initialized
+2026-03-06 15:32:28,765 - INFO - Loaded 0 businesses
+2026-03-06 15:32:28,823 - INFO - Registered new user: business@example.com
+2026-03-06 15:32:28,824 - INFO - User logged in: business@example.com
+2026-03-06 15:32:28,825 - INFO - Added business 'The Cozy Cafe' for user business@example.com
+2026-03-06 15:32:28,828 - INFO - Collected 6 reviews for business business_1a1f2ed3
+2026-03-06 15:32:28,832 - INFO - Added competitor 'Rival Restaurant' for business business_1a1f2ed3
+2026-03-06 15:32:28,834 - INFO - Added competitor 'Competitor Cafe' for business business_1a1f2ed3

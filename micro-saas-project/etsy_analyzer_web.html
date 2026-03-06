@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etsy Listing Analyzer - Web Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f4511e 0%, #e91e63 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-family: 'Georgia', serif;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #f4511e;
+            border-bottom-color: #f4511e;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #f4511e;
+        }
+
+        button {
+            background: linear-gradient(135deg, #f4511e 0%, #e91e63 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 81, 30, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .analysis-results {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .score-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .score-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-excellent { background: linear-gradient(135deg, #28a745, #20c997); }
+        .score-good { background: linear-gradient(135deg, #17a2b8, #138496); }
+        .score-fair { background: linear-gradient(135deg, #ffc107, #fd7e14); }
+        .score-poor { background: linear-gradient(135deg, #dc3545, #c82333); }
+
+        .recommendations {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #f4511e;
+        }
+
+        .recommendation-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation-icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .keyword-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .keyword-tag {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .keyword-tag:hover {
+            transform: scale(1.05);
+        }
+
+        .keyword-missing {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .keyword-trending {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .keyword-overused {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .competitor-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .competitor-card:hover {
+            border-color: #f4511e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .competitor-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .competitor-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #f4511e;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f4511e, #e91e63);
+            transition: width 0.3s;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f4511e;
+        }
+
+        .stat .label {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛍️ Etsy Listing Analyzer</h1>
+            <p>Optimize your Etsy listings with AI-powered SEO analysis and competitor insights</p>
+        </header>
+
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('analyze')">Analyze Listing</button>
+                <button class="tab" onclick="showTab('competitors')">Competitor Analysis</button>
+                <button class="tab" onclick="showTab('keywords')">Keyword Research</button>
+                <button class="tab" onclick="showTab('analytics')">Analytics</button>
+            </div>
+
+            <!-- Analyze Listing Tab -->
+            <div id="analyze" class="tab-content active">
+                <h2>Analyze Etsy Listing</h2>
+                
+                <div class="form-group">
+                    <label for="etsyUrl">Etsy Listing URL:</label>
+                    <input type="url" id="etsyUrl" placeholder="https://www.etsy.com/listing/..." required>
+                </div>
+
+                <button onclick="analyzeListing()" id="analyzeBtn">Analyze Listing</button>
+
+                <div id="analysisProgress" style="display: none; margin-top: 20px;">
+                    <h3>Analyzing listing...</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                    </div>
+                    <p id="statusText">Initializing...</p>
+                </div>
+
+                <div id="analysisResults" class="analysis-results" style="display: none;">
+                    <h2>📊 SEO Analysis Results</h2>
+                    
+                    <div class="score-display" id="scoreDisplay">
+                        <!-- Scores will be loaded here -->
+                    </div>
+
+                    <div class="recommendations">
+                        <h3>💡 Recommendations</h3>
+                        <div id="recommendationsList">
+                            <!-- Recommendations will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="keyword-cloud">
+                        <h3>🔍 Keyword Analysis</h3>
+                        <div id="missingKeywords" class="keyword-tag-container">
+                            <!-- Missing keywords will be loaded here -->
+                        </div>
+                        <div id="trendingKeywords" class="keyword-tag-container">
+                            <!-- Trending keywords will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button onclick="exportReport('json')">Export JSON Report</button>
+                        <button onclick="exportReport('markdown')">Export Markdown Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitor Analysis Tab -->
+            <div id="competitors" class="tab-content">
+                <h2>Competitor Analysis</h2>
+                
+                <div class="form-group">
+                    <label for="competitorUrl">Your Listing URL:</label>
+                    <input type="url" id="competitorUrl" placeholder="https://www.etsy.com/listing/...">
+                </div>
+
+                <button onclick="analyzeCompetitors()">Find Competitors</button>
+
+                <div id="competitorResults" style="display: none;">
+                    <h3>🏆 Competitive Position</h3>
+                    <div id="competitivePosition">
+                        <!-- Competitive position will be loaded here -->
+                    </div>
+
+                    <h3>Top Competitors</h3>
+                    <div id="competitorGrid" class="competitor-grid">
+                        <!-- Competitor cards will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyword Research Tab -->
+            <div id="keywords" class="tab-content">
+                <h2>Keyword Research</h2>
+                
+                <div class="form-group">
+                    <label for="category">Product Category:</label>
+                    <select id="category">
+                        <option value="">Select category</option>
+                        <option value="Stationery">Stationery</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Home Decor">Home Decor</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Art">Art</option>
+                        <option value="Craft Supplies">Craft Supplies</option>
+                    </select>
+                </div>
+
+                <button onclick="researchKeywords()">Research Keywords</button>
+
+                <div id="keywordResults" style="display: none;">
+                    <h3>🔥 Trending Keywords</h3>
+                    <div id="trendingKeywordList" class="keyword-cloud">
+                        <!-- Trending keywords will be loaded here -->
+                    </div>
+
+                    <h3>📈 Keyword Performance</h3>
+                    <div id="keywordPerformance">
+                        <!-- Keyword performance data will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics" class="tab-content">
+                <h2>Performance Analytics</h2>
+                <div id="analyticsData">
+                    <!-- Analytics data will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let currentAnalysis = null;
+        const API_BASE = 'http://localhost:8000';
+
+        // Mock data for demonstration
+        const mockAnalysis = {
+            overall_score: 80.8,
+            title_analysis: { score: 79.0 },
+            description_analysis: { score: 91.4 },
+            tags_analysis: { score: 86.5 },
+            keyword_analysis: { diversity_score: 61.7 },
+            recommendations: [
+                "Add more high-value keywords like 'handmade', 'personalized', or 'vintage'",
+                "Consider adding 'personalized' or 'custom' to attract buyers",
+                "Expand description to 100-500 words for better SEO"
+            ],
+            missing_keywords: ["present", "birthday", "wedding", "christmas", "anniversary"],
+            trending_keywords: ["journal", "planner", "notebook", "writing", "bullet journal"],
+            overused_keywords: []
+        };
+
+        const mockCompetitors = [
+            {
+                etsy_id: "comp_1",
+                title: "Handmade Leather Journal - Vintage Style",
+                price: 42.00,
+                views: 1100,
+                favorites: 75,
+                sales: 18,
+                seo_score: 75.0,
+                performance_score: 78.0,
+                strengths: ["Lower price", "Good SEO"],
+                weaknesses: ["Fewer views"]
+            },
+            {
+                etsy_id: "comp_2",
+                title: "Personalized Leather Diary - Custom Initial",
+                price: 48.00,
+                views: 1400,
+                favorites: 95,
+                sales: 28,
+                seo_score: 82.0,
+                performance_score: 85.0,
+                strengths: ["Higher sales", "Better SEO"],
+                weaknesses: ["Higher price"]
+            },
+            {
+                etsy_id: "comp_3",
+                title: "Vintage Leather Notebook - Handmade",
+                price: 40.00,
+                views: 980,
+                favorites: 65,
+                sales: 15,
+                seo_score: 70.0,
+                performance_score: 72.0,
+                strengths: ["Lowest price"],
+                weaknesses: ["Lower performance"]
+            }
+        ];
+
+        // Tab navigation
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Analyze listing
+        async function analyzeListing() {
+            const url = document.getElementById('etsyUrl').value;
+            if (!url) {
+                showError('Please enter an Etsy listing URL');
+                return;
+            }
+
+            // Show progress
+            document.getElementById('analysisProgress').style.display = 'block';
+            document.getElementById('analyzeBtn').disabled = true;
+
+            // Simulate analysis
+            await simulateAnalysis();
+
+            // Show results
+            showAnalysisResults();
+        }
+
+        async function simulateAnalysis() {
+            const progressFill = document.getElementById('progressFill');
+            const statusText = document.getElementById('statusText');
+            
+            const steps = [
+                { progress: 20, text: 'Fetching listing data...' },
+                { progress: 40, text: 'Analyzing title and description...' },
+                { progress: 60, text: 'Evaluating tags and keywords...' },
+                { progress: 80, text: 'Comparing with competitors...' },
+                { progress: 100, text: 'Analysis complete!' }
+            ];
+
+            for (const step of steps) {
+                progressFill.style.width = `${step.progress}%`;
+                statusText.textContent = step.text;
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        }
+
+        function showAnalysisResults() {
+            currentAnalysis = mockAnalysis;
+
+            // Display scores
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.innerHTML = `
+                <div class="score-card">
+                    <div class="score-circle score-good">${currentAnalysis.overall_score.toFixed(1)}</div>
+                    <h3>Overall Score</h3>
+                </div>
+                <div class="score-card">
+                    <div class="score-circle score-good">${currentAnalysis.title_analysis.score.toFixed(1)}</div>
+                    <h3>Title</h3>
+                </div>
+                <div class="score-card">
+                    <div class="score-circle score-excellent">${currentAnalysis.description_analysis.score.toFixed(1)}</div>
+                    <h3>Description</h3>
+                </div>
+                <div class="score-card">
+                    <div class="score-circle score-good">${currentAnalysis.tags_analysis.score.toFixed(1)}</div>
+                    <h3>Tags</h3>
+                </div>
+            `;
+
+            // Display recommendations
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = currentAnalysis.recommendations.map((rec, index) => `
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">💡</div>
+                    <div>
+                        <strong>Recommendation ${index + 1}:</strong> ${rec}
+                    </div>
+                </div>
+            `).join('');
+
+            // Display keywords
+            document.getElementById('missingKeywords').innerHTML = `
+                <h4>Missing Keywords:</h4>
+                <div class="keyword-cloud">
+                    ${currentAnalysis.missing_keywords.map(kw => 
+                        `<span class="keyword-tag keyword-missing">${kw}</span>`
+                    ).join('')}
+                </div>
+            `;
+
+            document.getElementById('trendingKeywords').innerHTML = `
+                <h4>Trending Keywords:</h4>
+                <div class="keyword-cloud">
+                    ${currentAnalysis.trending_keywords.map(kw => 
+                        `<span class="keyword-tag keyword-trending">${kw}</span>`
+                    ).join('')}
+                </div>
+            `;
+
+            // Show results
+            document.getElementById('analysisResults').style.display = 'block';
+            document.getElementById('analysisProgress').style.display = 'none';
+            document.getElementById('analyzeBtn').disabled = false;
+
+            showSuccess('Listing analysis completed successfully!');
+        }
+
+        // Analyze competitors
+        async function analyzeCompetitors() {
+            const url = document.getElementById('competitorUrl').value;
+            if (!url) {
+                showError('Please enter an Etsy listing URL');
+                return;
+            }
+
+            // Show results
+            showCompetitorResults();
+        }
+
+        function showCompetitorResults() {
+            const competitivePosition = document.getElementById('competitivePosition');
+            competitivePosition.innerHTML = `
+                <div class="stats">
+                    <div class="stat">
+                        <div class="number">3/6</div>
+                        <div class="label">Price Position</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">$45.00</div>
+                        <div class="label">Average Price</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">75.0</div>
+                        <div class="label">Avg SEO Score</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">5</div>
+                        <div class="label">Total Competitors</div>
+                    </div>
+                </div>
+            `;
+
+            const competitorGrid = document.getElementById('competitorGrid');
+            competitorGrid.innerHTML = mockCompetitors.map(comp => `
+                <div class="competitor-card">
+                    <h3>${comp.title}</h3>
+                    <div class="competitor-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">$${comp.price}</div>
+                            <div class="stat-label">Price</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${comp.views}</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${comp.sales}</div>
+                            <div class="stat-label">Sales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${comp.seo_score.toFixed(1)}</div>
+                            <div class="stat-label">SEO</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <strong>Strengths:</strong> ${comp.strengths.join(', ')}
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <strong>Weaknesses:</strong> ${comp.weaknesses.join(', ')}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('competitorResults').style.display = 'block';
+            showSuccess('Competitor analysis completed!');
+        }
+
+        // Research keywords
+        async function researchKeywords() {
+            const category = document.getElementById('category').value;
+            if (!category) {
+                showError('Please select a category');
+                return;
+            }
+
+            showKeywordResults();
+        }
+
+        function showKeywordResults() {
+            const trendingKeywords = [
+                { keyword: "handmade", volume: "High", competition: "Medium" },
+                { keyword: "personalized", volume: "High", competition: "High" },
+                { keyword: "vintage", volume: "Medium", competition: "Medium" },
+                { keyword: "custom", volume: "High", competition: "High" },
+                { keyword: "gift", volume: "Very High", competition: "High" },
+                { keyword: "unique", volume: "Medium", competition: "Low" },
+                { keyword: "artisan", volume: "Low", competition: "Low" },
+                { keyword: "craft", volume: "Medium", competition: "Medium" }
+            ];
+
+            document.getElementById('trendingKeywordList').innerHTML = trendingKeywords.map(kw => 
+                `<span class="keyword-tag keyword-trending">${kw.keyword}</span>`
+            ).join('');
+
+            document.getElementById('keywordPerformance').innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 20px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #f8f9fa;">
+                                <th style="padding: 10px; text-align: left;">Keyword</th>
+                                <th style="padding: 10px; text-align: left;">Volume</th>
+                                <th style="padding: 10px; text-align: left;">Competition</th>
+                                <th style="padding: 10px; text-align: left;">Opportunity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${trendingKeywords.map(kw => `
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${kw.keyword}</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${kw.volume}</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">${kw.competition}</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">
+                                        ${kw.competition === 'Low' ? '🟢 High' : kw.competition === 'Medium' ? '🟡 Medium' : '🔴 Low'}
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            document.getElementById('keywordResults').style.display = 'block';
+            showSuccess('Keyword research completed!');
+        }
+
+        // Export report
+        function exportReport(format) {
+            showSuccess(`Report exported as ${format.toUpperCase()} (Demo mode)`);
+        }
+
+        // Load analytics
+        function loadAnalytics() {
+            const analyticsData = document.getElementById('analyticsData');
+            
+            analyticsData.innerHTML = `
+                <div class="stats">
+                    <div class="stat">
+                        <div class="number">1</div>
+                        <div class="label">Listings Analyzed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">80.8</div>
+                        <div class="label">Avg SEO Score</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">1,250</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">89</div>
+                        <div class="label">Total Favorites</div>
+                    </div>
+                </div>
+                <div style="margin-top: 30px;">
+                    <h3>Performance Trends</h3>
+                    <p>📈 SEO score improved by 15% this month</p>
+                    <p>🎯 Average listing views: 1,250</p>
+                    <p>💰 Average conversion rate: 1.8%</p>
+                    <p>📊 Most successful category: Stationery</p>
+                </div>
+                <div style="margin-top: 30px;">
+                    <h3>Optimization Impact</h3>
+                    <p>✅ Title optimization increased views by 23%</p>
+                    <p>✅ Tag improvements boosted favorites by 15%</p>
+                    <p>✅ Description enhancement raised SEO score by 12%</p>
+                </div>
+            `;
+        }
+
+        // Utility functions
+        function showSuccess(message) {
+            const div = document.createElement('div');
+            div.className = 'success-message';
+            div.textContent = message;
+            document.querySelector('.main-content').insertBefore(div, document.querySelector('.main-content').firstChild);
+            setTimeout(() => div.remove(), 5000);
+        }
+
+        function showError(message) {
+            const div = document.createElement('div');
+            div.className = 'error-message';
+            div.textContent = message;
+            document.querySelector('.main-content').insertBefore(div, document.querySelector('.main-content').firstChild);
+            setTimeout(() => div.remove(), 5000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Etsy Listing Analyzer Web Interface loaded');
+            loadAnalytics();
+        });
+    </script>
+</body>
+</html>
