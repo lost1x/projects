@@ -8,19 +8,22 @@ class GameLogic:
         'food': 1
     }
 
-    LEVEL_MULTIPLIER = 1.5  # Each level increases production by 50%
+    PRODUCTION_LEVEL_MULTIPLIER = 1.3  # milder growth per level
+    COST_LEVEL_MULTIPLIER = 1.3
     HUNTING_COOLDOWN = 60  # Seconds between hunts
+    EXPERIENCE_PER_BUILDING = 10
+
 
     @staticmethod
     def calculate_resource_generation(buildings, is_subscribed=False):
         # Calculate base generation rates with level multipliers
         generation = {
             'wood': buildings.woodcutter * GameLogic.BASE_GENERATION_RATE['wood'] * 
-                   (GameLogic.LEVEL_MULTIPLIER ** (buildings.woodcutter_level - 1)),
+                   (GameLogic.PRODUCTION_LEVEL_MULTIPLIER ** (buildings.woodcutter_level - 1)),
             'stone': buildings.quarry * GameLogic.BASE_GENERATION_RATE['stone'] * 
-                    (GameLogic.LEVEL_MULTIPLIER ** (buildings.quarry_level - 1)),
+                    (GameLogic.PRODUCTION_LEVEL_MULTIPLIER ** (buildings.quarry_level - 1)),
             'food': buildings.farm * GameLogic.BASE_GENERATION_RATE['food'] * 
-                   (GameLogic.LEVEL_MULTIPLIER ** (buildings.farm_level - 1))
+                   (GameLogic.PRODUCTION_LEVEL_MULTIPLIER ** (buildings.farm_level - 1))
         }
 
         # Apply subscription multiplier if subscribed
@@ -54,11 +57,11 @@ class GameLogic:
             'farm': {'wood': 40, 'stone': 40}
         }
 
-        # Costs increase by 80% per level
-        level_multiplier = 1.8 ** (current_level - 1)
+        # Costs increase moderately per level
+        level_multiplier = GameLogic.COST_LEVEL_MULTIPLIER ** (current_level - 1)
         costs = base_costs.get(building_type, {})
         return {
-            resource: int(amount * level_multiplier)
+            resource: max(1, int(amount * level_multiplier))
             for resource, amount in costs.items()
         }
 
@@ -72,10 +75,16 @@ class GameLogic:
         }
 
     @staticmethod
-    def can_afford_building(resources, building_type, current_level):
+    def can_afford_building(resources, building_type, current_level=1):
         costs = GameLogic.get_building_costs(building_type, current_level)
         return (resources.wood >= costs.get('wood', 0) and 
                 resources.stone >= costs.get('stone', 0))
+
+    @staticmethod
+    def award_experience(user, amount):
+        if hasattr(user, 'stats') and user.stats:
+            user.stats.gain_experience(amount)
+
 
     @staticmethod
     def can_afford_upgrade(resources, building_type, current_level):
@@ -89,13 +98,33 @@ class GameLogic:
         return (now - resources.last_hunt).total_seconds() >= GameLogic.HUNTING_COOLDOWN
 
     @staticmethod
-    def perform_hunt(resources):
+    def perform_hunt(user):
+        resources = user.resources
         if GameLogic.can_hunt(resources):
+            # simple combat simulation against wild animal
             resources.food += 2
             resources.leather += 1
             resources.last_hunt = datetime.utcnow()
+            GameLogic.award_experience(user, 5)
             return True
         return False
+
+    # combat helper for future use
+    @staticmethod
+    def attack_enemy(user, enemy):
+        # naive combat: subtract strength from enemy health and enemy attack from user health
+        if user.stats.health <= 0:
+            return {'success': False, 'message': 'You are too weak to fight.'}
+        enemy.health -= user.stats.strength
+        user.stats.health -= enemy.attack
+        if enemy.health <= 0:
+            # TODO: loot handling
+            GameLogic.award_experience(user, 20)
+            return {'success': True, 'message': 'Enemy defeated!'}
+        if user.stats.health <= 0:
+            user.stats.health = 1
+            return {'success': False, 'message': 'You were wounded and escaped.'}
+        return {'success': True, 'message': 'You hit the enemy!'}
 
     @staticmethod
     def add_manual_resource(resources, resource_type):

@@ -21,7 +21,7 @@ function updateResources() {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
 
-            // Update resource counts
+                    // Update resource counts
             ['wood', 'stone', 'food', 'leather'].forEach(resource => {
                 const element = document.getElementById(resource);
                 const newValue = doc.getElementById(resource).textContent;
@@ -41,6 +41,15 @@ function updateResources() {
             ['woodcutter-level', 'quarry-level', 'farm-level'].forEach(level => {
                 document.getElementById(level).textContent = doc.getElementById(level).textContent;
             });
+
+            // Update character stats
+            ['level','experience','health','max_health'].forEach(stat => {
+                const el = document.getElementById(stat);
+                if (el) el.textContent = doc.getElementById(stat).textContent;
+            });
+            // inventory is simpler to just reload the table
+            const newInv = doc.querySelector('#inventory-table tbody').innerHTML;
+            document.querySelector('#inventory-table tbody').innerHTML = newInv;
         });
 }
 
@@ -154,7 +163,8 @@ document.querySelectorAll('.gather-btn').forEach(button => {
 });
 
 // Handle hunting button
-document.getElementById('hunt-btn').addEventListener('click', function() {
+const huntBtn = document.getElementById('hunt-btn');
+huntBtn.addEventListener('click', function() {
     fetch('/api/hunt', {
         method: 'POST',
         headers: {
@@ -178,6 +188,23 @@ document.getElementById('hunt-btn').addEventListener('click', function() {
             }, 60000); // Re-enable after 1 minute
         }
         alert(data.message);
+    });
+});
+
+// Handle adventure button
+const adventureBtn = document.getElementById('adventure-btn');
+adventureBtn.addEventListener('click', function() {
+    fetch('/api/adventure', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('adventure-result').textContent = data.message || '';
+        if (data.success) {
+            updateResources();
+            vibrate();
+        }
     });
 });
 

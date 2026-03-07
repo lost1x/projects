@@ -2,6 +2,38 @@
 
 {% block content %}
 <div class="game-container">
+    <!-- player stats panel -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Character</h5>
+                    <p>Level: <span id="level">{{ current_user.stats.level }}</span></p>
+                    <p>XP: <span id="experience">{{ current_user.stats.experience }}</span> / {{ current_user.stats.level * 100 }}</p>
+                    <p>Health: <span id="health">{{ current_user.stats.health }}</span> / {{ current_user.stats.max_health }}</p>
+                    <p>Str: {{ current_user.stats.strength }}  Agi: {{ current_user.stats.agility }}  Int: {{ current_user.stats.intelligence }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Equipment / Inventory</h5>
+                    <table class="table table-sm" id="inventory-table">
+                        <thead><tr><th>Name</th><th>Qty</th></tr></thead>
+                        <tbody>
+                        {% for item in current_user.inventory_items %}
+                            <tr><td>{{ item.item.name }}</td><td>{{ item.quantity }}</td></tr>
+                        {% else %}
+                            <tr><td colspan="2" class="text-center">Empty</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="card">
@@ -62,10 +94,10 @@
                     <p>Level: <span id="woodcutter-level">{{ current_user.buildings.woodcutter_level }}</span></p>
                     <p>Production: {{ current_user.buildings.woodcutter * (2 if current_user.is_subscribed else 1) * (1.5 ** (current_user.buildings.woodcutter_level - 1)) }} wood/s</p>
                     <button class="btn btn-primary build-btn mb-2" data-building="woodcutter">
-                        Build (50 wood, 30 stone)
+                        Build (<span class="cost-wood">{{ costs.woodcutter.wood }}</span> wood, <span class="cost-stone">{{ costs.woodcutter.stone }}</span> stone)
                     </button>
                     <button class="btn btn-secondary upgrade-btn" data-building="woodcutter">
-                        Upgrade Level (100 wood, 60 stone)
+                        Upgrade Level (<span class="cost-wood">{{ upgrade_costs.woodcutter.wood }}</span> wood, <span class="cost-stone">{{ upgrade_costs.woodcutter.stone }}</span> stone)
                     </button>
                 </div>
             </div>
@@ -79,10 +111,10 @@
                     <p>Level: <span id="quarry-level">{{ current_user.buildings.quarry_level }}</span></p>
                     <p>Production: {{ current_user.buildings.quarry * (2 if current_user.is_subscribed else 1) * (1.5 ** (current_user.buildings.quarry_level - 1)) }} stone/s</p>
                     <button class="btn btn-primary build-btn mb-2" data-building="quarry">
-                        Build (30 wood, 50 stone)
+                        Build (<span class="cost-wood">{{ costs.quarry.wood }}</span> wood, <span class="cost-stone">{{ costs.quarry.stone }}</span> stone)
                     </button>
                     <button class="btn btn-secondary upgrade-btn" data-building="quarry">
-                        Upgrade Level (60 wood, 100 stone)
+                        Upgrade Level (<span class="cost-wood">{{ upgrade_costs.quarry.wood }}</span> wood, <span class="cost-stone">{{ upgrade_costs.quarry.stone }}</span> stone)
                     </button>
                 </div>
             </div>
@@ -96,11 +128,25 @@
                     <p>Level: <span id="farm-level">{{ current_user.buildings.farm_level }}</span></p>
                     <p>Production: {{ current_user.buildings.farm * (2 if current_user.is_subscribed else 1) * (1.5 ** (current_user.buildings.farm_level - 1)) }} food/s</p>
                     <button class="btn btn-primary build-btn mb-2" data-building="farm">
-                        Build (40 wood, 40 stone)
+                        Build (<span class="cost-wood">{{ costs.farm.wood }}</span> wood, <span class="cost-stone">{{ costs.farm.stone }}</span> stone)
                     </button>
                     <button class="btn btn-secondary upgrade-btn" data-building="farm">
-                        Upgrade Level (80 wood, 80 stone)
+                        Upgrade Level (<span class="cost-wood">{{ upgrade_costs.farm.wood }}</span> wood, <span class="cost-stone">{{ upgrade_costs.farm.stone }}</span> stone)
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- simple combat/quest panel -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Adventures</h5>
+                    <p>Go out on an adventure to fight monsters and earn XP/resources.</p>
+                    <button id="adventure-btn" class="btn btn-warning">Start Adventure</button>
+                    <div id="adventure-result" class="mt-2"></div>
                 </div>
             </div>
         </div>

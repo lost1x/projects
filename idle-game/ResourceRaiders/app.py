@@ -2,8 +2,8 @@ import os
 import logging
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManagerq
-from apscheduler.schedulers.background import B wrackgroundScheduler
+from flask_login import LoginManager
+from apscheduler.schedulers.background import BackgroundScheduler
 from sqlalchemy.orm import DeclarativeBase
 
 # Configure logging
@@ -20,7 +20,13 @@ app.secret_key = os.environ.get("SESSION_SECRET", "dev_secret_key")
 
 # Ensure we're using the correct PostgreSQL URL format
 db_url = os.environ.get("DATABASE_URL")
-if db_url and db_url.startswith("postgres://"): 
+
+# fallback to a local sqlite file for development/testing when no URL provided
+if not db_url:
+    db_url = "sqlite:///dev.db"
+
+# ensure sqlalchemy accepts postgres URLs from platforms like Heroku
+if db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = db_url
@@ -42,7 +48,7 @@ scheduler.start()
 
 with app.app_context():
     # Import models here to ensure they're registered before creating tables
-    from models import User, Resources, Buildings
+    from models import User, Resources, Buildings, PlayerStats, Item, Inventory, Enemy, Quest
     # Drop all tables and recreate them
     db.drop_all()
     db.create_all()
