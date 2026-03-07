@@ -1,5 +1,5 @@
 from datetime import datetime
-from app import db
+from database import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     resources = db.relationship('Resources', backref='user', uselist=False)
     buildings = db.relationship('Buildings', backref='user', uselist=False)
     stats = db.relationship('PlayerStats', backref='user', uselist=False)
-    inventory_items = db.relationship('Inventory', backref='user')
+    inventory_items = db.relationship('EquippedItem', backref='user')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -24,10 +24,16 @@ class User(UserMixin, db.Model):
 class Resources(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # base resources
     wood = db.Column(db.Integer, default=0)
     stone = db.Column(db.Integer, default=0)
     food = db.Column(db.Integer, default=0)
+    # materials (from hunting/gathering)
     leather = db.Column(db.Integer, default=0)
+    cloth = db.Column(db.Integer, default=0)
+    iron_ore = db.Column(db.Integer, default=0)
+    # currency
+    gold = db.Column(db.Integer, default=0)
     last_update = db.Column(db.DateTime, default=datetime.utcnow)
     last_hunt = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -68,35 +74,62 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
-    type = db.Column(db.String(50))  # e.g. "weapon", "armor", "consumable"
-    rarity = db.Column(db.String(20), default="common")
-    # simple stat bonuses stored as JSON string for flexibility
-    bonuses = db.Column(db.String(255))
-    base_value = db.Column(db.Integer, default=0)
+    item_type = db.Column(db.String(50))  # "weapon", "armor", "consumable"
+    rarity = db.Column(db.String(20), default="common")  # common, uncommon, rare, epic, legendary
+    # stat bonuses as JSON: {"strength": 5, "agility": 3}
+    stat_bonus = db.Column(db.String(255), default='{}')
+    sell_value = db.Column(db.Integer, default=0)
 
 
-class Inventory(db.Model):
+class EquippedItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
-    quantity = db.Column(db.Integer, default=1)
     item = db.relationship('Item')
 
 
 class Enemy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    health = db.Column(db.Integer, default=50)
-    attack = db.Column(db.Integer, default=5)
-    loot = db.Column(db.String(255))  # JSON list of (item_id, chance)
+    description = db.Column(db.String(255))
+    tier = db.Column(db.String(20), default="weak")  # weak, normal, strong, boss
+    min_level = db.Column(db.Integer, default=1)
+    max_level = db.Column(db.Integer, default=50)
+    base_health = db.Column(db.Integer, default=20)
+    base_attack = db.Column(db.Integer, default=3)
+    # loot as JSON: [{"gold": 25}, {"cloth": 1, "chance": 0.5}]
+    loot_table = db.Column(db.String(500), default='{"gold": 10}')
+    xp_reward = db.Column(db.Integer, default=10)
+
 
 
 class Quest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
-    reward_wood = db.Column(db.Integer, default=0)
-    reward_stone = db.Column(db.Integer, default=0)
-    reward_food = db.Column(db.Integer, default=0)
+    quest_type = db.Column(db.String(50), default='daily')  # daily, weekly, achievement
+    reward_gold = db.Column(db.Integer, default=0)
     reward_xp = db.Column(db.Integer, default=0)
-    requirement = db.Column(db.String(255))  # simple text requirement
+    requirement = db.Column(db.String(255))  # "kill_5_goblins", "harvest_500_wood", etc
+
+
+class CompletedQuest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    quest_id = db.Column(db.Integer, db.ForeignKey('quest.id'))
+    completed_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user = db.relationship('User')
+    quest = db.relationship('Quest')
+
+
+class Recipe(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255))
+    result_item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
+    result_quantity = db.Column(db.Integer, default=1)
+    # ingredients as JSON: {"wood": 10, "stone": 5, "cloth": 2}
+    ingredients = db.Column(db.String(500), default='{}')
+    crafting_time = db.Column(db.Integer, default=0)  # seconds, 0 = instant
+    min_level = db.Column(db.Integer, default=1)
+    result_item = db.relationship('Item')

@@ -1,18 +1,12 @@
 import os
 import logging
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from apscheduler.schedulers.background import BackgroundScheduler
-from sqlalchemy.orm import DeclarativeBase
+from database import db
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
-
-class Base(DeclarativeBase):
-    pass
-
-db = SQLAlchemy(model_class=Base)
 app = Flask(__name__)
 
 # Configure app
@@ -48,10 +42,13 @@ scheduler.start()
 
 with app.app_context():
     # Import models here to ensure they're registered before creating tables
-    from models import User, Resources, Buildings, PlayerStats, Item, Inventory, Enemy, Quest
+    from models import User, Resources, Buildings, PlayerStats, Item, EquippedItem, Enemy, Quest, CompletedQuest, Recipe
     # Drop all tables and recreate them
     db.drop_all()
     db.create_all()
 
 # Import routes after db initialization
 from routes import *
+
+if __name__ == '__main__':
+    app.run(debug=True)

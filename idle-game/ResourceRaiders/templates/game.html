@@ -7,25 +7,33 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Character</h5>
-                    <p>Level: <span id="level">{{ current_user.stats.level }}</span></p>
-                    <p>XP: <span id="experience">{{ current_user.stats.experience }}</span> / {{ current_user.stats.level * 100 }}</p>
-                    <p>Health: <span id="health">{{ current_user.stats.health }}</span> / {{ current_user.stats.max_health }}</p>
-                    <p>Str: {{ current_user.stats.strength }}  Agi: {{ current_user.stats.agility }}  Int: {{ current_user.stats.intelligence }}</p>
+                    <h5 class="card-title">⚔️ Character</h5>
+                    <p><strong>Level:</strong> <span id="level">{{ current_user.stats.level }}</span></p>
+                    <p><strong>XP:</strong> <span id="experience">{{ current_user.stats.experience }}</span> / {{ current_user.stats.level * 100 }}</p>
+                    <div class="mb-3">
+                        <strong>Health:</strong> <span id="health">{{ current_user.stats.health }}</span> / <span id="max_health">{{ current_user.stats.max_health }}</span>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-danger" id="health-bar" role="progressbar" style="width: {{ (current_user.stats.health / current_user.stats.max_health * 100) }}%"></div>
+                        </div>
+                    </div>
+                    <p><strong>Stats:</strong></p>
+                    <p class="mb-0">Str: <span id="strength" class="badge bg-danger">{{ current_user.stats.strength }}</span> 
+                    Agi: <span id="agility" class="badge bg-warning">{{ current_user.stats.agility }}</span> 
+                    Int: <span id="intelligence" class="badge bg-info">{{ current_user.stats.intelligence }}</span></p>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Equipment / Inventory</h5>
+                    <h5 class="card-title">🎒 Inventory</h5>
                     <table class="table table-sm" id="inventory-table">
-                        <thead><tr><th>Name</th><th>Qty</th></tr></thead>
+                        <thead><tr><th>Item</th><th>Rarity</th><th>Type</th></tr></thead>
                         <tbody>
-                        {% for item in current_user.inventory_items %}
-                            <tr><td>{{ item.item.name }}</td><td>{{ item.quantity }}</td></tr>
+                        {% for equipped in current_user.inventory_items %}
+                            <tr><td>{{ equipped.item.name }}</td><td><span class="badge bg-secondary">{{ equipped.item.rarity }}</span></td><td>{{ equipped.item.item_type }}</td></tr>
                         {% else %}
-                            <tr><td colspan="2" class="text-center">Empty</td></tr>
+                            <tr><td colspan="3" class="text-center"><em>No items yet</em></td></tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -38,46 +46,61 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-4">Resources</h5>
+                    <h5 class="card-title text-center mb-4">Resources & Currency</h5>
                     <div class="row">
-                        <div class="col-md-3">
-                            <p>Wood: <span id="wood" class="resource-counter">{{ current_user.resources.wood }}</span></p>
-                            <small class="text-muted">Production: <span id="wood-rate">{{ (current_user.buildings.woodcutter * (2 if current_user.is_subscribed else 1)) }}/s</span></small>
+                        <!-- Wood -->
+                        <div class="col-md-2">
+                            <p><strong>Wood</strong></p>
+                            <p class="mb-1"><span id="wood" class="resource-counter">{{ current_user.resources.wood }}</span></p>
+                            <small class="text-muted" id="wood-rate">{{ (current_user.buildings.woodcutter * 1.3 ** (current_user.buildings.woodcutter_level - 1) * (2 if current_user.is_subscribed else 1)) | round(1) }}/s</small>
                             <div class="mt-2">
-                                <button class="btn btn-secondary gather-btn w-100" data-resource="wood" data-clicks="0">
-                                    Chop Wood (0/10)
-                                    <div class="gather-progress" style="width: 0%"></div>
+                                <button class="btn btn-sm btn-secondary gather-btn w-100" data-resource="wood">
+                                    Chop
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <p>Stone: <span id="stone" class="resource-counter">{{ current_user.resources.stone }}</span></p>
-                            <small class="text-muted">Production: <span id="stone-rate">{{ (current_user.buildings.quarry * (2 if current_user.is_subscribed else 1)) }}/s</span></small>
+                        <!-- Stone -->
+                        <div class="col-md-2">
+                            <p><strong>Stone</strong></p>
+                            <p class="mb-1"><span id="stone" class="resource-counter">{{ current_user.resources.stone }}</span></p>
+                            <small class="text-muted" id="stone-rate">{{ (current_user.buildings.quarry * 1.3 ** (current_user.buildings.quarry_level - 1) * (2 if current_user.is_subscribed else 1)) | round(1) }}/s</small>
                             <div class="mt-2">
-                                <button class="btn btn-secondary gather-btn w-100" data-resource="stone" data-clicks="0">
-                                    Mine Stone (0/10)
-                                    <div class="gather-progress" style="width: 0%"></div>
+                                <button class="btn btn-sm btn-secondary gather-btn w-100" data-resource="stone">
+                                    Mine
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <p>Food: <span id="food" class="resource-counter">{{ current_user.resources.food }}</span></p>
-                            <small class="text-muted">Production: <span id="food-rate">{{ (current_user.buildings.farm * (2 if current_user.is_subscribed else 1)) }}/s</span></small>
+                        <!-- Food -->
+                        <div class="col-md-2">
+                            <p><strong>Food</strong></p>
+                            <p class="mb-1"><span id="food" class="resource-counter">{{ current_user.resources.food }}</span></p>
+                            <small class="text-muted" id="food-rate">{{ (current_user.buildings.farm * 1.3 ** (current_user.buildings.farm_level - 1) * (2 if current_user.is_subscribed else 1)) | round(1) }}/s</small>
                             <div class="mt-2">
-                                <button class="btn btn-secondary gather-btn w-100" data-resource="food" data-clicks="0">
-                                    Gather Food (0/10)
-                                    <div class="gather-progress" style="width: 0%"></div>
+                                <button class="btn btn-sm btn-secondary gather-btn w-100" data-resource="food">
+                                    Gather
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <p>Leather: <span id="leather" class="resource-counter">{{ current_user.resources.leather }}</span></p>
-                            <div class="mt-2">
-                                <button id="hunt-btn" class="btn btn-secondary w-100 hunt-cooldown">
-                                    Hunt (1min cooldown)
-                                    <div class="cooldown-overlay" style="width: 0%"></div>
-                                </button>
-                            </div>
+                        <!-- Gold -->
+                        <div class="col-md-2">
+                            <p><strong>Gold</strong></p>
+                            <p class="mb-1"><span id="gold" class="resource-counter text-warning">{{ current_user.resources.gold }}</span></p>
+                            <small class="text-muted">From hunts/quests</small>
+                        </div>
+                        <!-- Materials -->
+                        <div class="col-md-2">
+                            <p><strong>Materials</strong></p>
+                            <small>Leather: <span id="leather">{{ current_user.resources.leather }}</span></small><br>
+                            <small>Cloth: <span id="cloth">{{ current_user.resources.cloth }}</span></small><br>
+                            <small>Ore: <span id="iron_ore">{{ current_user.resources.iron_ore }}</span></small>
+                        </div>
+                        <!-- Hunt Button -->
+                        <div class="col-md-2">
+                            <p><strong>Actions</strong></p>
+                            <button id="hunt-btn" class="btn btn-sm btn-success w-100 hunt-cooldown">
+                                Hunt
+                                <div class="cooldown-overlay" style="width: 0%"></div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -138,15 +161,52 @@
         </div>
     </div>
 
-    <!-- simple combat/quest panel -->
+    <!-- Combat/Adventure panel -->
     <div class="row mt-4">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Adventures</h5>
-                    <p>Go out on an adventure to fight monsters and earn XP/resources.</p>
-                    <button id="adventure-btn" class="btn btn-warning">Start Adventure</button>
-                    <div id="adventure-result" class="mt-2"></div>
+                <div class="card-body">
+                    <h5 class="card-title">⚔️ Adventure</h5>
+                    <p class="text-muted">Go out on an adventure to fight monsters and earn XP/resources.</p>
+                    <button id="adventure-btn" class="btn btn-warning btn-lg">Start Adventure</button>
+                    <div id="adventure-log" class="mt-3" style="min-height: 120px; background: #1a1a1a; color: #0f0; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; overflow-y: auto; max-height: 200px;">
+                        <p class="text-muted">Combat log will appear here...</p>
+                    </div>
+                    <div id="adventure-rewards" class="mt-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-dark text-light">
+                <div class="card-body">
+                    <h5 class="card-title">📊 Quick Stats</h5>
+                    <div id="combat-stats">
+                        <p>Waiting for adventure...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crafting & Quests Section -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🔨 Crafting</h5>
+                    <div id="recipes-list">
+                        <p class="text-muted">Loading recipes...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📋 Daily Quests</h5>
+                    <div id="quests-list">
+                        <p class="text-muted">Loading quests...</p>
+                    </div>
                 </div>
             </div>
         </div>
