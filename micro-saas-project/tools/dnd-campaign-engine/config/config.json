@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "D&D Campaign Memory Engine",
+    "version": "1.0.0",
+    "description": "Organize D&D campaigns, track NPCs, and manage plot threads",
+    "category": "Gaming & Entertainment"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false,
+    "workers": 4
+  },
+  "database": {
+    "url": "${DATABASE_URL}",
+    "pool_size": 10,
+    "max_overflow": 20
+  },
+  "security": {
+    "secret_key": "${SECRET_KEY}",
+    "jwt_expiration": 86400,
+    "rate_limit": "100/hour"
+  },
+  "billing": {
+    "stripe_api_key": "${STRIPE_API_KEY}",
+    "webhook_secret": "${STRIPE_WEBHOOK_SECRET}",
+    "plans": {
+      "basic": 19,
+      "pro": 49,
+      "enterprise": 99
+    }
+  },
+  "features": {
+    "enable_ai": false,
+    "enable_analytics": true,
+    "enable_api": true,
+    "enable_webhooks": true
+  }
+}

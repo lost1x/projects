@@ -1,0 +1,64 @@
+{
+  "product_name": "Website UX Friction Scanner",
+  "tagline": "Automated UX analysis and improvement recommendations",
+  "category": "Web Development & Design",
+  "pricing": {
+    "basic": 14,
+    "pro": 39,
+    "enterprise": 89
+  },
+  "features": [
+    "UX analysis",
+    "Accessibility checks",
+    "Performance testing",
+    "Reports"
+  ],
+  "tech_stack": [
+    "Python",
+    "Selenium",
+    "Lighthouse",
+    "PostgreSQL"
+  ],
+  "market_size": "30M+ website owners",
+  "target_audience": "Web developers, UX designers, agencies, product managers",
+  "value_proposition": "Save hours of work with Website UX Friction Scanner. Automate ux analysis, streamline your workflow, and focus on what matters most. Join 30M+ website owners who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use Web Development & Design tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline web development & design",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}

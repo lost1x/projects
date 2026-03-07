@@ -1,0 +1,64 @@
+{
+  "product_name": "Freelance Pricing Calculator",
+  "tagline": "Calculate optimal pricing for freelance services",
+  "category": "Freelance & Consulting",
+  "pricing": {
+    "basic": 9,
+    "pro": 29,
+    "enterprise": 69
+  },
+  "features": [
+    "Market analysis",
+    "Pricing models",
+    "Quote generation",
+    "Analytics"
+  ],
+  "tech_stack": [
+    "Python",
+    "Flask",
+    "Market data",
+    "PostgreSQL"
+  ],
+  "market_size": "57M+ freelancers",
+  "target_audience": "Freelancers, consultants, independent contractors, solopreneurs",
+  "value_proposition": "Save hours of work with Freelance Pricing Calculator. Automate market analysis, streamline your workflow, and focus on what matters most. Join 57M+ freelancers who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use Freelance & Consulting tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline freelance & consulting",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}

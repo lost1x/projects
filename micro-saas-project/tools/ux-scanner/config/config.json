@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "Website UX Friction Scanner",
+    "version": "1.0.0",
+    "description": "Automated UX analysis and improvement recommendations",
+    "category": "Web Development & Design"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false,
+    "workers": 4
+  },
+  "database": {
+    "url": "${DATABASE_URL}",
+    "pool_size": 10,
+    "max_overflow": 20
+  },
+  "security": {
+    "secret_key": "${SECRET_KEY}",
+    "jwt_expiration": 86400,
+    "rate_limit": "100/hour"
+  },
+  "billing": {
+    "stripe_api_key": "${STRIPE_API_KEY}",
+    "webhook_secret": "${STRIPE_WEBHOOK_SECRET}",
+    "plans": {
+      "basic": 14,
+      "pro": 39,
+      "enterprise": 89
+    }
+  },
+  "features": {
+    "enable_ai": false,
+    "enable_analytics": true,
+    "enable_api": true,
+    "enable_webhooks": true
+  }
+}

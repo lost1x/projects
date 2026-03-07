@@ -1,0 +1,12 @@
+{
+  "default": true,
+  "MD041": false,
+  "files": {
+    "LICENSE": false,
+    "LICENSE*": false,
+    "*.md": {
+      "default": true,
+      "MD041": true
+    }
+  }
+}

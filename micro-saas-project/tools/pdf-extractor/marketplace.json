@@ -1,0 +1,64 @@
+{
+  "product_name": "PDF Data Extractor",
+  "tagline": "Extract structured data from PDF documents",
+  "category": "Business & Productivity",
+  "pricing": {
+    "basic": 19,
+    "pro": 49,
+    "enterprise": 119
+  },
+  "features": [
+    "PDF parsing",
+    "Data extraction",
+    "Template matching",
+    "Export options"
+  ],
+  "tech_stack": [
+    "Python",
+    "PyPDF2",
+    "NLP",
+    "PostgreSQL"
+  ],
+  "market_size": "100M+ office workers",
+  "target_audience": "Business analysts, office workers, consultants, productivity hackers",
+  "value_proposition": "Save hours of work with PDF Data Extractor. Automate pdf parsing, streamline your workflow, and focus on what matters most. Join 100M+ office workers who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use Business & Productivity tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline business & productivity",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}

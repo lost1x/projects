@@ -1,0 +1,64 @@
+{
+  "product_name": "Podcast Content Repurposer",
+  "tagline": "Transform podcast episodes into multiple content formats",
+  "category": "Content & Media",
+  "pricing": {
+    "basic": 14,
+    "pro": 39,
+    "enterprise": 89
+  },
+  "features": [
+    "Audio transcription",
+    "Content generation",
+    "Social media posts",
+    "Blog posts"
+  ],
+  "tech_stack": [
+    "Python",
+    "Whisper",
+    "OpenAI API",
+    "PostgreSQL"
+  ],
+  "market_size": "4M+ podcast creators",
+  "target_audience": "Podcasters, content creators, YouTubers, media companies",
+  "value_proposition": "Save hours of work with Podcast Content Repurposer. Automate audio transcription, streamline your workflow, and focus on what matters most. Join 4M+ podcast creators who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use Content & Media tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline content & media",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}

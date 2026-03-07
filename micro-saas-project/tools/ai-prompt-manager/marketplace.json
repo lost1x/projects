@@ -1,0 +1,64 @@
+{
+  "product_name": "AI Prompt Version Manager",
+  "tagline": "Version control and testing for AI prompts",
+  "category": "AI & Machine Learning",
+  "pricing": {
+    "basic": 9,
+    "pro": 29,
+    "enterprise": 79
+  },
+  "features": [
+    "Prompt versioning",
+    "A/B testing",
+    "Performance analytics",
+    "Cost tracking"
+  ],
+  "tech_stack": [
+    "Python",
+    "FastAPI",
+    "Redis",
+    "PostgreSQL"
+  ],
+  "market_size": "10M+ AI developers",
+  "target_audience": "AI developers, prompt engineers, ML engineers, data scientists",
+  "value_proposition": "Save hours of work with AI Prompt Version Manager. Automate prompt versioning, streamline your workflow, and focus on what matters most. Join 10M+ AI developers who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use AI & Machine Learning tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline ai & machine learning",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Chaos Organizer - Web Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .auth-section {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .auth-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #495057;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6c757d;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .meeting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .meeting-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .meeting-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .meeting-card h3 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .meeting-card p {
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .meeting-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #868e96;
+            margin-bottom: 15px;
+        }
+
+        .meeting-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .meeting-actions button {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-scheduled {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .status-completed {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-in-progress {
+            background: #ffc107;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Meeting Chaos Organizer</h1>
+            <p>Organize meetings with AI-powered transcription and action items</p>
+        </header>
+
+        <!-- Authentication Section -->
+        <div class="auth-section" id="authSection">
+            <div id="loginForm" class="auth-form">
+                <h2>Login to Your Account</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" value="manager@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" value="meeting123" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p style="margin-top: 15px;">
+                    Don't have an account? <a href="#" onclick="showRegister()">Register here</a>
+                </p>
+            </div>
+
+            <div id="registerForm" class="auth-form hidden">
+                <h2>Create New Account</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerName">Name:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+                <p style="margin-top: 15px;">
+                    Already have an account? <a href="#" onclick="showLogin()">Login here</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div class="main-content hidden" id="mainApp">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
+                <button class="tab" onclick="showTab('meetings')">Meetings</button>
+                <button class="tab" onclick="showTab('upload')">Upload Meeting</button>
+                <button class="tab" onclick="showTab('actions')">Action Items</button>
+                <button class="tab" onclick="showTab('analytics')">Analytics</button>
+                <button class="tab" onclick="showTab('api-test')">API Test</button>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <h2>Meeting Dashboard</h2>
+                <div id="meetingGrid" class="meeting-grid">
+                    <!-- Recent meetings will be loaded here -->
+                </div>
+                <div id="userStats" class="stats">
+                    <!-- User statistics will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Meetings Tab -->
+            <div id="meetings" class="tab-content">
+                <h2>All Meetings</h2>
+                <div id="allMeetings" class="meeting-grid">
+                    <!-- All meetings will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Upload Meeting Tab -->
+            <div id="upload" class="tab-content">
+                <h2>Upload Meeting Recording</h2>
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="meetingTitle">Meeting Title:</label>
+                        <input type="text" id="meetingTitle" placeholder="e.g., Weekly Team Standup" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="meetingDate">Meeting Date:</label>
+                            <input type="datetime-local" id="meetingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="meetingDuration">Duration (minutes):</label>
+                            <input type="number" id="meetingDuration" min="1" value="60" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="meetingAttendees">Attendees (comma-separated):</label>
+                        <input type="text" id="meetingAttendees" placeholder="John Doe, Jane Smith, Bob Wilson">
+                    </div>
+                    <div class="form-group">
+                        <label for="meetingDescription">Description:</label>
+                        <textarea id="meetingDescription" placeholder="Describe the meeting purpose and agenda..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="audioFile">Audio File:</label>
+                        <input type="file" id="audioFile" accept="audio/*" required>
+                    </div>
+                    <button type="submit" class="btn">Upload and Transcribe</button>
+                </form>
+            </div>
+
+            <!-- Action Items Tab -->
+            <div id="actions" class="tab-content">
+                <h2>Action Items</h2>
+                <div id="actionsGrid" class="meeting-grid">
+                    <!-- Action items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics" class="tab-content">
+                <h2>Meeting Analytics</h2>
+                <div id="analyticsContent">
+                    <!-- Analytics will be loaded here -->
+                </div>
+            </div>
+
+            <!-- API Test Tab -->
+            <div id="api-test" class="tab-content">
+                <h2>API Test</h2>
+                <div class="form-group">
+                    <label for="apiEndpoint">API Endpoint:</label>
+                    <select id="apiEndpoint">
+                        <option value="GET /api/health">GET /api/health (Health Check)</option>
+                        <option value="GET /api/meetings">GET /api/meetings (List Meetings)</option>
+                        <option value="POST /api/meetings">POST /api/meetings (Create Meeting)</option>
+                        <option value="GET /api/actions">GET /api/actions (List Actions)</option>
+                        <option value="GET /api/analytics">GET /api/analytics (Analytics)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="apiData">Request Data (JSON):</label>
+                    <textarea id="apiData" rows="6" placeholder='{"title": "Test Meeting", "duration": 60}'></textarea>
+                </div>
+                <button type="button" class="btn" onclick="testAPI()">Test API</button>
+                <div id="apiResponse"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let apiKey = null;
+        const API_BASE = 'http://localhost:5000';
+        let meetings = [];
+
+        // Authentication functions
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+
+        function showMainApp() {
+            document.getElementById('authSection').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            loadDashboard();
+        }
+
+        // Tab navigation
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'meetings') {
+                loadMeetings();
+            } else if (tabName === 'actions') {
+                loadActions();
+            } else if (tabName === 'analytics') {
+                loadAnalytics();
+            }
+        }
+
+        // API functions
+        async function makeRequest(endpoint, method = 'GET', data = null) {
+            try {
+                const options = {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey
+                    }
+                };
+                
+                if (data) {
+                    options.body = JSON.stringify(data);
+                }
+                
+                const response = await fetch(`${API_BASE}${endpoint}`, options);
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.error || 'Request failed');
+                }
+                
+                return result;
+            } catch (error) {
+                console.error('API Error:', error);
+                throw error;
+            }
+        }
+
+        // Load functions
+        async function loadDashboard() {
+            try {
+                const response = await makeRequest('/api/meetings');
+                meetings = response.meetings || [];
+                displayMeetings(meetings.slice(0, 6), 'meetingGrid');
+                loadUserStats();
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        }
+
+        async function loadMeetings() {
+            try {
+                const response = await makeRequest('/api/meetings');
+                meetings = response.meetings || [];
+                displayMeetings(meetings, 'allMeetings');
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        }
+
+        async function loadActions() {
+            try {
+                const response = await makeRequest('/api/actions');
+                displayActions(response.actions || []);
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        }
+
+        async function loadAnalytics() {
+            try {
+                const analytics = await makeRequest('/api/analytics');
+                displayAnalytics(analytics);
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        }
+
+        async function loadUserStats() {
+            try {
+                const stats = {
+                    totalMeetings: meetings.length,
+                    totalHours: 24,
+                    actionItems: 45,
+                    completionRate: 78
+                };
+                
+                const statsHtml = `
+                    <div class="stat-card">
+                        <h3>${stats.totalMeetings}</h3>
+                        <p>Total Meetings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${stats.totalHours}</h3>
+                        <p>Total Hours</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${stats.actionItems}</h3>
+                        <p>Action Items</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${stats.completionRate}%</h3>
+                        <p>Completion Rate</p>
+                    </div>
+                `;
+                
+                document.getElementById('userStats').innerHTML = statsHtml;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Display functions
+        function displayMeetings(meetings, containerId) {
+            const container = document.getElementById(containerId);
+            
+            if (meetings.length === 0) {
+                container.innerHTML = '<p>No meetings found. Upload your first meeting recording!</p>';
+                return;
+            }
+            
+            const meetingsHtml = meetings.map(meeting => `
+                <div class="meeting-card">
+                    <h3>${meeting.title}</h3>
+                    <p>${meeting.description || 'No description available'}</p>
+                    <div class="meeting-stats">
+                        <span>Status: <span class="status-badge status-${meeting.status || 'completed'}">${meeting.status || 'Completed'}</span></span>
+                        <span>Duration: ${meeting.duration || 60} min</span>
+                    </div>
+                    <div class="meeting-actions">
+                        <button class="btn btn-secondary" onclick="viewMeeting('${meeting.id}')">View</button>
+                        <button class="btn btn-success" onclick="viewTranscript('${meeting.id}')">Transcript</button>
+                        <button class="btn" onclick="editMeeting('${meeting.id}')">Edit</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = meetingsHtml;
+        }
+
+        function displayActions(actions) {
+            const container = document.getElementById('actionsGrid');
+            
+            if (actions.length === 0) {
+                container.innerHTML = '<p>No action items found. Action items will appear here after meeting processing.</p>';
+                return;
+            }
+            
+            const actionsHtml = actions.map(action => `
+                <div class="meeting-card">
+                    <h3>${action.description}</h3>
+                    <p>Assigned to: ${action.assignee}</p>
+                    <div class="meeting-stats">
+                        <span>Status: <span class="status-badge status-${action.status}">${action.status}</span></span>
+                        <span>Due: ${action.due_date || 'No due date'}</span>
+                    </div>
+                    <div class="meeting-actions">
+                        <button class="btn btn-secondary" onclick="viewAction('${action.id}')">View</button>
+                        <button class="btn btn-success" onclick="updateAction('${action.id}')">Update</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = actionsHtml;
+        }
+
+        function displayAnalytics(analytics) {
+            const container = document.getElementById('analyticsContent');
+            
+            const analyticsHtml = `
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>${analytics.totalMeetings || 0}</h3>
+                        <p>Total Meetings</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${analytics.avgDuration || 0}</h3>
+                        <p>Avg Duration</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${analytics.participationRate || 0}%</h3>
+                        <p>Participation Rate</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${analytics.productivityScore || 0}</h3>
+                        <p>Productivity Score</p>
+                    </div>
+                </div>
+                <h3>Meeting Insights</h3>
+                <div class="meeting-grid">
+                    ${(analytics.insights || []).map(insight => `
+                        <div class="meeting-card">
+                            <h3>${insight.title}</h3>
+                            <p>${insight.description}</p>
+                            <div class="meeting-stats">
+                                <span>Impact: ${insight.impact}</span>
+                                <span>Category: ${insight.category}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            container.innerHTML = analyticsHtml;
+        }
+
+        // Form handlers
+        document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                const response = await makeRequest('/api/login', 'POST', { email, password });
+                currentUser = response.user_id;
+                apiKey = response.api_key;
+                showMainApp();
+                showAlert('Login successful!', 'success');
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        });
+
+        document.getElementById('registerFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            try {
+                const response = await makeRequest('/api/register', 'POST', { name, email, password });
+                currentUser = response.user_id;
+                apiKey = response.api_key;
+                showMainApp();
+                showAlert('Registration successful!', 'success');
+            } catch (error) {
+                showAlert(error.message, 'error');
+            }
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('title', document.getElementById('meetingTitle').value);
+            formData.append('date', document.getElementById('meetingDate').value);
+            formData.append('duration', document.getElementById('meetingDuration').value);
+            formData.append('attendees', document.getElementById('meetingAttendees').value);
+            formData.append('description', document.getElementById('meetingDescription').value);
+            formData.append('audio_file', document.getElementById('audioFile').files[0]);
+            
+            showAlert('Meeting upload started! Processing will begin shortly.', 'success');
+            document.getElementById('uploadForm').reset();
+            
+            // Simulate processing
+            setTimeout(() => {
+                showAlert('Meeting processed successfully! Transcript and action items are ready.', 'success');
+                showTab('meetings');
+            }, 3000);
+        });
+
+        // Placeholder functions
+        function viewMeeting(id) {
+            console.log('View meeting:', id);
+            showAlert('Meeting viewer coming soon!', 'success');
+        }
+
+        function viewTranscript(id) {
+            console.log('View transcript:', id);
+            showAlert('Transcript viewer coming soon!', 'success');
+        }
+
+        function editMeeting(id) {
+            console.log('Edit meeting:', id);
+            showAlert('Meeting editor coming soon!', 'success');
+        }
+
+        function viewAction(id) {
+            console.log('View action:', id);
+            showAlert('Action item details coming soon!', 'success');
+        }
+
+        function updateAction(id) {
+            console.log('Update action:', id);
+            showAlert('Action update coming soon!', 'success');
+        }
+
+        async function testAPI() {
+            const endpoint = document.getElementById('apiEndpoint').value;
+            const data = document.getElementById('apiData').value;
+            
+            try {
+                const [method, path] = endpoint.split(' ');
+                const requestData = data ? JSON.parse(data) : null;
+                
+                const response = await makeRequest(path, method, requestData);
+                
+                document.getElementById('apiResponse').innerHTML = `
+                    <div class="alert alert-success">
+                        <strong>Success!</strong><br>
+                        <pre>${JSON.stringify(response, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('apiResponse').innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Utility functions
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            
+            document.querySelector('.main-content').insertBefore(alertDiv, document.querySelector('.tabs'));
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedApiKey = localStorage.getItem('apiKey');
+            const savedUser = localStorage.getItem('currentUser');
+            
+            if (savedApiKey && savedUser) {
+                apiKey = savedApiKey;
+                currentUser = savedUser;
+                showMainApp();
+            }
+        });
+
+        window.addEventListener('beforeunload', () => {
+            if (apiKey && currentUser) {
+                localStorage.setItem('apiKey', apiKey);
+                localStorage.setItem('currentUser', currentUser);
+            }
+        });
+    </script>
+</body>
+</html>

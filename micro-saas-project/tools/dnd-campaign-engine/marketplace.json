@@ -1,0 +1,64 @@
+{
+  "product_name": "D&D Campaign Memory Engine",
+  "tagline": "Organize D&D campaigns, track NPCs, and manage plot threads",
+  "category": "Gaming & Entertainment",
+  "pricing": {
+    "basic": 19,
+    "pro": 49,
+    "enterprise": 99
+  },
+  "features": [
+    "Campaign management",
+    "NPC tracking",
+    "Plot threads",
+    "AI content"
+  ],
+  "tech_stack": [
+    "Python",
+    "Flask",
+    "PostgreSQL",
+    "Redis"
+  ],
+  "market_size": "50M+ D&D players worldwide",
+  "target_audience": "D&D Dungeon Masters, tabletop RPG players, game masters, storytellers",
+  "value_proposition": "Save hours of work with D&D Campaign Memory Engine. Automate campaign management, streamline your workflow, and focus on what matters most. Join 50M+ D&D players worldwide who trust our solution.",
+  "competitive_advantages": [
+    "Easiest to use Gaming & Entertainment tool on the market",
+    "AI-powered automation saves hours of manual work",
+    "Built-in analytics and reporting",
+    "99.9% uptime with 24/7 support",
+    "Flexible pricing for teams of all sizes",
+    "14-day free trial, no credit card required"
+  ],
+  "use_cases": [
+    "Small teams looking to streamline gaming & entertainment",
+    "Enterprise companies needing enterprise-grade solutions",
+    "Freelancers and consultants managing multiple clients",
+    "Agencies handling multiple projects simultaneously",
+    "Startups needing scalable, cost-effective solutions"
+  ],
+  "integration_options": [
+    "REST API",
+    "Webhooks",
+    "Zapier",
+    "Make.com"
+  ],
+  "support_level": {
+    "basic": "Email support, 48h response time",
+    "pro": "Priority email support, 24h response time",
+    "enterprise": "Dedicated Slack channel, phone support, 4h response time"
+  },
+  "deployment_options": [
+    "Cloud-hosted",
+    "Self-hosted",
+    "Enterprise on-premise"
+  ],
+  "trial_period": "14 days",
+  "money_back_guarantee": "30 days",
+  "setup_time": "< 5 minutes",
+  "requirements": {
+    "technical": "Basic web server knowledge",
+    "infrastructure": "Docker or cloud hosting",
+    "api_keys": "Stripe account (for billing)"
+  }
+}
