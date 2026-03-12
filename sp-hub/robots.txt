@@ -29,8 +29,6 @@ Disallow: /*.tmp$
 Disallow: /*.log$
 Disallow: /sw.js
 Disallow: /dep-*
-Disallow: /nanoid.js
-Disallow: /install.js
 
 # Sitemap location
 Sitemap: https://spaarowhub.com/sitemap.xml

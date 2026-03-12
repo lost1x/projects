@@ -243,6 +243,17 @@ class TarotReading {
         
         readingResults.innerHTML = resultsHTML;
         
+        // Save reading to history (if available)
+        const cardSummary = this.selectedCards.map((c, i) => `${i + 1}. ${c.name}`).join(', ');
+        if (window.saveReading) {
+            window.saveReading({
+                tool: 'Tarot Reading',
+                title: spreadData.name,
+                summary: `Cards: ${cardSummary}`,
+                details: `Question: ${question || 'N/A'} | Focus: ${focus}`
+            });
+        }
+        
         // Scroll to results
         resultsSection.scrollIntoView({ behavior: 'smooth' });
         

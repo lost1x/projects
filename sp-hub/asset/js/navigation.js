@@ -1,5 +1,50 @@
 // ===== SHARED NAVIGATION COMPONENT =====
 
+// Helper list of tool IDs that exist under the hub. Used to resolve the site root and detect the current tool
+const KNOWN_TOOL_IDS = [
+    'love-language-quiz',
+    'tarot-reading',
+    'dream-interpreter',
+    'fortune-teller',
+    'zodiac-calculator',
+    'numerology',
+    'rune-casting',
+    'birth-charts',
+    'crystal-healing'
+];
+
+let deferredInstallPrompt = null;
+
+function showInstallButton() {
+    const btn = document.querySelector('.nav-install-btn');
+    if (btn) {
+        btn.classList.remove('hidden');
+    }
+}
+
+function hideInstallButton() {
+    const btn = document.querySelector('.nav-install-btn');
+    if (btn) {
+        btn.classList.add('hidden');
+    }
+}
+
+function promptInstall() {
+    if (!deferredInstallPrompt) return;
+
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            showNavFeedback('App installed!');
+        } else {
+            showNavFeedback('Install dismissed.');
+        }
+
+        deferredInstallPrompt = null;
+        hideInstallButton();
+    });
+}
+
 class HubNavigation {
     constructor() {
         this.currentTool = this.getCurrentTool();
@@ -14,7 +59,37 @@ class HubNavigation {
     getCurrentTool() {
         const path = window.location.pathname;
         if (path === '/' || path.endsWith('/index.html')) return 'hub';
-        return path.split('/').filter(Boolean)[0] || 'hub';
+
+        const segments = path.split('/').filter(Boolean);
+        // Find the last segment that matches a known tool ID.
+        for (let i = segments.length - 1; i >= 0; i--) {
+            if (KNOWN_TOOL_IDS.includes(segments[i])) {
+                return segments[i];
+            }
+        }
+
+        return 'hub';
+    }
+
+    getSiteRoot() {
+        const path = window.location.pathname;
+        const segments = path.split('/').filter(Boolean);
+
+        const toolIndex = segments.findIndex((seg) => KNOWN_TOOL_IDS.includes(seg));
+        if (toolIndex === 0) {
+            return '/';
+        }
+
+        if (toolIndex > 0) {
+            return `/${segments.slice(0, toolIndex).join('/')}/`;
+        }
+
+        // If there is no known tool segment, assume the first segment is the base path.
+        if (segments.length > 0) {
+            return `/${segments[0]}/`;
+        }
+
+        return '/';
     }
 
     createNavigation() {
@@ -22,9 +97,9 @@ class HubNavigation {
         if (this.currentTool === 'hub') return;
 
         const navHTML = `
-            <nav class="hub-nav">
+            <nav class="hub-nav" aria-label="Primary navigation">
                 <div class="nav-container">
-                    <button class="nav-home-btn" onclick="navigateToHub()" title="Back to Hub">
+                    <button class="nav-home-btn" type="button" onclick="navigateToHub()" aria-label="Go to hub">
                         <i class="fas fa-home"></i>
                         <span>Hub</span>
                     </button>
@@ -34,17 +109,20 @@ class HubNavigation {
                     </div>
                     
                     <div class="nav-actions">
-                        <button class="nav-suggest-btn" onclick="openSuggestionModal()" title="Suggest a Tool">
+                        <button class="nav-suggest-btn" type="button" onclick="openSuggestionModal()" aria-label="Suggest a tool">
                             <i class="fas fa-lightbulb"></i>
                         </button>
-                        <button class="nav-menu-btn" onclick="toggleNavMenu()" title="Menu">
+                        <button class="nav-install-btn hidden" type="button" onclick="promptInstall()" aria-label="Install app" title="Install Spaarow Hub">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="nav-menu-btn" type="button" onclick="toggleNavMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
                             <i class="fas fa-bars"></i>
                         </button>
                     </div>
                 </div>
                 
                 <!-- Mobile Menu -->
-                <div class="nav-menu" id="navMenu">
+                <div class="nav-menu" id="navMenu" role="menu" aria-hidden="true">
                     <div class="nav-menu-content">
                         <h3>Other Tools</h3>
                         <div class="nav-tools-grid">
@@ -54,12 +132,12 @@ class HubNavigation {
                 </div>
                 
                 <!-- Suggestion Modal -->
-                <div class="suggestion-modal" id="suggestionModal">
-                    <div class="modal-overlay" onclick="closeSuggestionModal()"></div>
+                <div class="suggestion-modal" id="suggestionModal" role="dialog" aria-modal="true" aria-labelledby="suggestion-modal-title" aria-hidden="true">
+                    <div class="modal-overlay" role="presentation" onclick="closeSuggestionModal()"></div>
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3>💡 Suggest Our Next Tool</h3>
-                            <button class="modal-close-btn" onclick="closeSuggestionModal()">
+                            <h3 id="suggestion-modal-title">💡 Suggest Our Next Tool</h3>
+                            <button class="modal-close-btn" type="button" onclick="closeSuggestionModal()" aria-label="Close suggestion modal">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -72,7 +150,7 @@ class HubNavigation {
                                     <label for="nav-tool-suggestion">Your Brilliant Idea:</label>
                                     <div class="input-group">
                                         <input type="text" id="nav-tool-suggestion" placeholder="e.g., Aura Reading, Palmistry..." maxlength="100">
-                                        <button class="suggest-submit-btn" onclick="submitNavSuggestion()">
+                                        <button class="suggest-submit-btn" type="button" onclick="submitNavSuggestion()" aria-label="Submit suggestion">
                                             <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
@@ -82,12 +160,12 @@ class HubNavigation {
                             <div class="popular-suggestions">
                                 <h4>🌟 Popular Requests:</h4>
                                 <div class="suggestion-tags">
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Aura Reading')">Aura Reading</span>
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Palmistry')">Palmistry</span>
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Spirit Animal')">Spirit Animal</span>
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Tea Leaf Reading')">Tea Leaf Reading</span>
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Moon Phase')">Moon Phase</span>
-                                    <span class="suggestion-tag" onclick="addNavSuggestion('Past Life Regression')">Past Life</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Aura Reading')">Aura Reading</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Palmistry')">Palmistry</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Spirit Animal')">Spirit Animal</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Tea Leaf Reading')">Tea Leaf Reading</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Moon Phase')">Moon Phase</span>
+                                    <span class="suggestion-tag" role="button" tabindex="0" onclick="addNavSuggestion('Past Life Regression')">Past Life</span>
                                 </div>
                             </div>
                             
@@ -111,8 +189,8 @@ class HubNavigation {
 
     getToolTitle() {
         const titles = {
-            'lovequiz': 'Love Language Quiz',
-            'mytarot': 'Tarot Reading',
+            'love-language-quiz': 'Love Language Quiz',
+            'tarot-reading': 'Tarot Reading',
             'dream-interpreter': 'Dream Interpreter',
             'fortune-teller': 'Fortune Teller',
             'zodiac-calculator': 'Zodiac Calculator',
@@ -126,26 +204,24 @@ class HubNavigation {
     }
 
     getToolLinks() {
-        // Check if we're on the homepage
-        const isHomepage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
-        const basePath = isHomepage ? '' : '../';
+        const basePath = this.getSiteRoot();
         
         const tools = [
-            { name: 'Love Language Quiz', url: `${basePath}lovequiz/`, icon: 'fa-heart', color: '#EC4899' },
-            { name: 'Tarot Reading', url: `${basePath}mytarot/`, icon: 'fa-moon', color: '#6B46C1' },
-            { name: 'Dream Interpreter', url: `${basePath}dream-interpreter/`, icon: 'fa-cloud', color: '#3B82F6' },
-            { name: 'Fortune Teller', url: `${basePath}fortune-teller/`, icon: 'fa-crystal-ball', color: '#F97316' },
-            { name: 'Zodiac Calculator', url: `${basePath}zodiac-calculator/`, icon: 'fa-star', color: '#14B8A6' },
-            { name: 'Numerology', url: `${basePath}numerology/`, icon: 'fa-infinity', color: '#9333EA' },
-            { name: 'Rune Casting', url: `${basePath}rune-casting/`, icon: 'fa-ankh', color: '#8B4513' },
-            { name: 'Birth Charts', url: `${basePath}birth-charts/`, icon: 'fa-star-christmas', color: '#4C1D95' },
-            { name: 'Crystal Healing', url: `${basePath}crystal-healing/`, icon: 'fa-gem', color: '#9333EA' }
+            { id: 'love-language-quiz', name: 'Love Language Quiz', url: `${basePath}love-language-quiz/`, icon: 'fa-heart', color: '#EC4899' },
+            { id: 'tarot-reading', name: 'Tarot Reading', url: `${basePath}tarot-reading/`, icon: 'fa-moon', color: '#6B46C1' },
+            { id: 'dream-interpreter', name: 'Dream Interpreter', url: `${basePath}dream-interpreter/`, icon: 'fa-cloud', color: '#3B82F6' },
+            { id: 'fortune-teller', name: 'Fortune Teller', url: `${basePath}fortune-teller/`, icon: 'fa-crystal-ball', color: '#F97316' },
+            { id: 'zodiac-calculator', name: 'Zodiac Calculator', url: `${basePath}zodiac-calculator/`, icon: 'fa-star', color: '#14B8A6' },
+            { id: 'numerology', name: 'Numerology', url: `${basePath}numerology/`, icon: 'fa-infinity', color: '#9333EA' },
+            { id: 'rune-casting', name: 'Rune Casting', url: `${basePath}rune-casting/`, icon: 'fa-ankh', color: '#8B4513' },
+            { id: 'birth-charts', name: 'Birth Charts', url: `${basePath}birth-charts/`, icon: 'fa-star-christmas', color: '#4C1D95' },
+            { id: 'crystal-healing', name: 'Crystal Healing', url: `${basePath}crystal-healing/`, icon: 'fa-gem', color: '#9333EA' }
         ];
 
         return tools
-            .filter(tool => tool.url !== `../${this.currentTool}/`)
+            .filter(tool => tool.id !== this.currentTool)
             .map(tool => `
-                <a href="${tool.url}" class="nav-tool-link" style="--tool-color: ${tool.color}">
+                <a href="${tool.url}" class="nav-tool-link" role="menuitem" tabindex="0" style="--tool-color: ${tool.color}">
                     <i class="fas ${tool.icon}"></i>
                     <span>${tool.name}</span>
                 </a>
@@ -159,8 +235,10 @@ class HubNavigation {
             const menuBtn = document.querySelector('.nav-menu-btn');
             const modal = document.getElementById('suggestionModal');
             
-            if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+            if (nav && menuBtn && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
                 nav.classList.remove('active');
+                nav.setAttribute('aria-hidden', 'true');
+                menuBtn.setAttribute('aria-expanded', 'false');
             }
             
             // Close modal when clicking overlay
@@ -174,18 +252,30 @@ class HubNavigation {
 // ===== UTILITY FUNCTIONS =====
 
 function navigateToHub() {
-    window.location.href = '/';
+    const root = window.hubNav?.getSiteRoot?.() || '/';
+    window.location.href = root;
 }
 
 function openSuggestionModal() {
     const modal = document.getElementById('suggestionModal');
+    if (!modal) return;
+
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    const input = modal.querySelector('#nav-tool-suggestion');
+    if (input) {
+        input.focus();
+    }
 }
 
 function closeSuggestionModal() {
     const modal = document.getElementById('suggestionModal');
+    if (!modal) return;
+
     modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 }
 
@@ -273,8 +363,19 @@ function showNavFeedback(message) {
 
 function toggleNavMenu() {
     const menu = document.getElementById('navMenu');
-    if (menu) {
-        menu.classList.toggle('active');
+    const menuBtn = document.querySelector('.nav-menu-btn');
+    if (!menu || !menuBtn) return;
+
+    const isActive = menu.classList.toggle('active');
+    menu.setAttribute('aria-hidden', String(!isActive));
+    menuBtn.setAttribute('aria-expanded', String(isActive));
+
+    if (isActive) {
+        // Move focus into menu for keyboard users
+        const firstLink = menu.querySelector('.nav-tool-link');
+        if (firstLink) {
+            firstLink.focus();
+        }
     }
 }
 
@@ -741,6 +842,19 @@ document.addEventListener('DOMContentLoaded', () => {
         styleElement.innerHTML = navStyles;
         document.head.appendChild(styleElement);
     }
+
+    // Listen for PWA install availability
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        showInstallButton();
+    });
+
+    window.addEventListener('appinstalled', () => {
+        showNavFeedback('Spaarow Hub installed!');
+        deferredInstallPrompt = null;
+        hideInstallButton();
+    });
     
     // Initialize navigation
     window.hubNav = new HubNavigation();

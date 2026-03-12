@@ -39,8 +39,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="asset/css/main.css">
-    <link rel="stylesheet" href="asset/css/hub.css">
-    <link rel="stylesheet" href="asset/css/slideshow.css">
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
@@ -65,9 +64,57 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <section class="daily-card-section" id="dailyCardSection">
+            <div class="daily-card-header">
+                <h2>Daily Fortune</h2>
+                <p class="daily-card-subtitle">Draw your daily card to receive a short message to guide your day.</p>
+            </div>
+            <div class="daily-card" id="dailyCardContent">
+                <div class="daily-card-message">Loading your daily fortune…</div>
+            </div>
+            <div class="daily-card-actions">
+                <button class="card-button" id="dailyCardRefresh">Draw Today’s Card</button>
+                <button class="card-button" id="dailyCardShare">Share</button>
+            </div>
+        </section>
+
+        <section class="reading-history-section" id="readingHistorySection">
+            <div class="reading-history-header">
+                <h2>My Reading History</h2>
+                <button class="card-button" id="clearHistoryBtn">Clear History</button>
+            </div>
+            <div class="reading-history" id="readingHistory">
+                <p class="reading-history-empty">No readings saved yet. Try a tool and save your result!</p>
+            </div>
+        </section>
+
+        <section class="how-it-works-section">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-hands-helping"></i> How It Works</h2>
+                <p class="section-subtitle">Pick a tool, get your reading, and save the insights for later.</p>
+            </div>
+            <div class="how-it-works-grid">
+                <div class="how-step">
+                    <div class="step-icon"><i class="fas fa-mouse-pointer"></i></div>
+                    <h3>Choose a Tool</h3>
+                    <p>Select a mystical experience from the hub cards below.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-icon"><i class="fas fa-magic"></i></div>
+                    <h3>Get Your Reading</h3>
+                    <p>Interact with the tool to receive a personalized insight.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-icon"><i class="fas fa-save"></i></div>
+                    <h3>Save & Share</h3>
+                    <p>Keep your favorite readings in history or share with friends.</p>
+                </div>
+            </div>
+        </section>
+
         <div class="tools-grid" id="toolsGrid">
             <!-- Love Quiz Card -->
-            <div class="tool-card" data-tool="love-language-quiz" data-theme="love">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Love Quiz" data-tool="love-language-quiz" data-theme="love">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -89,7 +136,7 @@
             </div>
 
             <!-- Tarot Reading Card -->
-            <div class="tool-card" data-tool="tarot-reading" data-theme="tarot">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Tarot Reading" data-tool="tarot-reading" data-theme="tarot">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -111,7 +158,7 @@
             </div>
 
             <!-- Dream Interpreter Card -->
-            <div class="tool-card" data-tool="dream-interpreter" data-theme="dream">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Dream Interpreter" data-tool="dream-interpreter" data-theme="dream">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -133,7 +180,7 @@
             </div>
 
             <!-- Fortune Teller Card -->
-            <div class="tool-card" data-tool="fortune-teller" data-theme="fortune">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Fortune Teller" data-tool="fortune-teller" data-theme="fortune">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -155,7 +202,7 @@
             </div>
 
             <!-- Zodiac Calculator Card -->
-            <div class="tool-card" data-tool="zodiac-calculator" data-theme="zodiac">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Zodiac Calculator" data-tool="zodiac-calculator" data-theme="zodiac">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -177,7 +224,7 @@
             </div>
 
             <!-- Numerology Calculator Card -->
-            <div class="tool-card" data-tool="numerology" data-theme="numerology">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Numerology" data-tool="numerology" data-theme="numerology">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -199,7 +246,7 @@
             </div>
 
             <!-- Rune Casting Card -->
-            <div class="tool-card" data-tool="rune-casting" data-theme="rune">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Rune Casting" data-tool="rune-casting" data-theme="rune">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -221,7 +268,7 @@
             </div>
 
             <!-- Birth Charts Card -->
-            <div class="tool-card" data-tool="birth-charts" data-theme="astrology">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Birth Charts" data-tool="birth-charts" data-theme="astrology">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -243,7 +290,7 @@
             </div>
 
             <!-- Crystal Healing Card -->
-            <div class="tool-card" data-tool="crystal-healing" data-theme="crystal">
+            <div class="tool-card" tabindex="0" role="button" aria-label="Open Crystal Healing" data-tool="crystal-healing" data-theme="crystal">
                 <div class="card-background">
                     <div class="card-pattern"></div>
                 </div>
@@ -282,7 +329,6 @@
     <!-- JavaScript -->
     <script src="asset/js/navigation.js"></script>
     <script src="asset/js/image-slideshow.js"></script>
-    <script src="asset/js/main.js"></script>
     <script src="asset/js/hub.js"></script>
 </body>
 </html>

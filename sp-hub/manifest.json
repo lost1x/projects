@@ -1,0 +1,23 @@
+{
+  "name": "Spaarow Hub",
+  "short_name": "Spaarow",
+  "description": "A mystical hub of divination tools: tarot, zodiac, numerology, dream interpretation, and more.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#6B46C1",
+  "icons": [
+    {
+      "src": "asset/img/generated-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "asset/img/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

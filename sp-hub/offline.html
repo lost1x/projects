@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Spaarow Hub</title>
+  <meta name="theme-color" content="#6B46C1">
+  <style>
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#070710; color:#fff; text-align:center; padding:2rem; }
+    .container { max-width:460px; }
+    h1 { font-size:2.5rem; margin:0 0 1rem; }
+    p { margin:0 0 1.5rem; color:rgba(255,255,255,0.85); }
+    .actions { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.25rem; border-radius:999px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:#fff; text-decoration:none; font-weight:600; transition:all 0.24s ease; }
+    .btn:hover { background:rgba(255,255,255,0.18); transform:translateY(-1px); }
+    .btn-primary { background:linear-gradient(135deg,#6B46C1,#EC4899); border-color:transparent; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>You're Offline</h1>
+    <p>Spaarow Hub is having trouble connecting to the network. You can still browse cached pages or try again when you're back online.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Return to Hub</a>
+      <a class="btn" href="#" onclick="location.reload(); return false;">Retry</a>
+    </div>
+  </div>
+</body>
+</html>
