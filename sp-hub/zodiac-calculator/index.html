@@ -32,9 +32,16 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../asset/css/main.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../asset/css/slideshow.css">
 </head>
 
 <body>
+    <!-- Dynamic Background -->
+    <div class="cosmic-background">
+        <div class="starfield"></div>
+        <div class="planetary-orbits"></div>
+    </div>
+    
     <!-- Main Content -->
     <main class="zodiac-main">
         <div class="cosmic-container">
@@ -108,7 +115,7 @@
                     <div class="premium-section">
                         <div class="premium-content">
                             <h3>🌟 Unlock Your Full Cosmic Reading</h3>
-                            <p>Get your complete birth chart analysis, compatibility insights, and personalized predictions for just $1!</p>
+                            <p>Get your complete birth chart analysis, compatibility insights, and personalized predictions for just $1.99!</p>
                             
                             <div class="premium-features">
                                 <div class="feature-item">
@@ -131,7 +138,7 @@
                             
                             <button class="premium-btn" onclick="unlockPremium()">
                                 <i class="fas fa-lock-open"></i>
-                                Unlock Full Reading - $1
+                                Unlock Full Reading - $1.99
                             </button>
                         </div>
                     </div>
@@ -146,6 +153,14 @@
                 </div>
             </section>
         </div>
+                 <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div id="generalSlideshow" data-slideshow="general"></div>
+            <p>&copy; 2026 Spaarow Hub | All rights reserved </p>
+        </div>
+    </footer>
+
     </main>
 
     <!-- Premium Modal -->
@@ -170,7 +185,7 @@
                     </ul>
                     
                     <div class="price-display">
-                        <span class="price">$1.00</span>
+                        <span class="price">$1.99</span>
                         <span class="price-note">One-time payment</span>
                     </div>
                     
@@ -190,10 +205,9 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="../asset/js/image-slideshow.js"></script>
     <script src="./zodiac-data.js"></script>
     <script src="./script.js"></script>
-    
-    <!-- Navigation -->
     <script src="../asset/js/navigation.js"></script>
 </body>
 </html>

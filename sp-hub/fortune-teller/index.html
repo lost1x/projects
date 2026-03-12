@@ -36,14 +36,20 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/slideshow.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+      <!-- Background -->
+       <div class="crystal-background">
+        <div class="energy-waves"></div>
+        <div class="floating-crystals"></div>
+    </div>
+    
     <!-- Main Content -->
     <main class="fortune-main">
         <div class="mystical-container">
-            <!-- Header Section -->
             <section class="fortune-header">
                 <div class="fortune-title">
                     <h1>
@@ -168,7 +174,7 @@
                     <div class="premium-section">
                         <div class="premium-content">
                             <h3>🌟 Unlock Complete Fortune Reading</h3>
-                            <p>Get your detailed birth chart analysis, compatibility insights, and personalized predictions for just $1!</p>
+                            <p>Get your detailed birth chart analysis, compatibility insights, and personalized predictions for just $1.99!</p>
                             
                             <div class="premium-features">
                                 <div class="feature-item">
@@ -191,7 +197,7 @@
                             
                             <button class="premium-btn" onclick="unlockPremium()">
                                 <i class="fas fa-lock-open"></i>
-                                Unlock Full Reading - $1
+                                Unlock Full Reading - $1.99
                             </button>
                         </div>
                     </div>
@@ -214,6 +220,15 @@
                 </div>
             </section>
         </div>
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div id="generalSlideshow" data-slideshow="general"></div>
+            <p>&copy; 2026 Spaarow Hub • Dream interpretation for your journey</p>
+        </div>
+    </footer>
+
     </main>
 
     <!-- Premium Modal -->
@@ -239,7 +254,7 @@
                     </ul>
                     
                     <div class="price-display">
-                        <span class="price">$1.00</span>
+                        <span class="price">$1.99</span>
                         <span class="price-note">One-time payment</span>
                     </div>
                     
@@ -260,10 +275,10 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="../asset/js/image-slideshow.js"></script>
+    <script src="../asset/js/navigation.js"></script>
     <script src="./fortune-data.js"></script>
     <script src="./script.js"></script>
     
-    <!-- Navigation -->
-    <script src="../asset/js/navigation.js"></script>
-</body>
+    </body>
 </html>

@@ -1,0 +1,465 @@
+/* ===== BIRTH CHARTS STYLES ===== */
+
+/* CSS Variables */
+:root {
+  --astro-primary: #4C1D95;
+  --astro-secondary: #6D28D9;
+  --astro-accent: #7C3AED;
+  --astro-gold: #FFD700;
+  --astro-blue: #4169E1;
+  --astro-purple: #8B5CF6;
+}
+
+/* ===== BACKGROUND ===== */
+.cosmic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(76, 29, 149, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(109, 40, 217, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 70%),
+    linear-gradient(135deg, #0a0a1a, #1a1a2e, #0f0f1e);
+  z-index: -2;
+}
+
+.starfield {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 20%, white, transparent);
+  background-size: 300px 300px, 200px 200px, 250px 250px, 150px 150px;
+  animation: twinkle 8s ease-in-out infinite;
+}
+
+.planetary-orbits {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(76, 29, 149, 0.1) 70%, transparent 100%);
+  animation: rotate 60s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== MAIN LAYOUT ===== */
+.chart-main {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.chart-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.chart-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--astro-gold);
+  text-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.5),
+    0 0 40px rgba(76, 29, 149, 0.3);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.chart-title i {
+  font-size: 0.8em;
+  color: var(--astro-primary);
+}
+
+.chart-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* ===== INTRODUCTION SECTION ===== */
+.intro-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: rgba(76, 29, 149, 0.1);
+  border: 1px solid rgba(76, 29, 149, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.intro-content h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: var(--astro-gold);
+  margin-bottom: 1rem;
+}
+
+.intro-content p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.intro-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--astro-secondary);
+  font-weight: 500;
+}
+
+.feature-item i {
+  color: var(--astro-gold);
+  font-size: 1.2rem;
+}
+
+/* ===== BIRTH INFORMATION SECTION ===== */
+.birth-info-section {
+  margin-bottom: 3rem;
+}
+
+.birth-form-container {
+  background: rgba(76, 29, 149, 0.05);
+  border: 2px solid rgba(76, 29, 149, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.birth-form-container h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--astro-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.birth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(76, 29, 149, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--astro-gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* ===== GENERATE BUTTON ===== */
+.generate-button {
+  background: linear-gradient(135deg, var(--astro-primary), var(--astro-secondary), var(--astro-accent));
+  border: none;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(76, 29, 149, 0.3);
+  margin: 2rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.generate-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(76, 29, 149, 0.4);
+}
+
+.generate-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== CHART DISPLAY SECTION ===== */
+.chart-display-section {
+  background: rgba(76, 29, 149, 0.1);
+  border: 2px solid rgba(76, 29, 149, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.chart-display-section h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--astro-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#chartCanvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== INTERPRETATION SECTION ===== */
+.interpretation-section {
+  background: rgba(76, 29, 149, 0.1);
+  border: 2px solid rgba(76, 29, 149, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.interpretation-section h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--astro-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ===== PREMIUM SECTION ===== */
+.premium-section {
+  background: rgba(76, 29, 149, 0.05);
+  border: 2px solid rgba(76, 29, 149, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.premium-content {
+  text-align: center;
+}
+
+.premium-content h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--astro-gold);
+  margin-bottom: 1rem;
+}
+
+.premium-content p {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.premium-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.premium-feature {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.premium-feature i {
+  font-size: 2rem;
+  color: var(--astro-gold);
+  margin-bottom: 1rem;
+}
+
+.premium-feature h4 {
+  font-family: 'Cinzel', serif;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.premium-feature p {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.premium-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.price-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.premium-button {
+  background: linear-gradient(135deg, var(--astro-primary), var(--astro-secondary));
+  border: none;
+  border-radius: 15px;
+  padding: 0.8rem 2rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.premium-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(76, 29, 149, 0.4);
+}
+
+/* ===== ZODIAC REFERENCE ===== */
+.zodiac-reference {
+  margin-bottom: 3rem;
+}
+
+.zodiac-reference h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--astro-gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.zodiac-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .chart-main {
+    padding: 1rem;
+  }
+  
+  .intro-features {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .premium-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .zodiac-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .premium-action {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-title {
+    font-size: 2rem;
+  }
+  
+  .birth-form-container,
+  .chart-display-section,
+  .interpretation-section,
+  .premium-section {
+    padding: 1.5rem;
+  }
+  
+  .generate-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .starfield,
+  .planetary-orbits {
+    animation: none !important;
+  }
+  
+  .generate-button:hover,
+  .premium-button:hover {
+    transform: none;
+  }
+}

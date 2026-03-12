@@ -36,7 +36,7 @@
     font-family: var(--font-mystical);
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin-bottom: var(--spacing-sm);
-    background: linear-gradient(135deg, var(--dream-primary), var(--dream-accent), var(--primary-teal));
+    background: linear-gradient(135deg, var(--zodiac-primary), var(--zodiac-accent), var(--primary-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -47,7 +47,7 @@
 }
 
 .dream-title h1 i {
-    background: linear-gradient(135deg, var(--dream-primary), var(--dream-accent));
+    background: linear-gradient(135deg, var(--zodiac-primary), var(--zodiac-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

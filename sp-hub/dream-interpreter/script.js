@@ -270,12 +270,12 @@ function processPayment() {
         if (window.hub) {
             window.hub.trackEvent('payment_initiated', { 
                 tool: 'dream-interpreter', 
-                amount: 1.00 
+                amount: 1.99 
             });
         }
         
         // In a real implementation, redirect to PayPal or open PayPal modal
-        alert('Payment integration would be handled here. This would redirect to PayPal for $1.00 payment.');
+        alert('Payment integration would be handled here. This would redirect to PayPal for $1.99 payment.');
         
         // Reset button
         payBtn.innerHTML = originalText;

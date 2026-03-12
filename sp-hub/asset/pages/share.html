@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Mystical Discovery | Spaarow Hub</title>
+    <meta name="description" content="Share your mystical insights with friends and family across all social media platforms. Spread the cosmic wisdom!">
+    <meta name="keywords" content="share mystical tools, social media, cosmic wisdom, spaarow hub, spiritual insights">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spaarowhub.great-site.net/asset/pages/share.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Share Your Mystical Discovery">
+    <meta property="og:description" content="Share your mystical insights with friends and family across all social media platforms.">
+    <meta property="og:image" content="https://spaarowhub.great-site.net/asset/img/share-og.jpg">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/asset/pages/share.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Share Your Mystical Discovery">
+    <meta name="twitter:description" content="Share your mystical insights with friends and family across all social media platforms.">
+    <meta name="twitter:image" content="https://spaarowhub.great-site.net/asset/img/share-og.jpg">
+    
+    <meta name="theme-color" content="#9333EA">
+    <link rel="icon" type="image/x-icon" href="../../asset/img/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../asset/css/main.css">
+    <style>
+        /* Share Page Styles */
+        .share-main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .share-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(232, 121, 249, 0.2) 0%, transparent 70%),
+                linear-gradient(135deg, #0a0a1e, #1a1a2e, #0f0f1e);
+            z-index: -2;
+        }
+        
+        .share-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .share-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .share-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #E879F9;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(232, 121, 249, 0.5);
+        }
+        
+        .share-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            color: #B8B8B8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .facebook { background: linear-gradient(135deg, #1877F2, #0E5FE5); }
+        .twitter { background: linear-gradient(135deg, #1DA1F2, #0C85D0); }
+        .instagram { background: linear-gradient(135deg, #E4405F, #C13584, #833AB4, #405DE6); }
+        .linkedin { background: linear-gradient(135deg, #0077B5, #005885); }
+        .pinterest { background: linear-gradient(135deg, #BD081C, #8B0615); }
+        .reddit { background: linear-gradient(135deg, #FF4500, #CC3700); }
+        .whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .telegram { background: linear-gradient(135deg, #0088CC, #006699); }
+        
+        .home-btn {
+            background: linear-gradient(135deg, #9333EA, #EC4899);
+            border: none;
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+        }
+        
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: #10B981;
+            font-family: 'Poppins', sans-serif;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .share-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .share-title {
+                font-size: 2rem;
+            }
+            
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="share-background"></div>
+    
+    <main class="share-main">
+        <div class="share-container">
+            <div class="share-content">
+                <h1 class="share-title">
+                    <i class="fas fa-share-alt"></i>
+                    Share Your Discovery
+                </h1>
+                <p class="share-subtitle">
+                    Thank you for your purchase! Share your mystical insights with friends and family across all social media platforms.
+                </p>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    Link copied to clipboard! Ready to share your cosmic wisdom.
+                </div>
+                
+                <div class="social-buttons">
+                    <a href="#" class="social-btn facebook" onclick="shareOnSocial('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                    
+                    <a href="#" class="social-btn twitter" onclick="shareOnSocial('twitter')">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </a>
+                    
+                    <a href="#" class="social-btn instagram" onclick="shareOnSocial('instagram')">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                    
+                    <a href="#" class="social-btn linkedin" onclick="shareOnSocial('linkedin')">
+                        <i class="fab fa-linkedin-in"></i>
+                        LinkedIn
+                    </a>
+                    
+                    <a href="#" class="social-btn pinterest" onclick="shareOnSocial('pinterest')">
+                        <i class="fab fa-pinterest-p"></i>
+                        Pinterest
+                    </a>
+                    
+                    <a href="#" class="social-btn reddit" onclick="shareOnSocial('reddit')">
+                        <i class="fab fa-reddit-alien"></i>
+                        Reddit
+                    </a>
+                    
+                    <a href="#" class="social-btn whatsapp" onclick="shareOnSocial('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    
+                    <a href="#" class="social-btn telegram" onclick="shareOnSocial('telegram')">
+                        <i class="fab fa-telegram-plane"></i>
+                        Telegram
+                    </a>
+                </div>
+                
+                <a href="../../index.html" class="home-btn">
+                    <i class="fas fa-home"></i>
+                    Return Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Share functionality
+        function shareOnSocial(platform) {
+            const url = 'https://spaarowhub.great-site.net';
+            const text = 'Discover your mystical insights at Spaarow Hub! 🌟✨ #MysticalTools #SpiritualWisdom';
+            const hashtags = 'MysticalTools,SpiritualWisdom,CosmicInsights';
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
+                    break;
+                case 'instagram':
+                    // Instagram doesn't support direct URL sharing, so we copy to clipboard
+                    copyToClipboard(`${text} ${url}`);
+                    showSuccessMessage();
+                    return;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                    break;
+                case 'pinterest':
+                    shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(text)}`;
+                    break;
+                case 'reddit':
+                    shareUrl = `https://reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+                    break;
+                case 'telegram':
+                    shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showSuccessMessage();
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showSuccessMessage();
+            });
+        }
+        
+        function showSuccessMessage() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Auto-detect if user came from payment
+        window.addEventListener('load', () => {
+            const referrer = document.referrer;
+            if (referrer.includes('paypal.com')) {
+                // User came from PayPal, maybe show special message
+                console.log('User arrived from PayPal payment');
+            }
+        });
+    </script>
+</body>
+</html>

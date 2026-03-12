@@ -35,15 +35,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/slideshow.css">
     <link rel="stylesheet" href="../asset/css/main.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+    <!-- Background -->
+    <div class="cosmic-background">
+        <div class="starfield"></div>
+        <div class="planetary-orbits"></div>
+    </div>
+
     <!-- Main Content -->
     <main class="numerology-main">
         <div class="cosmic-container">
-            <!-- Header Section -->
             <section class="numerology-header">
                 <div class="cosmic-title">
                     <h1>
@@ -154,7 +160,7 @@
                     <div class="premium-section">
                         <div class="premium-content">
                             <h3>🌟 Unlock Complete Numerology Reading</h3>
-                            <p>Get your detailed name analysis, compatibility insights, and yearly predictions for just $1!</p>
+                            <p>Get your detailed name analysis, compatibility insights, and yearly predictions for just $1.99!</p>
                             
                             <div class="premium-features">
                                 <div class="feature-item">
@@ -176,7 +182,7 @@
                             </div>
                             
                             <div class="price-display">
-                                <span class="price">$1.00</span>
+                                <span class="price">$1.99</span>
                                 <span class="price-note">One-time payment</span>
                             </div>
                             
@@ -204,13 +210,19 @@
                 </div>
             </section>
         </div>
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div id="generalSlideshow" data-slideshow="general"></div>
+            <p>&copy; 2026 Spaarow Hub - All rights reserved </p>
+        </div>
+    </footer>
     </main>
 
     <!-- JavaScript -->
+    <script src="../asset/js/image-slideshow.js"></script>
     <script src="./numerology-data.js"></script>
     <script src="./script.js"></script>
-    
-    <!-- Navigation -->
     <script src="../asset/js/navigation.js"></script>
 </body>
 </html>

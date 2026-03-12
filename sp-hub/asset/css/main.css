@@ -582,38 +582,50 @@ body {
 
 /* ===== FOOTER ===== */
 .footer {
-  text-align: center;
-  padding: var(--spacing-xl) var(--spacing-md);
-  border-top: 1px solid var(--border-color);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
+  padding: var(--spacing-xl) 0;
+  margin-top: var(--spacing-xl);
 }
 
 .footer-content {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-}
-
-.footer-content p {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
+  text-align: center;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
-.footer-links a {
+.footer-link {
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  font-size: 0.9rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-normal);
 }
 
-.footer-links a:hover {
-  color: var(--primary-purple);
-  text-shadow: 0 0 10px rgba(107, 70, 193, 0.6);
+.footer-link:hover {
+  color: var(--text-primary);
+  background: rgba(107, 70, 193, 0.1);
+  border-color: var(--primary-purple);
+  transform: translateY(-2px);
+}
+
+.footer-link.active {
+  color: var(--text-primary);
+  background: rgba(107, 70, 193, 0.2);
+  border-color: var(--primary-purple);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

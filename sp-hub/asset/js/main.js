@@ -508,14 +508,52 @@ class SuggestionSystem {
         localStorage.setItem('toolSuggestions', JSON.stringify(this.suggestions));
     }
 
-    addSuggestion(suggestion) {
+    async addSuggestion(suggestion) {
         if (!this.suggestions.includes(suggestion)) {
             this.suggestions.push(suggestion);
             this.saveSuggestions();
             this.updateVoteCount();
-            this.showFeedback('Thank you for your suggestion!', 'success');
+            
+            // Show loading feedback
+            this.showFeedback('Opening email client...', 'info');
+            
+            // Send email notification
+            await this.emailSuggestion(suggestion);
+            
+            // Show success feedback
+            setTimeout(() => {
+                this.showFeedback('Thank you for your suggestion!', 'success');
+            }, 1000);
         } else {
             this.showFeedback('You already suggested this!', 'info');
+        }
+    }
+
+    async emailSuggestion(suggestion) {
+        try {
+            // Create email content
+            const subject = encodeURIComponent('New Tool Suggestion - Spaarow Hub');
+            const body = encodeURIComponent(`
+New Tool Suggestion Received:
+
+Suggestion: ${suggestion}
+Date: ${new Date().toLocaleString()}
+User Agent: ${navigator.userAgent}
+
+---
+This suggestion was submitted from the Spaarow Hub mystical tools platform.
+            `);
+            
+            // Create mailto link
+            const mailtoLink = `mailto:spaarow@icloud.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.open(mailtoLink, '_blank');
+            
+            console.log('Email client opened for suggestion:', suggestion);
+        } catch (error) {
+            console.error('Error sending suggestion email:', error);
+            this.showFeedback('Error sending suggestion. Please try again.', 'error');
         }
     }
 
@@ -532,23 +570,33 @@ class SuggestionSystem {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? 'rgba(34, 197, 94, 0.9)' : 'rgba(59, 130, 246, 0.9)'};
+            padding: 15px 20px;
+            border-radius: 10px;
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            z-index: 1001;
+            font-weight: 500;
+            z-index: 10000;
             animation: slideIn 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         `;
+        
+        if (type === 'success') {
+            feedback.style.background = 'rgba(34, 197, 94, 0.9)';
+        } else if (type === 'error') {
+            feedback.style.background = 'rgba(239, 68, 68, 0.9)';
+        } else {
+            feedback.style.background = 'rgba(59, 130, 246, 0.9)';
+        }
         
         document.body.appendChild(feedback);
         
         setTimeout(() => {
             feedback.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => {
-                document.body.removeChild(feedback);
+                if (feedback.parentNode) {
+                    feedback.parentNode.removeChild(feedback);
+                }
             }, 300);
-        }, 2000);
+        }, 3000);
     }
 }
 

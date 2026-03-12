@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rune Casting - Ancient Norse Divination | Spaarow Hub</title>
+    <meta name="description" content="Cast ancient Norse runes for divine guidance and wisdom. Traditional Elder Futhark rune casting with detailed interpretations and mystical insights.">
+    <meta name="keywords" content="rune casting, norse divination, elder futhark, viking runes, ancient wisdom, germanic oracle, mystical runes, rune reading, norse mythology">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spaarowhub.great-site.net/rune-casting/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rune Casting - Ancient Norse Divination">
+    <meta property="og:description" content="Cast ancient Norse runes for divine guidance and wisdom. Traditional Elder Futhark rune casting with detailed interpretations.">
+    <meta property="og:image" content="https://spaarowhub.great-site.net/asset/img/rune-casting-og.jpg">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/rune-casting/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rune Casting - Ancient Norse Divination">
+    <meta name="twitter:description" content="Cast ancient Norse runes for divine guidance and wisdom.">
+    <meta name="twitter:image" content="https://spaarowhub.great-site.net/asset/img/rune-casting-og.jpg">
+    
+    <meta name="theme-color" content="#8B4513">
+    <link rel="icon" type="image/x-icon" href="../asset/img/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/slideshow.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Dynamic Background -->
+    <div class="rune-background">
+        <div class="nordic-stars"></div>
+        <div class="floating-runes"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="rune-main">
+        <div class="rune-header">
+            <h1 class="rune-title">
+                <i class="fas fa-ankh"></i>
+                Rune Casting
+            </h1>
+            <p class="rune-subtitle">Ancient Norse Wisdom • Divine Guidance</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="intro-content">
+                <h2>Discover Ancient Wisdom</h2>
+                <p>The Elder Futhark runes hold centuries of Norse wisdom and mystical guidance. Each sacred symbol carries profound meaning from the ancient Germanic tribes.</p>
+                <div class="intro-features">
+                    <div class="feature-item">
+                        <i class="fas fa-stone"></i>
+                        <span>24 Traditional Runes</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-hammer"></i>
+                        <span>Ancient Norse Wisdom</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Divine Guidance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casting Section -->
+        <section class="casting-section">
+            <div class="casting-container">
+                <h3>Cast Your Runes</h3>
+                
+                <!-- Question Input -->
+                <div class="question-section">
+                    <label for="rune-question">Your Question (Optional):</label>
+                    <textarea id="rune-question" placeholder="What guidance do you seek from the ancient runes?"></textarea>
+                </div>
+
+                <!-- Casting Method Selection -->
+                <div class="method-selection">
+                    <h4>Choose Casting Method:</h4>
+                    <div class="method-options">
+                        <div class="method-option" data-method="single">
+                            <div class="method-icon">
+                                <i class="fas fa-dot-circle"></i>
+                            </div>
+                            <h5>Single Rune</h5>
+                            <p>Quick guidance for immediate questions</p>
+                        </div>
+                        <div class="method-option" data-method="three">
+                            <div class="method-icon">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <h5>Three Runes</h5>
+                            <p>Past, Present, Future reading</p>
+                        </div>
+                        <div class="method-option premium" data-method="five">
+                            <div class="method-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5>Five Runes</h5>
+                            <p>Comprehensive life guidance</p>
+                            <span class="premium-badge">Premium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cast Button -->
+                <button class="cast-button" id="castButton" onclick="castRunes()">
+                    <i class="fas fa-hammer"></i>
+                    <span>Cast Runes</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <h3>Your Rune Reading</h3>
+            <div class="runes-display" id="runesDisplay"></div>
+            <div class="interpretation" id="interpretation"></div>
+        </section>
+
+        <!-- Premium Section -->
+        <section class="premium-section">
+            <div class="premium-content">
+                <h3>🌟 Unlock Advanced Rune Wisdom</h3>
+                <p>Get access to premium rune spreads, detailed historical context, and personalized Norse guidance for just $1.99!</p>
+                
+                <div class="premium-features">
+                    <div class="premium-feature">
+                        <i class="fas fa-crown"></i>
+                        <h4>Advanced Spreads</h4>
+                        <p>5-rune and 9-rune castings for deeper insights</p>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-book"></i>
+                        <h4>Historical Context</h4>
+                        <p>Learn the mythology behind each rune</p>
+                    </div>
+                    <div class="premium-feature">
+                        <i class="fas fa-user"></i>
+                        <h4>Personal Guidance</h4>
+                        <p>Life situation integration and advice</p>
+                    </div>
+                </div>
+
+                <div class="premium-action">
+                    <div>
+                      <style>.pp-VKAP2E6UWJRV6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+                      <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                        <input class="pp-VKAP2E6UWJRV6" type="submit" value="Pay Now" />
+                        <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
+                        <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rune Reference -->
+        <section class="reference-section">
+            <h3>Rune Reference Guide</h3>
+            <div class="rune-grid" id="runeGrid"></div>
+        </section>
+         <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div id="generalSlideshow" data-slideshow="general"></div>
+            <p>&copy; 2026 Spaarow Hub - All rights reserved </p>
+        </div>
+    </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="../asset/js/navigation.js"></script>
+    <script src="../asset/js/image-slideshow.js"></script>
+    <script src="rune-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

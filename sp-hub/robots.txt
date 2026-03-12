@@ -1,0 +1,39 @@
+# Spaarow Hub - Robots.txt
+# https://spaarowhub.com
+
+User-agent: *
+Allow: /
+
+# Prioritize important pages
+Allow: /tarot-reading/
+Allow: /love-language-quiz/
+Allow: /birth-charts/
+Allow: /crystal-healing/
+Allow: /rune-casting/
+Allow: /dream-interpreter/
+Allow: /fortune-teller/
+Allow: /numerology/
+Allow: /zodiac-calculator/
+Allow: /asset/pages/about.html
+Allow: /asset/pages/share.html
+
+# Allow resources
+Allow: /asset/css/
+Allow: /asset/js/
+Allow: /asset/img/
+
+# Block unnecessary files
+Disallow: /*.old$
+Disallow: /*.bak$
+Disallow: /*.tmp$
+Disallow: /*.log$
+Disallow: /sw.js
+Disallow: /dep-*
+Disallow: /nanoid.js
+Disallow: /install.js
+
+# Sitemap location
+Sitemap: https://spaarowhub.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
