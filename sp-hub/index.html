@@ -163,6 +163,35 @@
             </div>
         </section>
 
+        <!-- Oracle Chat -->
+        <section class="chatbot-section" id="chatbotSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-robot"></i> Ask the Oracle</h2>
+                <p class="section-subtitle">Ask a question and receive a mystical response (powered by AI).</p>
+            </div>
+            <div class="chatbot-container">
+                <div class="chatbot-messages" id="chatbotMessages"></div>
+                <div class="chatbot-input">
+                    <input type="text" id="chatbotInput" placeholder="Ask the oracle..." autocomplete="off">
+                    <button class="card-button" id="chatbotSend">Send</button>
+                </div>
+                <div class="chatbot-error" id="chatbotError"></div>
+            </div>
+        </section>
+
+        <!-- Weekly Horoscope Subscription -->
+        <section class="horoscope-section" id="horoscopeSection">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-envelope"></i> Weekly Horoscope</h2>
+                <p class="section-subtitle">Get a weekly horoscope delivered to your inbox.</p>
+            </div>
+            <form class="horoscope-form" id="horoscopeForm">
+                <input type="email" id="horoscopeEmail" placeholder="Email address" required>
+                <button type="submit" class="card-button">Subscribe</button>
+            </form>
+            <div class="horoscope-status" id="horoscopeStatus"></div>
+        </section>
+
         <section class="how-it-works-section">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-hands-helping"></i> How It Works</h2>
@@ -405,6 +434,7 @@
     <script src="asset/js/auth.js"></script>
     <script src="asset/js/navigation.js"></script>
     <script src="asset/js/image-slideshow.js"></script>
+    <script src="asset/js/chatbot.js"></script>
     <script src="asset/js/hub.js"></script>
 </body>
 </html>

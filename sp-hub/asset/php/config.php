@@ -13,6 +13,30 @@ define('PASSWORD_MIN_LENGTH', 8);
 // Debugging (set true during development to surface errors)
 define('DEBUG', true);
 
+// LLM / Chatbot settings (set your API key and provider)
+// Supported providers: 'huggingface', 'openrouter', 'ollama'
+define('LLM_PROVIDER', 'huggingface'); // 'huggingface' | 'openrouter' | 'ollama'
+
+define('LLM_API_KEY', '');
+define('LLM_MODEL', 'gpt2'); // For HF/OpenRouter: model ID. For Ollama: model name (e.g., 'llama2', 'orca', etc.)
+
+// Ollama (local) settings
+// Ollama is free and can run locally. Set host/port to match your installation.
+define('OLLAMA_HOST', 'localhost');
+define('OLLAMA_PORT', 11434);
+define('OLLAMA_API_KEY', ''); // Optional: set if using Ollama's API key auth
+
+// Email settings (used for weekly horoscopes)
+define('EMAIL_FROM', 'no-reply@spaarowhub.great-site.net');
+define('EMAIL_SUBJECT_PREFIX', '[Spaarow Hub] ');
+
+define('EMAIL_PROVIDER', 'mail'); // 'mail' or 'sendgrid'
+define('SENDGRID_API_KEY', '');
+
+define('SENDGRID_SENDER_NAME', 'Spaarow Hub');
+
+define('SENDGRID_SENDER_EMAIL', 'no-reply@spaarowhub.great-site.net');
+
 // Set error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', DEBUG ? 1 : 0);

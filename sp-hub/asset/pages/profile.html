@@ -89,17 +89,13 @@
             margin-bottom: 30px;
         }
 
-        .avatar-placeholder {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #6b46c1, #8b5cf6);
+        .profile-avatar-img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: #fff;
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            object-fit: cover;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .profile-info {
@@ -351,7 +347,7 @@
             <!-- Profile View Mode -->
             <div id="profileViewMode" class="profile-card">
                 <div class="profile-avatar">
-                    <div class="avatar-placeholder"><i class="fas fa-user"></i></div>
+                    <img id="avatarImage" src="../asset/img/avatar-placeholder.svg" alt="Avatar" class="profile-avatar-img">
                 </div>
 
                 <div class="profile-info">
@@ -401,6 +397,11 @@
             <!-- Profile Edit Mode -->
             <div id="profileEditMode" class="profile-card hidden">
                 <form id="profileForm">
+                            <div class="form-group">
+                        <label for="avatarUpload">Avatar</label>
+                        <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/webp">
+                        <p class="hint">Max 2MB. PNG/JPG/WEBP only.</p>
+                    </div>
                     <div class="form-group">
                         <label for="displayNameEdit">Display Name</label>
                         <input type="text" id="displayNameEdit" required>
@@ -438,6 +439,59 @@
                     </div>
                 </form>
             </div>
+
+            <!-- Preferences Section -->
+            <section class="preferences-section" id="preferencesSection">
+                <div class="section-header">
+                    <h2>Preferences</h2>
+                    <span class="section-subtitle">Manage account settings and notifications.</span>
+                </div>
+
+                <div class="preferences-card">
+                    <form id="preferencesForm">
+                        <div class="form-group">
+                            <label for="themeSelect">Theme</label>
+                            <select id="themeSelect">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notificationsToggle">Notifications</label>
+                            <select id="notificationsToggle">
+                                <option value="1">Enabled</option>
+                                <option value="0">Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailFrequency">Email Frequency</label>
+                            <select id="emailFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="languageSelect">Language</label>
+                            <select id="languageSelect">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Save Preferences</button>
+                        </div>
+
+                        <div id="preferencesMessage" class="preferences-message"></div>
+                    </form>
+                </div>
+            </section>
+
         </section>
 
         <!-- Reading History Section -->

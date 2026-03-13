@@ -14,8 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->execute();
     $preferences = $stmt->get_result()->fetch_assoc();
     
+    // If no preferences exist, create default row
     if (!$preferences) {
-        sendResponse(['error' => 'Preferences not found'], 404);
+        $insert = $db->prepare(
+            "INSERT INTO user_preferences (user_id, theme, notifications_enabled, email_frequency, language) VALUES (?, 'dark', 1, 'weekly', 'en')"
+        );
+        $insert->bind_param('i', $user['id']);
+        $insert->execute();
+
+        $stmt->execute();
+        $preferences = $stmt->get_result()->fetch_assoc();
     }
     
     sendResponse($preferences, 200);
@@ -41,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         WHERE user_id = ?
     ");
     
-    $stmt->bind_param('ssissi', $theme, $notifications_enabled, $email_frequency, $language, $user['id']);
+    $notifications_enabled = $notifications_enabled ? 1 : 0;
+    $stmt->bind_param('sissi', $theme, $notifications_enabled, $email_frequency, $language, $user['id']);
     
     if (!$stmt->execute()) {
         sendResponse(['error' => 'Update failed'], 500);

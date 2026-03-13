@@ -11,6 +11,7 @@ const ProfileManager = {
         }
 
         await this.loadProfile();
+        await this.loadPreferences();
         await this.loadReadings();
         this.setupEventListeners();
     },
@@ -36,6 +37,11 @@ const ProfileManager = {
         const joinedView = document.getElementById('joinedView');
         const totalReadings = document.getElementById('totalReadings');
         const favoriteReadings = document.getElementById('favoriteReadings');
+        const avatarImage = document.getElementById('avatarImage');
+
+        if (avatarImage) {
+            avatarImage.src = user.avatar_url || '../asset/img/avatar-placeholder.svg';
+        }
 
         if (displayNameView) displayNameView.textContent = user.display_name || '-';
         if (usernameView) usernameView.textContent = user.username;
@@ -63,6 +69,79 @@ const ProfileManager = {
         const readings = await Auth.getReadings(50);
         this.readings = readings;
         this.displayReadings();
+    },
+
+    async loadPreferences() {
+        const prefs = await Auth.getPreferences();
+        if (!prefs) return;
+
+        const themeSelect = document.getElementById('themeSelect');
+        const notificationsToggle = document.getElementById('notificationsToggle');
+        const emailFrequency = document.getElementById('emailFrequency');
+        const languageSelect = document.getElementById('languageSelect');
+
+        if (themeSelect) themeSelect.value = prefs.theme || 'dark';
+        if (notificationsToggle) notificationsToggle.value = prefs.notifications_enabled ? '1' : '0';
+        if (emailFrequency) emailFrequency.value = prefs.email_frequency || 'weekly';
+        if (languageSelect) languageSelect.value = prefs.language || 'en';
+
+        this.applyTheme(prefs.theme);
+    },
+
+    applyTheme(theme) {
+        const body = document.body;
+        if (!body) return;
+
+        body.classList.remove('theme-dark', 'theme-light');
+        body.classList.add(theme === 'light' ? 'theme-light' : 'theme-dark');
+    },
+
+    async savePreferences() {
+        const messageEl = document.getElementById('preferencesMessage');
+        if (messageEl) {
+            messageEl.textContent = '';
+            messageEl.className = 'preferences-message';
+        }
+
+        const prefs = {
+            theme: document.getElementById('themeSelect').value,
+            notifications_enabled: document.getElementById('notificationsToggle').value === '1',
+            email_frequency: document.getElementById('emailFrequency').value,
+            language: document.getElementById('languageSelect').value
+        };
+
+        const success = await Auth.updatePreferences(prefs);
+        if (success) {
+            this.applyTheme(prefs.theme);
+            if (messageEl) {
+                messageEl.textContent = 'Preferences saved!';
+                messageEl.classList.add('success');
+            }
+        } else {
+            if (messageEl) {
+                messageEl.textContent = 'Could not save preferences. Try again later.';
+                messageEl.classList.add('error');
+            }
+        }
+    },
+
+    async uploadAvatar(file) {
+        const form = new FormData();
+        form.append('avatar', file);
+
+        const response = await fetch('asset/php/upload_avatar.php', {
+            method: 'POST',
+            headers: {
+                ...(Auth.token ? { Authorization: `Bearer ${Auth.token}` } : {})
+            },
+            body: form
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error || 'Avatar upload failed');
+        }
+        return data.avatar_url;
     },
 
     displayReadings() {
@@ -97,6 +176,14 @@ const ProfileManager = {
                 this.saveProfile();
             });
         }
+
+        const preferencesForm = document.getElementById('preferencesForm');
+        if (preferencesForm) {
+            preferencesForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.savePreferences();
+            });
+        }
     },
 
     async saveProfile() {
@@ -106,6 +193,18 @@ const ProfileManager = {
             birth_date: document.getElementById('birthDateEdit').value,
             zodiac_sign: document.getElementById('zodiacEdit').value
         };
+
+        const avatarInput = document.getElementById('avatarUpload');
+        if (avatarInput && avatarInput.files && avatarInput.files[0]) {
+            try {
+                const avatarUrl = await this.uploadAvatar(avatarInput.files[0]);
+                profileData.avatar_url = avatarUrl;
+            } catch (err) {
+                console.error('Avatar upload failed:', err);
+                alert('Could not upload avatar: ' + err.message);
+                return;
+            }
+        }
 
         const success = await Auth.updateProfile(profileData);
         if (success) {

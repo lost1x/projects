@@ -81,4 +81,16 @@ CREATE TABLE public_readings (
   FOREIGN KEY (reading_id) REFERENCES reading_history(id) ON DELETE CASCADE,
   INDEX idx_share_token (share_token),
   INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Email subscriptions (weekly horoscope)
+CREATE TABLE subscriptions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  active TINYINT(1) DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+  INDEX idx_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; 
