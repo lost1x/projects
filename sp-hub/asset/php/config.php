@@ -1,7 +1,7 @@
 <?php
 // Database configuration
 define('DB_HOST', 'sql112.infinityfree.com');
-define('DB_USER', 'if0_41020389_spaarow_hub');
+define('DB_USER', 'if0_41020389');
 define('DB_PASS', 'Tye858k24');
 define('DB_NAME', 'if0_41020389_spaarow_hub');
 
@@ -10,9 +10,12 @@ define('JWT_SECRET', 'your-super-secret-key-change-this');
 define('SESSION_DURATION', 7 * 24 * 60 * 60); // 7 days in seconds
 define('PASSWORD_MIN_LENGTH', 8);
 
+// Debugging (set true during development to surface errors)
+define('DEBUG', true);
+
 // Set error reporting
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+ini_set('display_errors', DEBUG ? 1 : 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../../logs/error.log');
 
@@ -34,7 +37,11 @@ try {
     
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Service unavailable']);
+    $response = ['error' => 'Service unavailable'];
+    if (DEBUG) {
+        $response['details'] = $e->getMessage();
+    }
+    echo json_encode($response);
     error_log($e->getMessage());
     exit;
 }

@@ -15,8 +15,8 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_login TIMESTAMP,
-  is_active BOOLEAN DEFAULT TRUE,
-  email_verified BOOLEAN DEFAULT FALSE,
+  is_active TINYINT(1) DEFAULT 1,
+  email_verified TINYINT(1) DEFAULT 0,
   INDEX idx_email (email),
   INDEX idx_username (username),
   INDEX idx_created_at (created_at)
@@ -28,9 +28,9 @@ CREATE TABLE reading_history (
   user_id INT NOT NULL,
   tool_name VARCHAR(100) NOT NULL,
   reading_type VARCHAR(50),
-  reading_data JSON NOT NULL,
+  reading_data TEXT NOT NULL,
   reading_result TEXT,
-  is_favorite BOOLEAN DEFAULT FALSE,
+  is_favorite TINYINT(1) DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -59,7 +59,7 @@ CREATE TABLE user_preferences (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL UNIQUE,
   theme VARCHAR(20) DEFAULT 'dark',
-  notifications_enabled BOOLEAN DEFAULT TRUE,
+  notifications_enabled TINYINT(1) DEFAULT 1,
   email_frequency VARCHAR(20) DEFAULT 'weekly',
   language VARCHAR(10) DEFAULT 'en',
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -73,7 +73,7 @@ CREATE TABLE public_readings (
   user_id INT NOT NULL,
   reading_id INT NOT NULL,
   share_token VARCHAR(32) UNIQUE,
-  is_public BOOLEAN DEFAULT FALSE,
+  is_public TINYINT(1) DEFAULT 0,
   views INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   expires_at TIMESTAMP,
@@ -81,4 +81,4 @@ CREATE TABLE public_readings (
   FOREIGN KEY (reading_id) REFERENCES reading_history(id) ON DELETE CASCADE,
   INDEX idx_share_token (share_token),
   INDEX idx_user_id (user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; 

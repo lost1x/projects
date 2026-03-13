@@ -117,6 +117,18 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
 
+  // Always use network for non-GET requests (e.g., POST/PUT) to avoid serving cached API responses
+  if (request.method !== 'GET') {
+    event.respondWith(fetch(request));
+    return;
+  }
+
+  // Avoid caching API endpoints (php scripts) to prevent stale/non-JSON responses
+  if (request.url.includes('/asset/php/')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+
   if (request.mode === 'navigate' || (request.method === 'GET' && request.headers.get('accept')?.includes('text/html'))) {
     event.respondWith(networkFirst(request));
     return;
