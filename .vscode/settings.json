@@ -5,5 +5,14 @@
             "envManager": "ms-python.python:venv",
             "packageManager": "ms-python.python:pip"
         }
-    ]
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "spaarow_hub",
+            "database": "spaarow_hub.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }

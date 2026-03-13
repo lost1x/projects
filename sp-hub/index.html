@@ -54,13 +54,88 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <h1 class="main-title">
-                <span class="title-mystical" style="text-align: center;">Spaarow Hub</span>
-            </h1>
-            <p class="subtitle">Discover Your Destiny • One Cosmic Token</p>
+        <div class="header-content" style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="flex: 1; text-align: center;">
+                <h1 class="main-title">
+                    <span class="title-mystical" style="text-align: center;">Spaarow Hub</span>
+                </h1>
+                <p class="subtitle">Discover Your Destiny • One Cosmic Token</p>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <!-- Auth Button (for logged out users) -->
+                <button class="auth-header-button" id="authHeaderButton" onclick="openAuthModal()" style="display: none;">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                
+                <!-- User Button (for logged in users) -->
+                <button class="user-button" id="userButton" style="display: none;" onclick="toggleUserDropdown(event)">
+                    <span id="usernameDisplay">Account</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu" id="userDropdown" style="display: none;">
+                        <a href="#" onclick="openProfile(event)"><i class="fas fa-user"></i> View Profile</a>
+                        <a href="#" onclick="openPreferences(event)"><i class="fas fa-sliders-h"></i> Preferences</a>
+                        <a href="#" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    </div>
+                </button>
+            </div>
         </div>
     </header>
+
+    <!-- Authentication Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content auth-content">
+            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+            
+            <!-- Login Form -->
+            <div class="auth-form" id="loginForm">
+                <h2>Sign In</h2>
+                <p class="auth-subtitle">Access your reading history across all devices</p>
+                
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button class="auth-button" onclick="handleLogin()">Sign In</button>
+                
+                <p class="auth-toggle">
+                    Don't have an account? 
+                    <a href="#" onclick="switchToRegister(event)">Create one</a>
+                </p>
+            </div>
+            
+            <!-- Register Form (hidden by default) -->
+            <div class="auth-form hidden" id="registerForm">
+                <h2>Create Account</h2>
+                <p class="auth-subtitle">Join the cosmic community</p>
+                
+                <div class="form-group">
+                    <input type="text" id="registerUsername" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" placeholder="Password (min 8 chars)" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPasswordConfirm" placeholder="Confirm Password" required>
+                </div>
+                <button class="auth-button" onclick="handleRegister()">Create Account</button>
+                
+                <p class="auth-toggle">
+                    Already have an account? 
+                    <a href="#" onclick="switchToLogin(event)">Sign in</a>
+                </p>
+            </div>
+            
+            <!-- Error Messages -->
+            <div class="auth-errors" id="authErrors" style="display: none;">
+                <div id="authErrorList" class="error-list"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -327,6 +402,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="asset/js/auth.js"></script>
     <script src="asset/js/navigation.js"></script>
     <script src="asset/js/image-slideshow.js"></script>
     <script src="asset/js/hub.js"></script>
