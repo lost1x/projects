@@ -126,64 +126,76 @@ class MysticalSlideshow {
 const mysticalImageSets = {
     general: [
         {
-            url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=400&fit=crop',
-            alt: 'Mystical night sky with stars',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Person silhouette photography',
             title: 'Cosmic Wisdom',
-            description: 'Unlock the secrets of the universe'
+            description: 'Unlock secrets of universe'
         },
         {
-            url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop',
-            alt: 'Crystal ball and tarot cards',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Mystical figure with jack',
             title: 'Divination Tools',
-            description: 'Ancient methods of seeing the future'
+            description: 'Ancient methods of seeing future'
         },
         {
-            url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',
-            alt: 'Mystical forest with fog',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Purple and white heart-shaped stones',
             title: 'Nature Magic',
             description: 'The power of natural elements'
         },
         {
-            url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop',
-            alt: 'Ancient crystals and gemstones',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Group of candles on leaves',
             title: 'Crystal Energy',
             description: 'Healing properties of stones'
         },
         {
-            url: 'https://images.unsplash.com/photo-1573845547344-4d5b9c8c5a31?w=800&h=400&fit=crop',
-            alt: 'Astrology chart and stars',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Bowl filled with dice on coffee beans',
             title: 'Astrological Insights',
             description: 'Your personal cosmic blueprint'
         },
         {
-            url: 'https://images.unsplash.com/photo-1446776811954-b23d579212c5?w=800&h=400&fit=crop',
-            alt: 'Night sky with constellations',
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Black and gray concrete surface',
             title: 'Stellar Wisdom',
             description: 'Messages from the stars'
         },
         {
-            url: 'https://images.unsplash.com/photo-1516214104703-d870798faf8f?w=800&h=400&fit=crop',
-            alt: 'Mystical mountain landscape',
-            title: 'Sacred Mountains',
-            description: 'Ancient wisdom from peaks'
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Horoscope globe',
+            title: 'Cosmic Knowledge',
+            description: 'Universal wisdom revealed'
         },
         {
-            url: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=400&fit=crop',
-            alt: 'Ocean waves at sunset',
-            title: 'Ocean Mysteries',
-            description: 'Deep wisdom from waters'
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Building with mystical drawings',
+            title: 'Sacred Geometry',
+            description: 'Ancient architectural wisdom'
         },
         {
-            url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=400&fit=crop',
-            alt: 'Aurora borealis night sky',
-            title: 'Northern Lights',
-            description: 'Magical polar phenomena'
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Clear glass ball at sunset',
+            title: 'Crystal Ball Vision',
+            description: 'Scrying through mystical spheres'
         },
         {
-            url: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&h=400&fit=crop',
-            alt: 'Mystical desert landscape',
-            title: 'Desert Wisdom',
-            description: 'Ancient secrets from sands'
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Clear marble on brown rock',
+            title: 'Earth Energy',
+            description: 'Grounded natural power'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Two red and blue ball decors',
+            title: 'Dual Energy',
+            description: 'Balance of opposing forces'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            alt: 'Abstract sphere in darkness',
+            title: 'Mystical Void',
+            description: 'Wisdom from the unknown'
         }
     ],
     

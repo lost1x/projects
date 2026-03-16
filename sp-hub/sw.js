@@ -129,8 +129,9 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (request.mode === 'navigate' || (request.method === 'GET' && request.headers.get('accept')?.includes('text/html'))) {
-    event.respondWith(networkFirst(request));
+  // Never cache HTML pages to always show latest data
+  if (request.url.includes('.html') || request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(fetch(request));
     return;
   }
 

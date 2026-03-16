@@ -51,14 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $bio = $data['bio'] ?? $user['bio'];
     $birth_date = $data['birth_date'] ?? $user['birth_date'];
     $zodiac_sign = $data['zodiac_sign'] ?? $user['zodiac_sign'];
+    $avatar_url = $data['avatar_url'] ?? $user['avatar_url'];
     
     $stmt = $db->prepare("
         UPDATE users 
-        SET display_name = ?, bio = ?, birth_date = ?, zodiac_sign = ?
+        SET display_name = ?, bio = ?, birth_date = ?, zodiac_sign = ?, avatar_url = ?
         WHERE id = ?
     ");
     
-    $stmt->bind_param('ssssi', $display_name, $bio, $birth_date, $zodiac_sign, $user['id']);
+    $stmt->bind_param('sssssi', $display_name, $bio, $birth_date, $zodiac_sign, $avatar_url, $user['id']);
     
     if (!$stmt->execute()) {
         sendResponse(['error' => 'Update failed'], 500);
@@ -71,7 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             'display_name' => $display_name,
             'bio' => $bio,
             'birth_date' => $birth_date,
-            'zodiac_sign' => $zodiac_sign
+            'zodiac_sign' => $zodiac_sign,
+            'avatar_url' => $avatar_url
         ]
     ], 200);
 

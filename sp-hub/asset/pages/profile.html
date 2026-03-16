@@ -6,10 +6,11 @@
     <title>My Profile - Spaarow Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../asset/css/main.css">
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="cache-control" content="no-transform">
 
     <style>
         .navbar {
@@ -62,6 +63,39 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .refresh-button {
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .refresh-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .refresh-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-button:hover i {
+            transform: rotate(180deg);
         }
 
         .profile-header h1 {
@@ -184,6 +218,17 @@
             outline: none;
             border-color: #6b46c1;
             box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+        }
+
+        .avatar-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .avatar-preview img {
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #6b46c1;
         }
 
         .form-actions {
@@ -317,8 +362,118 @@
             padding: 40px 20px;
         }
 
+        .preferences-message {
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .preferences-message.success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #10b981;
+        }
+
+        .preferences-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
         .hidden {
             display: none !important;
+        }
+
+        /* Toast animations */
+        .toast {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Reading Modal Styles */
+        .reading-modal .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .reading-modal .modal-content {
+            position: relative;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+
+        .reading-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reading-modal .modal-header h3 {
+            margin: 0;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .reading-modal .modal-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .reading-modal .modal-close:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .reading-modal .reading-date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .reading-modal .reading-content {
+            color: #fff;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* Form hint text */
+        .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -345,7 +500,12 @@
         <section class="profile-section">
             <div class="profile-header">
                 <h1>My Profile</h1>
-                <button class="edit-button" id="editButton" onclick="toggleEditMode()">Edit Profile</button>
+                <div class="header-actions">
+                    <button class="refresh-button" id="refreshButton" onclick="refreshProfileData()" title="Refresh profile data">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="edit-button" id="editButton" onclick="toggleEditMode()">Edit Profile</button>
+                </div>
             </div>
 
             <!-- Profile View Mode -->
@@ -403,8 +563,11 @@
                 <form id="profileForm">
                             <div class="form-group">
                         <label for="avatarUpload">Avatar</label>
-                        <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/webp">
+                        <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/webp" onchange="previewAvatar(event)">
                         <p class="hint">Max 2MB. PNG/JPG/WEBP only.</p>
+                        <div id="avatarPreview" class="avatar-preview" style="display: none;">
+                            <img id="avatarPreviewImg" src="" alt="Avatar preview" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #6b46c1;">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="displayNameEdit">Display Name</label>
@@ -522,7 +685,40 @@
         </section>
     </main>
 
-    <script src="../asset/js/auth.js"></script>
-    <script src="../asset/js/profile.js"></script>
+    <script>
+        // Cache-busting helper
+        function loadScript(src) {
+            const script = document.createElement('script');
+            script.src = src + '?v=' + Date.now();
+            document.head.appendChild(script);
+        }
+        
+        function loadStylesheet(href) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href + '?v=' + Date.now();
+            document.head.appendChild(link);
+        }
+        
+        // Force refresh on page load to get latest data
+        function forceRefresh() {
+            // Add timestamp to prevent caching
+            if (!window.location.search.includes('force=')) {
+                const url = new URL(window.location);
+                url.searchParams.set('force', Date.now());
+                window.location.replace(url.toString());
+                return false; // Stop further execution
+            }
+            return true;
+        }
+        
+        // Only proceed if not redirecting
+        if (forceRefresh()) {
+            // Load resources with cache-busting
+            loadStylesheet('../asset/css/main.css');
+            loadScript('../asset/js/auth.js');
+            loadScript('../asset/js/profile.js');
+        }
+    </script>
 </body>
 </html>

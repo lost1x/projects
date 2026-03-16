@@ -9,9 +9,11 @@
     <meta name="author" content="Spaarow Hub">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://spaarowhub.great-site.net/tarot-reading/">
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+<meta name="referrer" content="no-referrer">
+<meta name="cache-control" content="no-transform">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Tarot Reading - Mystical Card Divination">
@@ -49,10 +51,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../asset/css/main.css">
-    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!-- Dynamic Background -->
@@ -219,10 +217,29 @@
     </main>
 
     <!-- Scripts -->
-    <script src="../asset/js/navigation.js"></script>
-    <script src="../asset/js/image-slideshow.js"></script>
-    <script src="tarot-data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Cache-busting helper
+        function loadScript(src) {
+            const script = document.createElement('script');
+            script.src = src + '?v=' + Date.now();
+            document.head.appendChild(script);
+        }
+        
+        function loadStylesheet(href) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href + '?v=' + Date.now();
+            document.head.appendChild(link);
+        }
+        
+        // Load resources with cache-busting
+        loadStylesheet('../asset/css/main.css');
+        loadStylesheet('./style.css');
+        loadScript('../asset/js/navigation.js');
+        loadScript('../asset/js/image-slideshow.js');
+        loadScript('tarot-data.js');
+        loadScript('script.js');
+    </script>
     <script>
         // Populate tarot reference grid
         document.addEventListener('DOMContentLoaded', () => {
