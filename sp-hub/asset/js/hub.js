@@ -167,6 +167,20 @@ class SpaarowHub {
         this.history.unshift(record);
         this.history = this.history.slice(0, 20);
         this.persistHistory();
+        
+        // Also save to server if user is authenticated
+        if (window.Auth && window.Auth.token && window.Auth.saveReading) {
+            const serverEntry = {
+                tool_name: entry.tool || 'Unknown Tool',
+                reading_type: entry.type || entry.title || 'Reading',
+                reading_data: entry.data || entry,
+                reading_result: entry.summary || entry.result || entry.description || ''
+            };
+            window.Auth.saveReading(serverEntry).catch(error => {
+                console.warn('Failed to save reading to server:', error);
+            });
+        }
+        
         this.renderHistory();
         return record;
     }

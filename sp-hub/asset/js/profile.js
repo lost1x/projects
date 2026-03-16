@@ -209,6 +209,123 @@ const ProfileManager = {
                 this.savePreferences();
             });
         }
+
+        // Setup drag and drop avatar uploader
+        this.setupAvatarUploader();
+    },
+
+    setupAvatarUploader() {
+        const avatarUpload = document.getElementById('avatarUpload');
+        const avatarPreview = document.getElementById('avatarPreview');
+        const avatarPreviewImg = document.getElementById('avatarPreviewImg');
+        const dropZone = document.getElementById('profileEditMode');
+
+        if (!avatarUpload || !avatarPreview || !avatarPreviewImg) return;
+
+        // Handle file selection
+        avatarUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                this.handleAvatarFile(file);
+            }
+        });
+
+        // Setup drag and drop
+        if (dropZone) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.add('drag-over');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.remove('drag-over');
+                });
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        this.handleAvatarFile(file);
+                    } else {
+                        this.showMessage('Please upload an image file', 'error');
+                    }
+                }
+            });
+        }
+    },
+
+    handleAvatarFile(file) {
+        // Validate file
+        const maxSize = 2 * 1024 * 1024; // 2MB
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        if (file.size > maxSize) {
+            this.showMessage('File size must be less than 2MB', 'error');
+            return;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+            this.showMessage('Only JPG, PNG, and WEBP files are allowed', 'error');
+            return;
+        }
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const avatarPreview = document.getElementById('avatarPreview');
+            const avatarPreviewImg = document.getElementById('avatarPreviewImg');
+            
+            if (avatarPreview && avatarPreviewImg) {
+                avatarPreviewImg.src = e.target.result;
+                avatarPreview.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+
+        // Upload file
+        this.uploadAvatar(file);
+    },
+
+    async uploadAvatar(file) {
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        try {
+            const response = await fetch(`${Auth.api_url}/upload_avatar.php`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${Auth.token}`
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                this.showMessage('Avatar uploaded successfully!', 'success');
+                // Update the avatar image in view mode
+                const avatarImage = document.getElementById('avatarImage');
+                if (avatarImage) {
+                    avatarImage.src = data.avatar_url + '?t=' + Date.now(); // Cache bust
+                }
+            } else {
+                this.showMessage('Failed to upload avatar: ' + (data.error || 'Unknown error'), 'error');
+            }
+        } catch (error) {
+            console.error('Avatar upload error:', error);
+            this.showMessage('Failed to upload avatar. Please try again.', 'error');
+        }
     },
 
     async saveProfile() {

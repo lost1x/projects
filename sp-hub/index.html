@@ -83,29 +83,19 @@
 
     <!-- Header -->
     <header class="header">
-      <div
-        class="header-content"
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-        "
-      >
-        <div style="flex: 1; text-align: center">
+      <div class="header-content">
+        <div class="header-center">
           <h1 class="main-title">
-            <span class="title-mystical" style="text-align: center"
-              >Spaarow Hub</span
-            >
+            <span class="title-mystical">Spaarow Hub</span>
           </h1>
           <p class="subtitle">Discover Your Destiny • One Cosmic Token</p>
         </div>
-        <div style="display: flex; gap: 10px; align-items: center">
+        <div class="header-right">
           <!-- Auth Button (for logged out users) -->
           <button
             class="auth-header-button"
             id="authHeaderButton"
             onclick="openAuthModal()"
-            style="display: none"
           >
             <i class="fas fa-sign-in-alt"></i> Sign In
           </button>
@@ -114,12 +104,11 @@
           <button
             class="user-button"
             id="userButton"
-            style="display: none"
             onclick="toggleUserDropdown(event)"
           >
             <span id="usernameDisplay">Account</span>
             <i class="fas fa-chevron-down"></i>
-            <div class="dropdown-menu" id="userDropdown" style="display: none">
+            <div class="dropdown-menu" id="userDropdown">
               <a href="#" onclick="openProfile(event)"
                 ><i class="fas fa-user"></i> View Profile</a
               >
@@ -214,7 +203,7 @@
         </div>
 
         <!-- Error Messages -->
-        <div class="auth-errors" id="authErrors" style="display: none">
+        <div class="auth-errors" id="authErrors">
           <div id="authErrorList" class="error-list"></div>
         </div>
       </div>
@@ -710,20 +699,15 @@
         loadScript('asset/js/navigation.js');
         loadScript('asset/js/image-slideshow.js');
         loadScript('asset/js/chatbot.js');
+        loadScript('asset/js/scroll-reveal.js');
+        loadScript('asset/js/theme-toggle.js');
         loadScript('asset/js/hub.js');
     </script>
 
-    <!-- Initialize Auth and Ensure Modal Hidden -->
+    <!-- Initialize Auth System -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Force modal hidden on page load (especially for mobile)
-        const modal = document.getElementById("authModal");
-        if (modal) {
-          modal.style.display = "none";
-          modal.classList.remove("show", "visible", "active");
-        }
-
-        // Initialize auth system
+        // Initialize auth system - it will handle modal initialization properly
         if (typeof Auth !== "undefined" && Auth.init) {
           Auth.init();
         }

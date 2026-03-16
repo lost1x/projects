@@ -1,12 +1,9 @@
 # Spaarow Hub - Comprehensive Development Plan
 
-**Last Updated:** March 2026  
-**Status:** Active Development  
-**Live Site:** https://spaarowhub.great-site.net
-**Last Updated:** March 2026  
-**Status:** Active Development  
-**Live Site:** https://spaarowhub.great-site.net
-**Last Updated:** March 2026  
+before we start the plan lets take a moment to do a thorough code review and identify any issues that need to be fixed. also ask the user if there is anything that needs to be installed or changed for optimal agent performance.
+
+dont be afraid to suggest full rewrites or major changes if needed. be creative and think outside the box.
+
 **Status:** Active Development  
 **Live Site:** https://spaarowhub.great-site.net
 
@@ -31,22 +28,15 @@ Spaarow Hub is a mystical divination platform featuring 8 spiritual tools with P
 
 ### Issue 1: Login/Register Popups Show Open on Mobile
 
-**Problem:** Authentication modal appears open on mobile devices on page load
-**Root Cause:** Modal initialization logic doesn't properly handle mobile viewport
+**Problem:** Authentication modal appears open on mobile devices on page load or sometimes not at all, we should take some time to clean up all of the css and js and consolidate them into a single file for better maintainability.
+**Root Cause:** The modal initialization logic doesn't properly handle mobile viewport and there are multiple js files that need to be consolidated.
 **Solution:**
 
-```javascript
-// In auth.js, ensure modal is hidden on initialization
-init() {
-    this.updateUI();
-    this.setupLogoutOnTokenExpiry();
-    // Force modal hidden on mobile
-    if (window.innerWidth <= 768) {
-        const modal = document.getElementById('authModal');
-        if (modal) modal.style.display = 'none';
-    }
-}
-```
+1. Consolidate all authentication-related JavaScript into a single file (e.g., `auth.js`)
+2. Ensure modal is hidden on initialization for all viewports
+3. Add proper mobile viewport handling
+
+as for the css, we should consolidate all of the css into a single file (e.g., `style.css`) and remove any duplicate or unused css. maybe we can remove all inline styles and use classes instead.
 
 **Priority:** 🔴 Critical - Affects user experience on mobile
 **Effort:** 1-2 hours
@@ -54,18 +44,19 @@ init() {
 ### Issue 2: Profile Page Not Editable/Updatable
 
 **Problem:** Users cannot upload photos or save preferences
-**Current State:** Profile system exists but lacks frontend functionality
+**Current State:** needs to be built from scratch with proper backend integration
+
 **Solution:**
 
-- Add file upload functionality for avatar images
-- Implement profile editing form with save functionality
-- Add preference saving (theme, notifications, language)
+- Implement profile editing form with a drag and drop avatar uploader
+- Add a simple dropdown menu for theme and language preference selection
+- Add a toggle switch for notification preferences
   **Files to Modify:**
-- `asset/pages/profile.html` - Add edit mode UI
-- `asset/js/profile.js` - Implement edit/save functions
-- `asset/php/profile.php` - Add avatar upload endpoint
-  **Priority:** 🔴 Critical - Core user feature broken
-  **Effort:** 1-2 days
+- `asset/pages/profile.html` - Add drag and drop avatar uploader and dropdown menus
+- `asset/js/profile.js` - Implement drag and drop avatar uploader and dropdown menu listeners
+- `asset/php/profile.php` - Add endpoint for updating user preferences
+  **Priority:** 🟢 Low - Enhancement with user convenience
+  **Effort:** 1-2 hours
 
 ### Issue 3: No Reading History Persistence
 
@@ -83,12 +74,11 @@ init() {
 
 **Problem:** AI chatbot feature is not implemented
 **Current State:** Placeholder exists but no backend
-**Solution Options:**
+**Solution:** Rule-based system (Detailed, $0)
+- Pre-written responses
 
-1. **Rule-based system** (Quick, $0) - Pre-written responses
-2. **LLM integration** (Advanced, $20-100/month) - OpenAI/Claude API
-   **Priority:** 🟡 Medium - Feature enhancement
-   **Effort:** 1-3 weeks depending on approach
+**Priority:** 🟡 Medium - Feature enhancement
+**Effort:** 1-3 weeks
 
 ---
 

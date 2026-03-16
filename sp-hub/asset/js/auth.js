@@ -6,19 +6,32 @@ const Auth = {
 
   // Initialize auth state
   init() {
+    // Ensure modal is hidden immediately, before any other scripts run
+    this.forceHideModal();
+    
+    // Update UI and setup other features
     this.updateUI();
     this.setupLogoutOnTokenExpiry();
-    // Force modal hidden on mobile to prevent display issues
-    this.ensureModalHidden();
+    
+    // Double-check modal is hidden after a short delay (handles race conditions)
+    setTimeout(() => this.forceHideModal(), 100);
   },
 
-  // Ensure modal is properly hidden (especially on mobile)
-  ensureModalHidden() {
+  // Force modal hidden with multiple approaches for mobile compatibility
+  forceHideModal() {
     const modal = document.getElementById("authModal");
     if (modal) {
-      modal.style.display = "none";
-      // Also remove any potential show classes
-      modal.classList.remove("show", "visible");
+      // Remove all possible show classes
+      modal.classList.remove("show", "visible", "active");
+      
+      // Force display none with inline styles (overrides CSS)
+      modal.style.setProperty("display", "none", "important");
+      
+      // Also set visibility as backup
+      modal.style.setProperty("visibility", "hidden", "important");
+      
+      // Ensure it's not in the tab order
+      modal.setAttribute("aria-hidden", "true");
     }
   },
 
@@ -29,14 +42,22 @@ const Auth = {
     const usernameDisplay = document.getElementById("usernameDisplay");
 
     if (this.token && this.user) {
-      if (authButton) authButton.style.display = "none";
-      if (userButton) userButton.style.display = "block";
-      if (usernameDisplay)
-        usernameDisplay.textContent =
-          this.user.display_name || this.user.username;
+      if (authButton) {
+        authButton.style.display = "none";
+      }
+      if (userButton) {
+        userButton.style.display = "flex";
+      }
+      if (usernameDisplay) {
+        usernameDisplay.textContent = this.user.display_name || this.user.username;
+      }
     } else {
-      if (authButton) authButton.style.display = "block";
-      if (userButton) userButton.style.display = "none";
+      if (authButton) {
+        authButton.style.display = "block";
+      }
+      if (userButton) {
+        userButton.style.display = "none";
+      }
     }
   },
 
@@ -351,8 +372,13 @@ const Auth = {
   closeAuthModal() {
     const modal = document.getElementById('authModal');
     if (modal) {
-      modal.classList.remove('active');
-      modal.style.display = 'none';
+      // Remove all show classes
+      modal.classList.remove('active', 'show', 'visible');
+      
+      // Force hide with multiple methods
+      modal.style.setProperty("display", "none", "important");
+      modal.style.setProperty("visibility", "hidden", "important");
+      modal.setAttribute("aria-hidden", "true");
     }
   },
 };
@@ -361,8 +387,19 @@ const Auth = {
 function openAuthModal() {
   const modal = document.getElementById("authModal");
   if (modal) {
-    modal.classList.add('active');
-    modal.style.display = 'flex';
+    // Reset all modal properties before showing
+    modal.classList.remove("show", "visible", "active");
+    modal.style.removeProperty("visibility");
+    modal.style.removeProperty("display");
+    modal.removeAttribute("aria-hidden");
+    
+    // Show the modal with a slight delay to ensure proper state reset
+    setTimeout(() => {
+      modal.classList.add('active');
+      modal.style.display = 'flex';
+      modal.style.visibility = 'visible';
+      modal.setAttribute("aria-hidden", "false");
+    }, 10);
   }
 }
 
@@ -453,7 +490,18 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// Initialize on page load
-document.addEventListener("DOMContentLoaded", () => {
-  Auth.init();
-});
+// Initialize on page load - only if not already initialized
+if (document.readyState === 'loading') {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!Auth.initialized) {
+      Auth.init();
+      Auth.initialized = true;
+    }
+  });
+} else {
+  // DOM already loaded
+  if (!Auth.initialized) {
+    Auth.init();
+    Auth.initialized = true;
+  }
+}
