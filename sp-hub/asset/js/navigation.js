@@ -205,7 +205,7 @@ class HubNavigation {
 
     getToolLinks() {
         const basePath = this.getSiteRoot();
-        
+
         const tools = [
             { id: 'love-language-quiz', name: 'Love Language Quiz', url: `${basePath}love-language-quiz/`, icon: 'fa-heart', color: '#EC4899' },
             { id: 'tarot-reading', name: 'Tarot Reading', url: `${basePath}tarot-reading/`, icon: 'fa-moon', color: '#6B46C1' },
@@ -234,13 +234,13 @@ class HubNavigation {
             const nav = document.getElementById('navMenu');
             const menuBtn = document.querySelector('.nav-menu-btn');
             const modal = document.getElementById('suggestionModal');
-            
+
             if (nav && menuBtn && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
                 nav.classList.remove('active');
                 nav.setAttribute('aria-hidden', 'true');
                 menuBtn.setAttribute('aria-expanded', 'false');
             }
-            
+
             // Close modal when clicking overlay
             if (e.target === modal || e.target.classList.contains('modal-overlay')) {
                 closeSuggestionModal();
@@ -288,9 +288,9 @@ function addNavSuggestion(suggestion) {
 function submitNavSuggestion() {
     const input = document.getElementById('nav-tool-suggestion');
     const suggestion = input.value.trim();
-    
+
     if (!suggestion) return;
-    
+
     // Save to localStorage
     const suggestions = JSON.parse(localStorage.getItem('navSuggestions') || '[]');
     suggestions.push({
@@ -299,13 +299,13 @@ function submitNavSuggestion() {
         id: Date.now()
     });
     localStorage.setItem('navSuggestions', JSON.stringify(suggestions));
-    
+
     // Update count
     updateSuggestionCount(suggestions.length);
-    
+
     // Show feedback
     showNavFeedback('✨ Thank you for your cosmic suggestion!');
-    
+
     // Clear input
     input.value = '';
 }
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deferredInstallPrompt = null;
         hideInstallButton();
     });
-    
+
     // Initialize navigation
     window.hubNav = new HubNavigation();
 });
