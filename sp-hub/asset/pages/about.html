@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Spaarow Hub - Mystical Arts Platform</title>
-    <meta name="description" content="Learn about Spaarow Hub, a mystical arts platform offering tarot, astrology, numerology, and more. Created with passion for ancient wisdom and modern technology.">
-    <meta name="keywords" content="mystical arts, tarot, astrology, numerology, about, bio, spaarow hub">
+    <meta name="description"
+        content="Learn about Spaarow Hub, a mystical arts platform offering tarot, astrology, numerology, and more. Created with passion for ancient wisdom and modern technology.">
+    <meta name="keywords"
+        content="mystical arts, tarot, astrology, numerology, about, bio, spaarow hub, free platform, open source, spiritual guidance">
+    <meta name="author" content="Tyler Davis">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="About Spaarow Hub - Mystical Arts Platform">
-    <meta property="og:description" content="Discover the story behind Spaarow Hub and its creator. Learn about our passion for mystical arts and ancient wisdom.">
+    <meta property="og:description"
+        content="Discover the story behind Spaarow Hub and its creator. Learn about our passion for mystical arts and ancient wisdom.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://spaarowhub.com/asset/pages/about.html">
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="../css/main.css">
-    
+
     <style>
         .about-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
+
         .hero-section {
             text-align: center;
             margin-bottom: 4rem;
@@ -39,7 +47,7 @@
             background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(139, 69, 19, 0.1));
             padding: 3rem 2rem;
         }
-        
+
         .hero-title {
             font-family: 'Cinzel', serif;
             font-size: 3rem;
@@ -48,27 +56,27 @@
             margin-bottom: 1rem;
             text-shadow: 0 0 20px rgba(107, 70, 193, 0.5);
         }
-        
+
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
         }
-        
+
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             margin-bottom: 4rem;
         }
-        
+
         .bio-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .section-title {
             font-family: 'Cinzel', serif;
             font-size: 1.8rem;
@@ -79,17 +87,17 @@
             align-items: center;
             gap: 1rem;
         }
-        
+
         .section-title i {
             color: var(--primary-purple);
         }
-        
+
         .bio-text {
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
-        
+
         .offer-section {
             background: linear-gradient(135deg, rgba(107, 70, 193, 0.2), rgba(139, 69, 19, 0.2));
             border-radius: 15px;
@@ -97,7 +105,7 @@
             border: 1px solid rgba(107, 70, 193, 0.3);
             text-align: center;
         }
-        
+
         .price-tag {
             font-size: 2.5rem;
             font-weight: 700;
@@ -105,13 +113,13 @@
             margin: 1rem 0;
             font-family: 'Cinzel', serif;
         }
-        
+
         .offer-features {
             list-style: none;
             padding: 0;
             margin: 2rem 0;
         }
-        
+
         .offer-features li {
             padding: 0.5rem 0;
             color: var(--text-secondary);
@@ -119,11 +127,11 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .offer-features i {
             color: var(--accent-gold);
         }
-        
+
         .email-button {
             display: inline-flex;
             align-items: center;
@@ -137,13 +145,13 @@
             transition: all 0.3s ease;
             margin-top: 1rem;
         }
-        
+
         .email-button:hover {
             background: var(--accent-gold);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(107, 70, 193, 0.3);
         }
-        
+
         .free-message {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.3);
@@ -152,19 +160,19 @@
             margin-top: 2rem;
             text-align: center;
         }
-        
+
         .free-message p {
             color: var(--text-secondary);
             margin: 0;
         }
-        
+
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .tech-badge {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -173,23 +181,24 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
-        
+
         @media (max-width: 768px) {
             .content-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .hero-title {
                 font-size: 2rem;
             }
-            
+
             .about-container {
                 padding: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Dynamic Background -->
     <div class="cosmic-background">
@@ -233,20 +242,28 @@
                         The Creator
                     </h2>
                     <div class="bio-text">
-                        <p>Welcome to Spaarow Hub, a mystical arts platform born from a deep passion for ancient wisdom and modern technology. I created this space to make mystical tools accessible to everyone, combining centuries-old divination practices with cutting-edge web development.</p>
-                        
-                        <p>As a long-time practitioner of mystical arts, I've studied tarot, astrology, numerology, rune casting, crystal healing, and various forms of divination. This platform represents years of learning, practice, and dedication to helping others discover their spiritual path.</p>
-                        
-                        <p>Every tool on this platform has been carefully crafted with attention to detail, authenticity, and user experience. I believe that mystical wisdom should be available to all who seek it, regardless of their experience level.</p>
+                        <p>Welcome to Spaarow Hub, a mystical arts platform born from a deep passion for ancient wisdom
+                            and modern technology. I created this space to make mystical tools accessible to everyone,
+                            combining centuries-old divination practices with cutting-edge web development.</p>
+
+                        <p>As a long-time practitioner of mystical arts, I've studied tarot, astrology, numerology, rune
+                            casting, crystal healing, and various forms of divination. This platform represents years of
+                            learning, practice, and dedication to helping others discover their spiritual path.</p>
+
+                        <p>Every tool on this platform has been carefully crafted with attention to detail,
+                            authenticity, and user experience. I believe that mystical wisdom should be available to all
+                            who seek it, regardless of their experience level.</p>
                     </div>
-                    
+
                     <h3 class="section-title">
                         <i class="fas fa-code"></i>
                         Technical Excellence
                     </h3>
                     <div class="bio-text">
-                        <p>Built with modern web technologies and best practices, Spaarow Hub features responsive design, smooth animations, and intuitive interfaces. The platform combines aesthetic beauty with functional excellence.</p>
-                        
+                        <p>Built with modern web technologies and best practices, Spaarow Hub features responsive
+                            design, smooth animations, and intuitive interfaces. The platform combines aesthetic beauty
+                            with functional excellence.</p>
+
                         <div class="tech-stack">
                             <span class="tech-badge">HTML5</span>
                             <span class="tech-badge">CSS3</span>
@@ -260,39 +277,25 @@
                 <!-- Offer Section -->
                 <section class="offer-section">
                     <h2 class="section-title">
-                        <i class="fas fa-gift"></i>
-                        Own Your Custom Website Platform
+                        <i class="fas fa-code"></i>
+                        Custom Website Development Services
                     </h2>
                     <div class="bio-text">
-                        <p>Love this platform? Get your own complete customizable website platform, ready for any niche or business!</p>
-                        <p>I build custom websites for any purpose - mystical arts, business portfolios, e-commerce stores, blogs, service sites, and more. Each platform is professionally crafted with modern technology and stunning design.</p>
+                        <p>Need a professional website for your business or personal project? I build custom, modern
+                            websites tailored to your specific needs and goals.</p>
+                        <p>From mystical arts platforms to business portfolios, e-commerce stores to service websites -
+                            I create stunning, functional websites that help you stand out online.</p>
+                        <p><strong>Services Include:</strong> Custom design, responsive development, SEO optimization,
+                            payment integration, user authentication, and ongoing support.</p>
+                        <p><strong>Get Your Own Platform:</strong> Email me for a personalized quote and let's bring
+                            your vision to life!</p>
                     </div>
-                    
-                    <div class="price-tag">$199</div>
-                    
-                    <ul class="offer-features">
-                        <li><i class="fas fa-check"></i> Complete customizable website platform</li>
-                        <li><i class="fas fa-check"></i> Any niche or business type supported</li>
-                        <li><i class="fas fa-check"></i> Custom branding & color scheme</li>
-                        <li><i class="fas fa-check"></i> Payment integration ready</li>
-                        <li><i class="fas fa-check"></i> Mobile responsive design</li>
-                        <li><i class="fas fa-check"></i> Image slideshow system</li>
-                        <li><i class="fas fa-check"></i> Email notification system</li>
-                        <li><i class="fas fa-check"></i> SEO optimization included</li>
-                        <li><i class="fas fa-check"></i> Full source code included</li>
-                        <li><i class="fas fa-check"></i> Setup documentation</li>
-                        <li><i class="fas fa-check"></i> 1 year of support & updates</li>
-                        <li><i class="fas fa-check"></i> Any feature customization</li>
-                    </ul>
-                    
-                    <a href="mailto:spaarow@icloud.com?subject=Interested%20in%20Custom%20Website%20Platform&body=Hi!%20I'm%20interested%20in%20purchasing%20a%20custom%20website%20platform.%20Please%20tell%20me%20more%20about%20your%20needs%20and%20the%20process.%20Thanks!" class="email-button">
-                        <i class="fas fa-envelope"></i>
-                        Email for Custom Quote
-                    </a>
-                    
-                    <div class="free-message">
-                        <p><strong>Special Offer:</strong> I made this mystical platform for free to share my work with everyone. If you love testing it and find it valuable, you can have this exact platform completely free - no strings attached!</p>
-                        <p><strong>Custom Websites:</strong> Need a different type of website? I build custom platforms for any business, niche, or purpose. Email me for a personalized quote!</p>
+
+                    <div class="cta-section">
+                        <a href="mailto:tyler@example.com" class="cta-button">
+                            <i class="fas fa-envelope"></i>
+                            Email for Quote
+                        </a>
                     </div>
                 </section>
             </div>
@@ -303,12 +306,36 @@
     <footer class="footer">
         <div class="footer-content">
             <div id="generalSlideshow" data-slideshow="general"></div>
-            <p>&copy; 2026 Spaarow Hub • Made with passion for mystical arts</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="./agreement.html" class="footer-link">Agreement</a>
+                <a href="./share.html" class="footer-link">Share</a>
+                <a href="./subscribe.html" class="footer-link">Subscribe</a>
+
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/1B3PRLp4Jt/" target="_blank" rel="noopener"
+                        class="footer-social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://github.com/lost1x" target="_blank" rel="noopener" class="footer-social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@i_am_the_spaarow?_r=1&_t=ZP-94kgdFqNp7v" target="_blank"
+                        rel="noopener" class="footer-social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+
+
+            </div>
+            <p>&copy; 2026 Spaarow Hub • Your gateway to mystical wisdom</p>
         </div>
     </footer>
 
     <!-- Scripts -->
+    <script src="../js/script.js"></script>
     <script src="../js/navigation.js"></script>
     <script src="../js/image-slideshow.js"></script>
 </body>
+
 </html>

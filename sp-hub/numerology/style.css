@@ -1,9 +1,6 @@
 /* ===== NUMEROLOGY STYLES ===== */
 
 :root {
-    --numerology-primary: #9333EA;
-    --numerology-secondary: #6B46C1;
-    --numerology-accent: #A78BFA;
     --numerology-dark: #4C1D95;
     --sacred-bg: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
 }

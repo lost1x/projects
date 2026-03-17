@@ -118,7 +118,7 @@ class BirthChartGenerator {
                 });
                 suggestionsDiv.appendChild(suggestion);
             });
-            suggestionsDiv.style.display = 'block';
+            suggestionsDiv.classList.remove('hidden');
         } else {
             this.hideLocationSuggestions();
         }
@@ -126,22 +126,8 @@ class BirthChartGenerator {
 
     showLocationFeedback(message) {
         const feedback = document.createElement('div');
-        feedback.className = 'location-feedback';
+        feedback.className = 'location-feedback location-feedback-visible';
         feedback.textContent = message;
-        feedback.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 20px;
-            background: rgba(59, 130, 246, 0.9);
-            color: white;
-            border-radius: 10px;
-            font-weight: 500;
-            z-index: 10001;
-            animation: fadeIn 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        `;
         
         document.body.appendChild(feedback);
         
@@ -182,7 +168,7 @@ This location request was submitted from the Birth Charts tool on Spaarow Hub.
     hideLocationSuggestions() {
         const suggestionsDiv = document.getElementById('locationSuggestions');
         if (suggestionsDiv) {
-            suggestionsDiv.style.display = 'none';
+            suggestionsDiv.classList.add('hidden');
         }
     }
 
@@ -309,11 +295,11 @@ This location request was submitted from the Birth Charts tool on Spaarow Hub.
         console.log('Interpretation section element:', interpretationSection);
         
         if (chartDisplay) {
-            chartDisplay.style.display = 'block';
+            chartDisplay.classList.remove('hidden');
             console.log('Chart display shown');
         }
         if (interpretationSection) {
-            interpretationSection.style.display = 'block';
+            interpretationSection.classList.remove('hidden');
             console.log('Interpretation section shown');
         }
 

@@ -1,9 +1,6 @@
 /* ===== DREAM INTERPRETER STYLES ===== */
 
 :root {
-    --dream-primary: #3B82F6;
-    --dream-secondary: #60A5FA;
-    --dream-accent: #93C5FD;
     --dream-dark: #1E40AF;
     --dream-bg: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
 }

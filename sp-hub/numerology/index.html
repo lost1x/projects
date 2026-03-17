@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Numerology Calculator - Life Path Number & Destiny Analysis | Spaarow Hub</title>
-    <meta name="description" content="Calculate your life path number and discover the mystical significance of your birth date. Professional numerology insights including destiny number, soul urge, and personality analysis for just $1.">
-    <meta name="keywords" content="numerology calculator, life path number, destiny number analysis, soul urge number, personality number, birth date numerology, mystical numbers, spiritual numerology, life path meaning">
+    <meta name="description"
+        content="Calculate your life path number and discover the mystical significance of your birth date. Professional numerology insights including destiny number, soul urge, and personality analysis for just $1.">
+    <meta name="keywords"
+        content="numerology calculator, life path number, destiny number analysis, soul urge number, personality number, birth date numerology, mystical numbers, spiritual numerology, life path meaning">
     <meta name="author" content="Tyler Davis">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://spaarowhub.great-site.net/numerology/">
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Numerology Calculator - Life Path Number & Destiny Analysis">
-    <meta property="og:description" content="Calculate your life path number and discover the mystical significance of your birth date. Professional numerology insights with destiny analysis for just $1.">
+    <meta property="og:description"
+        content="Calculate your life path number and discover the mystical significance of your birth date. Professional numerology insights with destiny analysis for just $1.">
     <meta property="og:url" content="https://spaarowhub.great-site.net/numerology/">
     <meta property="og:site_name" content="Spaarow Hub">
     <meta property="og:type" content="website">
@@ -41,18 +45,21 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Numerology Calculator - Life Path & Destiny">
-    <meta name="twitter:description" content="Calculate your life path number and discover mystical insights from your birth date. Professional numerology analysis for $1.">
+    <meta name="twitter:description"
+        content="Calculate your life path number and discover mystical insights from your birth date. Professional numerology analysis for $1.">
     <meta name="twitter:image" content="https://spaarowhub.great-site.net/asset/img/og-numerology.svg">
     <meta name="twitter:site" content="@SpaarowHub">
     <meta name="twitter:creator" content="@TylerDavis">
-    
+
     <meta name="theme-color" content="#9333EA">
     <link rel="manifest" href="/manifest.json">
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="../asset/css/main.css">
     <link rel="stylesheet" href="./style.css">
@@ -76,7 +83,7 @@
                     </h1>
                     <p>Discover Your Life Path Through Sacred Numbers</p>
                 </div>
-                
+
                 <div class="floating-numbers">
                     <div class="number-float num-1">1</div>
                     <div class="number-float num-2">7</div>
@@ -93,7 +100,7 @@
                         <i class="fas fa-calendar-alt"></i>
                         <h2>Enter Your Birth Date</h2>
                     </div>
-                    
+
                     <div class="birth-input-group">
                         <div class="input-row">
                             <div class="form-group">
@@ -114,14 +121,14 @@
                                     <option value="12">December</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="birth-day">Day</label>
                                 <select id="birth-day" required>
                                     <option value="">Select...</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="birth-year">Year</label>
                                 <select id="birth-year" required>
@@ -129,12 +136,13 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="full-name">Your Name (Optional)</label>
-                            <input type="text" id="full-name" placeholder="Enter your full name for deeper insights..." maxlength="50">
+                            <input type="text" id="full-name" placeholder="Enter your full name for deeper insights..."
+                                maxlength="50">
                         </div>
-                        
+
                         <button class="calculate-btn" onclick="calculateNumerology()">
                             <i class="fas fa-infinity"></i>
                             Calculate My Numbers
@@ -144,7 +152,7 @@
             </section>
 
             <!-- Results Section -->
-            <section class="results-section" id="results" style="display: none;">
+            <section class="results-section hidden" id="results">
                 <div class="result-card">
                     <div class="numbers-display">
                         <h3>Your Sacred Numbers</h3>
@@ -152,34 +160,35 @@
                             <!-- Numbers will be displayed here -->
                         </div>
                     </div>
-                    
+
                     <div class="life-path-section">
                         <h3>🌟 Your Life Path Number</h3>
                         <div class="life-path-display" id="life-path-display">
                             <!-- Life path will be displayed here -->
                         </div>
                     </div>
-                    
+
                     <div class="personality-section">
                         <h3>🎭 Personality Traits</h3>
                         <div class="traits-list" id="traits-list">
                             <!-- Traits will be displayed here -->
                         </div>
                     </div>
-                    
+
                     <div class="destiny-section">
                         <h3>🔮 Destiny & Purpose</h3>
                         <div class="destiny-text" id="destiny-text">
                             <!-- Destiny message will be displayed here -->
                         </div>
                     </div>
-                    
+
                     <!-- Premium Section -->
                     <div class="premium-section">
                         <div class="premium-content">
                             <h3>🌟 Unlock Complete Numerology Reading</h3>
-                            <p>Get your detailed name analysis, compatibility insights, and yearly predictions for just $1.99!</p>
-                            
+                            <p>Get your detailed name analysis, compatibility insights, and yearly predictions for just
+                                $1.99!</p>
+
                             <div class="premium-features">
                                 <div class="feature-item">
                                     <i class="fas fa-signature"></i>
@@ -198,20 +207,24 @@
                                     <span>Lucky Days & Colors</span>
                                 </div>
                             </div>
-                            
+
                             <div class="price-display">
                                 <span class="price">$1.99</span>
                                 <span class="price-note">One-time payment</span>
                             </div>
-                            
+
                             <!-- PayPal Button -->
                             <div class="payment-button">
                                 <div>
-                                    <style>.pp-VKAP2E6UWJRV6{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
-                                    <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
-                                        <input class="pp-VKAP2E6UWJRV6" type="submit" value="Buy Now" />
-                                        <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
-                                        <section style="font-size: 0.75rem;"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                                    <form class="pp-payment-form"
+                                        action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post"
+                                        target="_blank">
+                                        <input class="pp-payment-button" type="submit" value="Buy Now" />
+                                        <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg
+                                            alt="cards" />
+                                        <section class="pp-powered-by"> Powered by <img
+                                                src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
+                                                alt="paypal" /></section>
                                     </form>
                                 </div>
                             </div>
@@ -229,18 +242,42 @@
             </section>
         </div>
         <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div id="generalSlideshow" data-slideshow="general"></div>
-            <p>&copy; 2026 Spaarow Hub - All rights reserved </p>
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="footer-content">
+                <div id="generalSlideshow" data-slideshow="general"></div>
+                <div class="footer-links">
+                    <a href="../asset/pages/about.html" class="footer-link">About</a>
+                    <a href="../asset/pages/agreement.html" class="footer-link">Agreement</a>
+                    <a href="../asset/pages/share.html" class="footer-link">Share</a>
+                    <a href="../asset/pages/subscribe.html" class="footer-link">Subscribe</a>
+
+                    <div class="footer-social-links">
+                        <a href="https://www.facebook.com/share/1B3PRLp4Jt/" target="_blank" rel="noopener"
+                            class="footer-social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://github.com/lost1x" target="_blank" rel="noopener" class="footer-social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@i_am_the_spaarow?_r=1&_t=ZP-94kgdFqNp7v" target="_blank"
+                            rel="noopener" class="footer-social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+                <p>&copy; 2026 Spaarow Hub • Your gateway to mystical wisdom</p>
+            </div>
+        </footer>
     </main>
 
     <!-- JavaScript -->
-    <script src="../asset/js/image-slideshow.js"></script>
+    <script src="../asset/js/main.js"></script>
     <script src="./numerology-data.js"></script>
+    <script src="../asset/js/image-slideshow.js"></script>
     <script src="./script.js"></script>
     <script src="../asset/js/navigation.js"></script>
 </body>
+
 </html>

@@ -1,9 +1,6 @@
 /* ===== ZODIAC CALCULATOR STYLES ===== */
 
 :root {
-    --zodiac-primary: #14B8A6;
-    --zodiac-secondary: #2DD4BF;
-    --zodiac-accent: #5EEAD4;
     --zodiac-dark: #0F766E;
     --cosmic-bg: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
 }

@@ -758,7 +758,21 @@ class SpaarowHub {
 
 function navigateToTool(tool) {
     if (typeof tool === 'string') {
-        window.hub.navigateToTool(tool);
+        // Wait for hub to be initialized
+        if (window.hub) {
+            window.hub.navigateToTool(tool);
+        } else {
+            // If hub isn't ready yet, wait a bit and try again
+            setTimeout(() => {
+                if (window.hub) {
+                    window.hub.navigateToTool(tool);
+                } else {
+                    console.error('Hub not initialized');
+                    // Fallback: direct navigation
+                    window.location.href = `${tool}/`;
+                }
+            }, 100);
+        }
         return;
     }
 
@@ -766,7 +780,12 @@ function navigateToTool(tool) {
     const card = tool?.currentTarget?.closest?.('.tool-card');
     const toolName = card?.dataset?.tool;
     if (toolName) {
-        window.hub.navigateToTool(toolName);
+        if (window.hub) {
+            window.hub.navigateToTool(toolName);
+        } else {
+            // Fallback: direct navigation
+            window.location.href = `${toolName}/`;
+        }
     }
 }
 
@@ -959,19 +978,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Export for global access
 window.SpaarowHub = SpaarowHub;
-window.navigateToTool = navigateToTool;
-window.showPrivacy = showPrivacy;
-window.showTerms = showTerms;
-window.showSupport = showSupport;
-window.closeModal = closeModal;
-window.addSuggestion = (suggestion) => window.suggestionSystem?.addSuggestion(suggestion);
-window.submitSuggestion = () => {
-    const input = document.getElementById('tool-suggestion');
-    const suggestion = input?.value.trim();
-    if (suggestion) {
-        window.suggestionSystem.addSuggestion(suggestion);
-        input.value = '';
-        input.focus();
-    }
-};
+
+// Initialize hub when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.hub = new SpaarowHub();
+    
+    // Export functions after hub is initialized
+    window.navigateToTool = navigateToTool;
+    window.showPrivacy = showPrivacy;
+    window.showTerms = showTerms;
+    window.showSupport = showSupport;
+    window.closeModal = closeModal;
+    window.addSuggestion = (suggestion) => window.suggestionSystem?.addSuggestion(suggestion);
+    window.submitSuggestion = () => {
+        const input = document.getElementById('tool-suggestion');
+        const suggestion = input?.value.trim();
+        if (suggestion) {
+            window.suggestionSystem.addSuggestion(suggestion);
+            input.value = '';
+            input.focus();
+        }
+    };
+});
 

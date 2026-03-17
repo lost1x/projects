@@ -1,5 +1,6 @@
 <?php
-require_once 'config.php';
+require __DIR__ . '/config.php';
+require_once __DIR__ . '/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendResponse(['error' => 'Method not allowed'], 405);
@@ -12,16 +13,60 @@ if (!$user) {
 
 $data = json_decode(file_get_contents('php://input'), true);
 $prompt = trim($data['prompt'] ?? '');
+$context = $data['context'] ?? [];
 
 if (!$prompt) {
     sendResponse(['error' => 'Prompt is required'], 422);
 }
 
-// Build a simple conversation context
-$system = "You are the Spaarow Hub oracle. Provide short, friendly, mystical advice based on the user's question. Keep responses concise and kind.";
+// Enhanced system prompt with context awareness
+$system = "You are the Spaarow Hub oracle. Provide short, friendly, mystical advice based on the user's question. Keep responses concise and kind. Consider the conversation context for more personalized responses.";
 
-// Rule-based responses for when no LLM API is configured
-function getRuleBasedResponse($prompt) {
+// Check if LLM is configured
+$useLLM = !empty(LLM_API_KEY) && in_array(LLM_PROVIDER, ['openrouter', 'ollama', 'huggingface']);
+
+if ($useLLM) {
+    // LLM-powered responses
+    $messages = [
+        ['role' => 'system', 'content' => $system],
+        ...array_map(function($msg) {
+            return ['role' => $msg['role'], 'content' => $msg['message']];
+        }, $context)
+    ];
+    
+    $payload = [
+        'model' => LLM_MODEL,
+        'messages' => $messages,
+        'temperature' => 0.8,
+        'max_tokens' => 250
+    ];
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . LLM_API_KEY
+    ]);
+    
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+    
+    if ($err) {
+        sendResponse(['error' => 'LLM request failed', 'details' => $err], 500);
+    }
+    
+    $data = json_decode($response, true);
+    $reply = $data['choices'][0]['message']['content'] ?? 'The oracle is contemplating your question...';
+    
+    sendResponse(['response' => $reply]);
+    
+} else {
+    // Enhanced rule-based responses
+    function getRuleBasedResponse($prompt) {
     $prompt = strtolower(trim($prompt));
     
     // Greeting responses
@@ -38,10 +83,30 @@ function getRuleBasedResponse($prompt) {
     if (preg_match('/\b(love|relationship|romance|heart|partner)\b/', $prompt)) {
         $responses = [
             "Love is like the stars - mysterious and beautiful. Trust your intuition, for it knows the language of the heart.",
-            "The cosmic energies suggest openness in matters of the heart. Be vulnerable, be authentic, be you.",
-            "Your heart chakra is glowing with possibility. Listen to its whispers and follow where they lead."
+            "The cosmic energies support openness in matters of the heart. Be vulnerable, be authentic, be you.",
+            "Your heart chakra is glowing with possibility. Listen to its whispers and follow where they lead.",
+            "Relationships are like constellations - connected patterns that tell a beautiful story."
         ];
         return $responses[array_rand($responses)];
+    }
+    
+    // Zodiac-specific responses
+    if (preg_match('/\b(aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|aquarius|pisces|zodiac|sign)\b/', $prompt)) {
+        $zodiacResponses = [
+            "Aries: Your fiery energy propels you forward. Take bold action, for Mars favors the brave.",
+            "Taurus: Your steady persistence builds lasting foundations. Patience is your greatest strength.",
+            "Gemini: Your curious mind explores many paths. Communication is your key to connection.",
+            "Cancer: Your intuitive heart guides you well. Trust your emotional wisdom.",
+            "Leo: Your radiant leadership inspires others. Shine brightly, for the Sun blesses your confidence.",
+            "Virgo: Your analytical mind sees details others miss. Your perfectionism serves the greater good.",
+            "Libra: Your balanced nature creates harmony. Seek justice and beauty in all things.",
+            "Scorpio: Your passionate intensity transforms situations. Your power lies in your emotional depth.",
+            "Sagittarius: Your adventurous spirit seeks truth. Your arrow of intuition rarely misses its mark.",
+            "Capricorn: Your disciplined ambition achieves great heights. Your patience builds enduring success.",
+            "Aquarius: Your innovative vision leads the way. Your unique perspective changes the world.",
+            "Pisces: Your compassionate heart understands all souls. Your dreams connect you to universal wisdom."
+        ];
+        return $zodiacResponses[array_rand($zodiacResponses)];
     }
     
     // Career and money
@@ -221,6 +286,7 @@ if (!empty(LLM_API_KEY) && LLM_PROVIDER === 'openrouter') {
 } else {
     // Rule-based fallback when no LLM API is configured
     $responseText = getRuleBasedResponse($prompt);
+    sendResponse(['response' => trim($responseText)]);
 }
-
-sendResponse(['response' => trim($responseText)]);
+}
+?>

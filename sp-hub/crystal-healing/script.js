@@ -130,7 +130,7 @@ class CrystalHealing {
         card.className = 'crystal-card';
         card.innerHTML = `
             <div class="crystal-image">
-                <div class="crystal-color" style="background: ${this.getCrystalColor(crystal.color)}"></div>
+                <div class="crystal-color" data-color="${crystal.color}"></div>
                 <div class="crystal-shape"></div>
             </div>
             <div class="crystal-info">
@@ -281,7 +281,7 @@ class CrystalHealing {
             const chakraCard = document.createElement('div');
             chakraCard.className = 'chakra-card';
             chakraCard.innerHTML = `
-                <div class="chakra-color" style="background: ${chakra.color}"></div>
+                <div class="chakra-color" data-color="${chakra.color}"></div>
                 <div class="chakra-info">
                     <h4>${chakra.name} Chakra</h4>
                     <p class="chakra-sanskrit">${chakra.sanskrit}</p>

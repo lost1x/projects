@@ -158,13 +158,7 @@ class NumerologyCalculator {
                 const symbol = document.createElement('div');
                 symbol.className = 'sacred-symbol';
                 symbol.textContent = ['∞', '◈', '✧', '⬟', '❋', '⬢', '◆', '⬟', '✦', '⬟', '○', '△'][i];
-                symbol.style.cssText = `
-                    position: absolute;
-                    font-size: ${1 + Math.random() * 2}rem;
-                    color: rgba(147, 51, 234, ${0.3 + Math.random() * 0.4});
-                    pointer-events: none;
-                    animation: sacred-float ${3 + Math.random() * 4}s ease-in-out infinite;
-                `;
+                symbol.classList.add('sacred-symbol-animation');
                 
                 // Random position
                 const angle = Math.random() * Math.PI * 2;
@@ -200,7 +194,7 @@ class NumerologyCalculator {
         this.displayDestinyMessage();
         
         // Show results section
-        resultsSection.style.display = 'block';
+        resultsSection.classList.remove('hidden');
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
         // Add entrance animation

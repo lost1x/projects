@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - Spaarow Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="referrer" content="no-referrer">
     <meta name="cache-control" content="no-transform">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
+
 <body>
     <!-- Background Animation -->
     <div class="bg-animation">
@@ -36,7 +41,8 @@
             <div class="profile-header">
                 <h1>My Profile</h1>
                 <div class="header-actions">
-                    <button class="refresh-button" id="refreshButton" onclick="refreshProfileData()" title="Refresh profile data">
+                    <button class="refresh-button" id="refreshButton" onclick="refreshProfileData()"
+                        title="Refresh profile data">
                         <i class="fas fa-sync-alt"></i> Refresh
                     </button>
                     <button class="edit-button" id="editButton" onclick="toggleEditMode()">Edit Profile</button>
@@ -46,7 +52,8 @@
             <!-- Profile View Mode -->
             <div id="profileViewMode" class="profile-card">
                 <div class="profile-avatar">
-                    <img id="avatarImage" src="../asset/img/avatar-placeholder.svg" alt="Avatar" class="profile-avatar-img">
+                    <img id="avatarImage" src="../asset/img/avatar-placeholder.svg" alt="Avatar"
+                        class="profile-avatar-img">
                 </div>
 
                 <div class="profile-info">
@@ -96,12 +103,13 @@
             <!-- Profile Edit Mode -->
             <div id="profileEditMode" class="profile-card hidden">
                 <form id="profileForm">
-                            <div class="form-group">
+                    <div class="form-group">
                         <label for="avatarUpload">Avatar</label>
-                        <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/webp" onchange="previewAvatar(event)">
+                        <input type="file" id="avatarUpload" accept="image/png, image/jpeg, image/webp"
+                            onchange="previewAvatar(event)">
                         <p class="hint">Max 2MB. PNG/JPG/WEBP only.</p>
-                        <div id="avatarPreview" class="avatar-preview" style="display: none;">
-                            <img id="avatarPreviewImg" src="" alt="Avatar preview" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #6b46c1;">
+                        <div id="avatarPreview" class="avatar-preview">
+                            <img id="avatarPreviewImg" src="" alt="Avatar preview">
                         </div>
                     </div>
                     <div class="form-group">
@@ -218,42 +226,39 @@
                 <p class="no-data">Loading your readings...</p>
             </div>
         </section>
-    </main>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div id="generalSlideshow" data-slideshow="general"></div>
+                <div class="footer-links">
+                    <a href="./about.html" class="footer-link">About</a>
+                    <a href="./agreement.html" class="footer-link">Agreement</a>
+                    <a href="./share.html" class="footer-link">Share</a>
+                    <a href="./subscribe.html" class="footer-link">Subscribe</a>
 
-    <script>
-        // Cache-busting helper
-        function loadScript(src) {
-            const script = document.createElement('script');
-            script.src = src + '?v=' + Date.now();
-            document.head.appendChild(script);
-        }
-        
-        function loadStylesheet(href) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = href + '?v=' + Date.now();
-            document.head.appendChild(link);
-        }
-        
-        // Force refresh on page load to get latest data
-        function forceRefresh() {
-            // Add timestamp to prevent caching
-            if (!window.location.search.includes('force=')) {
-                const url = new URL(window.location);
-                url.searchParams.set('force', Date.now());
-                window.location.replace(url.toString());
-                return false; // Stop further execution
-            }
-            return true;
-        }
-        
-        // Only proceed if not redirecting
-        if (forceRefresh()) {
-            // Load resources with cache-busting
-            loadStylesheet('../asset/css/main.css');
-            loadScript('../asset/js/auth.js');
-            loadScript('../asset/js/profile.js');
-        }
-    </script>
+                    <div class="footer-social-links">
+                        <a href="https://www.facebook.com/share/1B3PRLp4Jt/" target="_blank" rel="noopener"
+                            class="footer-social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://github.com/lost1x" target="_blank" rel="noopener" class="footer-social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@i_am_the_spaarow?_r=1&_t=ZP-94kgdFqNp7v" target="_blank"
+                            rel="noopener" class="footer-social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+                <p>&copy; 2026 Spaarow Hub • Your gateway to mystical wisdom</p>
+            </div>
+        </footer>
+    </main>
+    <script src="../js/script.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/image-slideshow.js"></script>
 </body>
+
 </html>

@@ -1,9 +1,6 @@
 /* ===== TAROT READING STYLES ===== */
 
 :root {
-  --tarot-primary: #7c2d12;
-  --tarot-secondary: #92400e;
-  --tarot-accent: #b45309;
   --tarot-light: #ea580c;
   --tarot-glow: rgba(234, 88, 12, 0.3);
   --mystical-bg: linear-gradient(135deg, #000000 0%, #1a0a0a 50%, #000000 100%);

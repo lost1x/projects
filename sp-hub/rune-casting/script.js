@@ -81,7 +81,7 @@ class RuneCasting {
         // Hide previous results
         const resultsSection = document.getElementById('resultsSection');
         if (resultsSection) {
-            resultsSection.style.display = 'none';
+            resultsSection.classList.add('hidden');
         }
 
         // Simulate casting delay for dramatic effect
@@ -140,7 +140,7 @@ class RuneCasting {
         interpretation.innerHTML = interpretationText;
 
         // Show results with animation
-        resultsSection.style.display = 'block';
+        resultsSection.classList.remove('hidden');
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         // Animate runes appearing
@@ -289,15 +289,7 @@ class RuneCasting {
             const floatingRune = document.createElement('div');
             floatingRune.className = 'floating-rune';
             floatingRune.textContent = rune.symbol;
-            floatingRune.style.cssText = `
-                position: absolute;
-                font-size: ${Math.random() * 20 + 10}px;
-                color: rgba(139, 69, 19, ${Math.random() * 0.3 + 0.1});
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                animation: float ${Math.random() * 10 + 10}s linear infinite;
-                opacity: ${Math.random() * 0.5 + 0.2};
-            `;
+            floatingRune.classList.add(`floating-rune-${i}`);
             container.appendChild(floatingRune);
         }
     }

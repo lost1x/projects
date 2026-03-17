@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Spaarow Hub Premium - Unlock All Mystical Tools</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Subscribe to Spaarow Hub Premium for unlimited access to all mystical divination tools. Get detailed readings, advanced features, and priority support.">
+    <meta name="keywords"
+        content="mystical subscription, tarot premium, astrology subscription, divination tools premium, spiritual guidance membership, cosmic token, unlimited readings">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Spaarow Hub Premium Subscription">
+    <meta property="og:description"
+        content="Unlock unlimited access to all mystical divination tools with premium features. Get detailed readings, advanced features, and priority support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spaarowhub.great-site.net/subscribe.html">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .subscription-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .subscription-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .subscription-header h1 {
+            font-family: var(--font-mystical);
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .subscription-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subscription-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-purple);
+        }
+
+        .plan-card.featured {
+            border-color: var(--primary-purple);
+            background: rgba(107, 70, 193, 0.1);
+        }
+
+        .plan-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features li i {
+            color: var(--primary-purple);
+            width: 20px;
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .plan-button:hover {
+            background: var(--primary-pink);
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured .plan-button {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+        }
+
+        .plan-card:not(.featured) .plan-button {
+            background: var(--text-secondary);
+        }
+
+        .plan-card:not(.featured) .plan-button:hover {
+            background: var(--primary-purple);
+        }
+
+        .subscription-benefits {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+
+        .benefit-item i {
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+        }
+
+        .benefit-text {
+            color: var(--text-secondary);
+        }
+
+        .benefit-text strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .subscription-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .subscription-plans {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="floating-orb orb-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div style="flex: 1; text-align: center">
+                <h1 class="main-title">
+                    <span class="title-mystical">Spaarow Hub Premium</span>
+                </h1>
+                <p class="subtitle">Unlock Unlimited Mystical Wisdom</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="subscription-container">
+            <!-- Header Section -->
+            <div class="subscription-header">
+                <h1>Choose Your Mystical Journey</h1>
+                <p>Unlock unlimited access to all premium mystical tools and features. Get detailed readings, advanced
+                    insights, and priority support.</p>
+            </div>
+
+            <!-- Subscription Plans -->
+            <div class="subscription-plans">
+                <!-- Free Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-name">Free</div>
+                        <div class="plan-price">$0<span>/month</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Basic Tarot Reading</li>
+                        <li><i class="fas fa-check"></i> Simple Love Language Quiz</li>
+                        <li><i class="fas fa-check"></i> Basic Dream Analysis</li>
+                        <li><i class="fas fa-check"></i> Limited Daily Readings</li>
+                        <li><i class="fas fa-times"></i> Advanced Features</li>
+                        <li><i class="fas fa-times"></i> Priority Support</li>
+                        <li><i class="fas fa-times"></i> Detailed Reports</li>
+                    </ul>
+                    <button class="plan-button" onclick="window.location.href='/'">Continue Free</button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="plan-card featured" style="position: relative;">
+                    <div class="plan-header">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-price">$9.99<span>/month</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> All Tarot Spreads</li>
+                        <li><i class="fas fa-check"></i> Advanced Birth Charts</li>
+                        <li><i class="fas fa-check"></i> Dream Analysis</li>
+                        <li><i class="fas fa-check"></i> Zodiac Compatibility</li>
+                        <li><i class="fas fa-check"></i> Numerology Reports</li>
+                        <li><i class="fas fa-check"></i> Unlimited Cosmic Tokens</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> Ad-Free Experience</li>
+                        <li><i class="fas fa-check"></i> Custom Profile Themes</li>
+                        <li><i class="fas fa-check"></i> Reading History Export</li>
+                        <li><i class="fas fa-check"></i> Advanced Oracle Chat</li>
+                    </ul>
+                    <div class="plan-actions">
+                        <div id="paypal-button-container-P-6UW05441GU354914ANG4BFMA"></div>
+                        <script
+                            src="https://www.paypal.com/sdk/js?client-id=AWQwGpEMiC8Fdfqje35DagKwr9guX_n2bH7h9PapTPQHRLaPftAKjXAeEAYtCSChAyHhq3Jjjyt_xbKw&vault=true&intent=subscription"
+                            data-sdk-integration-source="button-factory"></script>
+                        <script>
+                            paypal.Buttons({
+                                style: {
+                                    shape: 'rect',
+                                    color: 'gold',
+                                    layout: 'vertical',
+                                    label: 'subscribe'
+                                },
+                                createSubscription: function (data, actions) {
+                                    return actions.subscription.create({
+                                        /* Creates the subscription */
+                                        plan_id: 'P-6UW05441GU354914ANG4BFMA'
+                                    });
+                                },
+                                onApprove: function (data, actions) {
+                                    alert('Thank you for subscribing! You will receive a confirmation email shortly.');
+                                    // You can add optional success message for the subscriber here
+                                    window.location.href = '/asset/pages/profile.html';
+                                }
+                            }).render('#paypal-button-container-P-6UW05441GU354914ANG4BFMA'); // Renders the PayPal button
+                        </script>
+                    </div>
+                    <div id="paypal-button-container-P-6UW05441GU354914ANG4BFMA"></div>
+                    <script
+                        src="https://www.paypal.com/sdk/js?client-id=AWQwGpEMiC8Fdfqje35DagKwr9guX_n2bH7h9PapTPQHRLaPftAKjXAeEAYtCSChAyHhq3Jjjyt_xbKw&vault=true&intent=subscription"
+                        data-sdk-integration-source="button-factory"></script>
+                    <script>
+                        paypal.Buttons({
+                            style: {
+                                shape: 'pill',
+                                color: 'blue',
+                                layout: 'vertical',
+                                label: 'subscribe'
+                            },
+                            createSubscription: function (data, actions) {
+                                return actions.subscription.create({
+                                    plan_id: 'P-6UW05441GU354914ANG4BFMA'
+                                });
+                            },
+                            onApprove: function (data, actions) {
+                                console.log('Subscription created:', data.subscriptionID);
+                                alert('Thank you for subscribing to Spaarow Hub Premium! You will be redirected to your account.');
+                                // Redirect to profile or dashboard
+                                setTimeout(() => {
+                                    window.location.href = '/asset/pages/dashboard';
+                                }, 2000);
+                            },
+                            onError: function (err) {
+                                console.error('PayPal error:', err);
+                                alert('Payment failed. Please try again or contact support.');
+                            }
+                        }).render('#paypal-button-container-P-6UW05441GU354914ANG4BFMA');
+                    </script>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="subscription-benefits">
+                <h2 class="benefits-title">Why Choose Premium?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-infinity"></i>
+                        <div class="benefit-text">
+                            <strong>Unlimited Access</strong>
+                            Use all mystical tools without limits
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="benefit-text">
+                            <strong>Advanced Analytics</strong>
+                            Detailed insights and patterns in your readings
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-bolt"></i>
+                        <div class="benefit-text">
+                            <strong>Priority Processing</strong>
+                            Faster readings and instant results
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="benefit-text">
+                            <strong>Priority Support</strong>
+                            Get help when you need it most
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-download"></i>
+                        <div class="benefit-text">
+                            <strong>Export & Save</strong>
+                            Download your readings and reports
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-lock"></i>
+                        <div class="benefit-text">
+                            <strong>Secure & Private</strong>
+                            Your spiritual journey is protected
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-star"></i>
+                        <div class="benefit-text">
+                            <strong>Exclusive Features</strong>
+                            Access to new tools before anyone else
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div id="generalSlideshow" data-slideshow="general"></div>
+            <div class="footer-links">
+                <a href="./about.html" class="footer-link">About</a>
+                <a href="./agreement.html" class="footer-link">Agreement</a>
+                <a href="./share.html" class="footer-link">Share</a>
+                <a href="#" class="footer-link">Subscribe</a>
+
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/share/1B3PRLp4Jt/" target="_blank" rel="noopener"
+                        class="footer-social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://github.com/lost1x" target="_blank" rel="noopener" class="footer-social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@i_am_the_spaarow?_r=1&_t=ZP-94kgdFqNp7v" target="_blank"
+                        rel="noopener" class="footer-social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+
+
+            </div>
+            <p>&copy; 2026 Spaarow Hub • Your gateway to mystical wisdom</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/image-slideshow.js"></script>
+</body>
+
+</html>

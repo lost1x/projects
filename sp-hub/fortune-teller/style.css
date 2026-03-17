@@ -1,9 +1,6 @@
 /* ===== FORTUNE TELLER STYLES ===== */
 
 :root {
-    --fortune-primary: #F97316;
-    --fortune-secondary: #FB923C;
-    --fortune-accent: #FDBA74;
     --fortune-dark: #C2410C;
     --mystical-bg: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
 }

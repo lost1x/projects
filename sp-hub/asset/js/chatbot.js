@@ -1,12 +1,28 @@
-// Chatbot UI + API integration
+// Enhanced Chatbot with preset questions and improved responses
 const Chatbot = {
     api_url: 'asset/php',
+    
+    // Preset questions for guided conversations
+    presetQuestions: [
+        "What does my future hold?",
+        "Will I find love soon?",
+        "What is my life purpose?",
+        "Am I on the right path?",
+        "What challenges will I face?",
+        "Should I take this opportunity?",
+        "What does my zodiac sign say about me?",
+        "How can I improve my relationships?",
+        "What career path should I choose?",
+        "What message does the universe have for me?"
+    ],
 
     init() {
         this.chatContainer = document.getElementById('chatbotMessages');
         this.input = document.getElementById('chatbotInput');
         this.sendButton = document.getElementById('chatbotSend');
         this.errorContainer = document.getElementById('chatbotError');
+        this.currentQuestionIndex = 0;
+        this.conversationContext = [];
 
         if (!this.chatContainer || !this.input || !this.sendButton) return;
 
@@ -18,12 +34,45 @@ const Chatbot = {
             }
         });
 
-        this.addMessage('system', 'Ask me anything about your journey or let me share a quick insight.');
+        // Start with a preset question
+        this.addPresetQuestionButtons();
+    },
+
+    addPresetQuestionButtons() {
+        const questionsHtml = this.presetQuestions.map((question, index) => 
+            `<button class="preset-question-btn" onclick="Chatbot.selectPresetQuestion(${index})">${question}</button>`
+        ).join('');
+        
+        this.addMessage('system', 
+            `<div class="preset-questions">
+                <p class="preset-intro">Choose a question to begin your oracle session:</p>
+                <div class="preset-buttons">${questionsHtml}</div>
+            </div>`
+        );
+    },
+
+    selectPresetQuestion(index) {
+        const question = this.presetQuestions[index];
+        this.input.value = question;
+        this.currentQuestionIndex = index;
+        
+        // Remove preset buttons
+        const presetButtons = this.chatContainer.querySelector('.preset-questions');
+        if (presetButtons) {
+            presetButtons.remove();
+        }
+        
+        // Auto-send the selected question
+        this.handleSend();
     },
 
     async handleSend() {
         const text = this.input.value.trim();
         if (!text) return;
+        
+        // Add user message to conversation context
+        this.conversationContext.push({ role: 'user', message: text });
+        
         this.addMessage('user', text);
         this.input.value = '';
         this.setLoading(true);
@@ -35,7 +84,10 @@ const Chatbot = {
                     'Content-Type': 'application/json',
                     ...(Auth.token ? { Authorization: `Bearer ${Auth.token}` } : {})
                 },
-                body: JSON.stringify({ prompt: text })
+                body: JSON.stringify({ 
+                    prompt: text,
+                    context: this.conversationContext.slice(-5) // Send last 5 messages for context
+                })
             });
 
             const data = await response.json();
@@ -43,7 +95,11 @@ const Chatbot = {
                 throw new Error(data.error || data.details || 'Chat request failed');
             }
 
-            const reply = data.response || 'Hmm… I did not receive a response.';
+            const reply = data.response || 'The oracle is contemplating your question...';
+            
+            // Add oracle response to conversation context
+            this.conversationContext.push({ role: 'oracle', message: reply });
+            
             this.addMessage('oracle', reply);
         } catch (err) {
             this.addMessage('oracle', 'Sorry, I could not connect to the oracle right now.');
