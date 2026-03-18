@@ -1,0 +1,160 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Theme Colors */
+  --primary-purple: #6b46c1;
+  --primary-pink: #ec4899;
+  --primary-blue: #3b82f6;
+  --primary-teal: #14b8a6;
+  --primary-orange: #f97316;
+
+  /* Performance Variables */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Tool-Specific Colors */
+  --love-primary: #ec4899;
+  --love-secondary: #f472b6;
+  --love-accent: #f9a8d4;
+
+  --tarot-primary: #7c2d12;
+  --tarot-secondary: #92400e;
+  --tarot-accent: #b45309;
+
+  --dream-primary: #3b82f6;
+  --dream-secondary: #60a5fa;
+  --dream-accent: #93c5fd;
+  --dream-dark: #1E40AF;
+
+  --fortune-primary: #f97316;
+  --fortune-secondary: #fb923c;
+  --fortune-accent: #fdba74;
+
+  --zodiac-primary: #14b8a6;
+  --zodiac-secondary: #2dd4bf;
+  --zodiac-accent: #5eead4;
+
+  --numerology-primary: #9333ea;
+  --numerology-secondary: #a855f7;
+  --numerology-accent: #c084fc;
+
+  /* Neutral Colors */
+  --dark-bg: #000000;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: rgba(255, 255, 255, 0.15);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Typography */
+  --font-primary: "Poppins", sans-serif;
+  --font-mystical: "Cinzel", serif;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(107, 70, 193, 0.3);
+
+  /* Tool-Specific Background Colors */
+  --love-bg: linear-gradient(135deg, #ec4899, #f472b6, #f9a8d4);
+  --tarot-bg: linear-gradient(135deg, #7c2d12, #92400e, #b45309);
+  --dream-bg: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+  --dreamscape-bg: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  --fortune-bg: linear-gradient(135deg, #f97316, #fb923c, #fdba74);
+  --zodiac-bg: linear-gradient(135deg, #14b8a6, #2dd4bf, #5eead4);
+  --numerology-bg: linear-gradient(135deg, #9333ea, #a855f7, #c084fc);
+  --rune-bg: linear-gradient(135deg, #8b4513, #a16207, #c2410c);
+  --astrology-bg: linear-gradient(135deg, #4c1d95, #6d28d9, #7c3aed);
+  --crystal-bg: linear-gradient(135deg, #9333ea, #c084fc, #e879f9);
+
+  /* Animation Variables */
+  --particle-speed: 20s;
+  --glow-intensity: 0.6;
+  --hover-scale: 1.05;
+
+  /* Utility Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+  --gradient-secondary: linear-gradient(135deg, var(--primary-purple), var(--primary-pink), var(--primary-blue));
+  --gradient-muted: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(139, 92, 246, 0.1));
+  --gradient-disabled: linear-gradient(135deg, #666, #888);
+  --gradient-dark: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-data: reduce) {
+  .card-background,
+  .card-pattern,
+  .card-glow {
+    display: none;
+  }
+  
+  .cosmic-background {
+    background: #0f0f1e;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.hidden { display: none !important; }
+.visible { display: block !important; }
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-wrap { flex-wrap: wrap; }
+
+.grid { display: grid; }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+.pointer-events-none { pointer-events: none; }
+
+.backdrop-blur-sm { backdrop-filter: blur(5px); }
+.backdrop-blur-md { backdrop-filter: blur(10px); }
+.backdrop-blur-lg { backdrop-filter: blur(20px); }

@@ -1,0 +1,328 @@
+/* ===== DYNAMIC DREAM INTERPRETER STYLES ===== */
+/* These styles were previously injected via JavaScript */
+
+/* Dream Particle Animation */
+@keyframes float-particle {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: translateY(0px) translateX(0px) scale(1); 
+    }
+    25% { 
+        opacity: 0.8; 
+        transform: translateY(-20px) translateX(10px) scale(1.2); 
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: translateY(10px) translateX(-10px) scale(0.8); 
+    }
+    75% { 
+        opacity: 0.9; 
+        transform: translateY(-10px) translateX(5px) scale(1.1); 
+    }
+}
+
+/* Dream Bubble Animation */
+.dream-bubble {
+    animation: float-bubble 4s ease-in-out infinite;
+}
+
+@keyframes float-bubble {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(180deg); 
+    }
+}
+
+/* Dream Particle Styles */
+.dream-particle {
+    pointer-events: none;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-success {
+    background: rgba(34, 197, 94, 0.9);
+}
+
+.toast-error {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+.toast-warning {
+    background: rgba(245, 158, 11, 0.9);
+}
+
+.toast-info {
+    background: rgba(59, 130, 246, 0.9);
+}
+
+/* Mood Badge */
+.mood-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+}
+
+/* Guidance Box */
+.guidance-box {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.guidance-box h4 {
+    color: #87CEEB;
+    margin-bottom: 0.5rem;
+}
+
+/* Common Dream Modal */
+.common-dream-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.common-dream-modal.active {
+    display: flex;
+}
+
+.common-dream-modal .modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.common-dream-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.common-dream-modal .modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: var(--font-mystical);
+}
+
+.common-dream-modal .modal-body {
+    padding: var(--spacing-lg);
+}
+
+.common-dream-modal .modal-body h4 {
+    color: var(--dream-primary);
+    margin-bottom: 0.5rem;
+}
+
+.common-dream-modal .dream-meaning,
+.common-dream-modal .dream-interpretation {
+    margin-bottom: var(--spacing-lg);
+}
+
+.common-dream-modal .dream-tip {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.common-dream-modal .dream-tip h4 {
+    color: #FFD700;
+}
+
+/* Generic Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: var(--font-mystical);
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--primary-purple);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Toast (Legacy Support) */
+.error-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.error-toast.show {
+    transform: translateX(0);
+}
+
+/* Responsive Design for Modals */
+@media (max-width: 768px) {
+    .modal-content,
+    .common-dream-modal .modal-content {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    .modal-header,
+    .modal-body,
+    .common-dream-modal .modal-header,
+    .common-dream-modal .modal-body {
+        padding: var(--spacing-md);
+    }
+
+    .toast {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100%);
+    }
+
+    .toast.show {
+        transform: translateY(0);
+    }
+}

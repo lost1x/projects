@@ -1,0 +1,331 @@
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .dreamscape-container {
+    padding: var(--spacing-md);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .header {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+
+  .main-content {
+    padding: var(--spacing-md) var(--spacing-sm) var(--spacing-xl);
+  }
+
+  .card-content {
+    padding: var(--spacing-md);
+  }
+
+  .card-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .main-title {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  .hero-section {
+    min-height: 50vh;
+    margin-bottom: 2rem;
+  }
+
+  .hero-content {
+    padding: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .tool-card {
+    min-height: 400px;
+  }
+
+  .card-features {
+    justify-content: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  /* Dream Interpreter Specific */
+  .dreamscape-container {
+    padding: var(--spacing-md);
+  }
+  
+  .dream-title h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .dream-input-card,
+  .interpretation-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .symbols-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .premium-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .dreams-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+  }
+  
+  .common-dream-card {
+    padding: var(--spacing-md);
+  }
+
+  .modal-content {
+    margin: var(--spacing-md);
+    width: calc(100% - 2rem);
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  .main-title {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .tool-card {
+    min-height: 350px;
+  }
+
+  .card-features {
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .how-it-works-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .how-step {
+    padding: var(--spacing-lg);
+  }
+
+  /* Dream Interpreter Mobile */
+  .dream-title h1 {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .dream-form {
+    gap: var(--spacing-md);
+  }
+  
+  .dream-symbol {
+    font-size: 2rem;
+  }
+
+  .modal-content {
+    margin: var(--spacing-sm);
+    width: calc(100% - 1rem);
+    max-height: 90vh;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+  .header {
+    padding: var(--spacing-lg) var(--spacing-xs);
+  }
+
+  .main-content {
+    padding: var(--spacing-sm) var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .tools-grid {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs);
+  }
+
+  .tool-card {
+    min-height: 300px;
+  }
+
+  .card-content {
+    padding: var(--spacing-sm);
+  }
+
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .dream-input-card,
+  .interpretation-card {
+    padding: var(--spacing-md);
+  }
+
+  .dream-title h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .interpret-btn,
+  .premium-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 40vh;
+  }
+
+  .dream-header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .floating-dreams {
+    height: 60%;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .card-icon,
+  .dream-bubble {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+  .tool-card:hover,
+  .common-dream-card:hover,
+  .interpret-btn:hover,
+  .premium-btn:hover {
+    transform: none;
+  }
+
+  .tool-card:active,
+  .common-dream-card:active {
+    transform: scale(0.98);
+  }
+
+  .interpret-btn:active,
+  .premium-btn:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-orb,
+  .dream-bubble,
+  .title-word {
+    animation: none !important;
+  }
+
+  .tool-card,
+  .common-dream-card,
+  .interpret-btn,
+  .premium-btn,
+  .footer-link,
+  .footer-social-link {
+    transition: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .floating-orb,
+  .dream-bubble,
+  .premium-modal,
+  .payment-button,
+  .footer-social-links {
+    display: none !important;
+  }
+
+  .dream-main,
+  .dreamscape-container {
+    background: white !important;
+    color: black !important;
+  }
+
+  .dream-input-card,
+  .interpretation-card {
+    border: 1px solid #ccc !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .dream-title h1,
+  .card-header h2,
+  .dream-summary h3,
+  .interpretation-content h3,
+  .symbols-analysis h3,
+  .emotional-insights h3 {
+    color: black !important;
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+  }
+}

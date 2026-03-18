@@ -58,7 +58,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../asset/css/main.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./dynamic-styles.css">
 
     <!-- Fonts -->
     <link
@@ -157,7 +157,7 @@
             </section>
 
             <!-- Results Section -->
-            <section class="results-section" id="results" style="display: none;">
+            <section class="results-section hidden" id="results">
                 <div class="interpretation-card">
                     <div class="dream-summary">
                         <h3>Your Dream Summary</h3>
@@ -262,7 +262,7 @@
     </main>
 
     <!-- Premium Modal -->
-    <div class="premium-modal" id="premium-modal" style="display: none;">
+    <div class="premium-modal hidden" id="premium-modal">
         <div class="modal-overlay" onclick="closePremiumModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
@@ -291,31 +291,14 @@
                     <!-- PayPal Button -->
                     <div class="payment-button">
                         <div>
-                            <style>
-                                .pp-VKAP2E6UWJRV6 {
-                                    text-align: center;
-                                    border: none;
-                                    border-radius: 0.25rem;
-                                    min-width: 11.625rem;
-                                    padding: 0 2rem;
-                                    height: 2.625rem;
-                                    font-weight: bold;
-                                    background-color: #FFD140;
-                                    color: #000000;
-                                    font-family: "Helvetica Neue", Arial, sans-serif;
-                                    font-size: 1rem;
-                                    line-height: 1.25rem;
-                                    cursor: pointer;
-                                }
-                            </style>
-                            <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post"
+                                                        <form action="https://www.paypal.com/ncp/payment/VKAP2E6UWJRV6" method="post"
                                 target="_blank"
-                                style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                                class="paypal-form">
                                 <input class="pp-VKAP2E6UWJRV6" type="submit" value="Buy Now" />
                                 <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
-                                <section style="font-size: 0.75rem;"> Powered by <img
+                                <section class="paypal-powered-by"> Powered by <img
                                         src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
-                                        alt="paypal" style="height:0.875rem;vertical-align:middle;" /></section>
+                                        alt="paypal" class="paypal-logo" /></section>
                             </form>
                         </div>
                     </div>
@@ -326,27 +309,11 @@
 
 
     <!-- Scripts -->
-    <script>
-        // Cache-busting helper
-        function loadScript(src) {
-            const script = document.createElement('script');
-            script.src = src + '?v=' + Date.now();
-            document.head.appendChild(script);
-        }
-
-        function loadStylesheet(href) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = href + '?v=' + Date.now();
-            document.head.appendChild(link);
-        }
-
-    </script>
-    <script src="../asset/js/main.js"></script>
-    <script src="../asset/js/image-slideshow.js"></script>
+    <script src="../asset/js/utils.js"></script>
+    <script src="./dream-data-optimized.js"></script>
+    <script src="./dream-core.js"></script>
     <script src="../asset/js/navigation.js"></script>
-    <script src="dream-data.js"></script>
-    <script src="script.js"></script>
+    <script src="../asset/js/image-slideshow.js"></script>
 
 </body>
 
